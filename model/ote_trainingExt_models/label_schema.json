@@ -1,0 +1,35 @@
+{
+    "label_tree": {
+        "type": "tree",
+        "directed": true,
+        "nodes": [],
+        "edges": []
+    },
+    "label_groups": [
+        {
+            "_id": "63d2a7a41ecb043bb3a75edf",
+            "name": "from_label_list",
+            "label_ids": [
+                "1"
+            ],
+            "relation_type": "EXCLUSIVE"
+        }
+    ],
+    "all_labels": {
+        "1": {
+            "_id": "1",
+            "name": "vehicle",
+            "color": {
+                "red": 90,
+                "green": 184,
+                "blue": 23,
+                "alpha": 255
+            },
+            "hotkey": "",
+            "domain": "DETECTION",
+            "creation_date": "2023-01-26T16:17:40.018000",
+            "is_empty": false,
+            "is_anomalous": false
+        }
+    }
+}
