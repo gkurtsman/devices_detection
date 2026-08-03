@@ -1,0 +1,9 @@
+notes to directory aux:
+1. two files
+	faster_rcnn_r50_fpn_1x_coco_20200130-047c8118_N1.pth
+	faster_rcnn_r50_fpn_1x_coco_20200130-047c8118_N2.pth
+
+	are two splits of file
+	faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
+
+	and have to be merged before used.

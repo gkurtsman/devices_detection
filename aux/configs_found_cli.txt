@@ -1,0 +1,4 @@
+(detection) gena@gena:/opt/intel/training_extensions/ote_sdk$ pwd
+/opt/intel/training_extensions/ote_sdk
+
+ote find --root  ../external/mmdetection/ >~/tmp/configs_found.txt
