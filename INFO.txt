@@ -1,0 +1,23 @@
+bibbudket API token:
+
+<PAT is cleard owing ot github security rules>
+
+App pass (will become inactive on June 9, 2026.):
+
+b557C5VCZXTTVAAV65TL
+
+Copy API token
+Copy your API token and save it somewhere safe. We recommend you save it in a password manager. You can't recover the API token after you're done with this step.
+API token
+Save your API token before you complete this step.
+To authenticate with Bitbucket Cloud using an API token:
+
+    You will need the API token and your Bitbucket email address for Bitbucket APIs.
+    You will need the API token and your Bitbucket user name for Git commands.
+
+See the API token documentation (https://support.atlassian.com/bitbucket-cloud/docs/api-tokens/)
+for more details.
+
+github API token:
+
+<is cleared; it may be prohibited by github security rules >

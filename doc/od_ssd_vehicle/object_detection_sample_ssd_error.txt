@@ -1,0 +1,38 @@
+(detection) gena@gena:/opt/intel/openvino_install_git$ bash -v ~/Develop/comp_vision/dnn/openvino_dev/devices_detection/openvino_examples/cpp/ssd_detect/scripts/ssd_vehicle_detect_cpu.sh /home/gena/Develop/comp_vision/workspace/pc_images/convert_volexcUP_392_36/ir/ _Infrared_2_1569186912963.61425781250000_bright.png
+#!/bin/bash
+if [ -z $1 ]; then
+printf "usage: \n %s <directory name> <filename>\n" $0
+exit 1
+fi
+
+declare FL1=$1$2
+echo "dir_base=" $1
+dir_base= /home/gena/Develop/comp_vision/workspace/pc_images/convert_volexcUP_392_36/ir/
+echo "filename=" $2
+filename= _Infrared_2_1569186912963.61425781250000_bright.png
+echo $FL1
+/home/gena/Develop/comp_vision/workspace/pc_images/convert_volexcUP_392_36/ir/_Infrared_2_1569186912963.61425781250000_bright.png
+
+$OPENVINO/samples/cpp/object_detection_sample_ssd/intel64/Debug/object_detection_sample_ssd \
+-m  /opt/intel/openvino_install_git/openvino_env/lib/python3.8/site-packages/openvino/model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml \
+-i $FL1 \
+-d CPU
+[ INFO ] InferenceEngine: 
+	API version ............ 2.1
+	Build .................. custom_master_3eafa653f3816f2806c4f7344d4a82b67a6de036
+	Description ....... IE
+Parsing input parameters
+[ INFO ] Files were added: 1
+[ INFO ]     /home/gena/Develop/comp_vision/workspace/pc_images/convert_volexcUP_392_36/ir/_Infrared_2_1569186912963.61425781250000_bright.png
+[ INFO ] Loading Inference Engine
+[ INFO ] Device info: 
+	CPU
+	openvino_intel_cpu_plugin version ......... 2.1
+	Build ........... custom_master_3eafa653f3816f2806c4f7344d4a82b67a6de036
+[ INFO ] Loading network files:
+	/opt/intel/openvino_install_git/openvino_env/lib/python3.8/site-packages/openvino/model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml
+[ ERROR ] Check 'is_valid_permutation(permutation, arg_shape.rank())' failed at core/src/op/transpose.cpp:52:
+While validating node 'v1::Transpose Transpose_416 (506[0]:f32{1,16,32,32}, Constant_2693[0]:i64{4}) -> ()' with friendly_name 'Transpose_416':
+Permutation AxisVector{2325296494862836529, 2058040976023299051, 0, 2418173487719978803} is not valid for input shape {1,16,32,32}
+
+

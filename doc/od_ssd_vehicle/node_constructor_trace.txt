@@ -1,0 +1,71 @@
+Breakpoint 3, ov::Node::Node (this=0x2, 
+    arguments=std::vector of length 0, capacity -3909374760347 = {...}, 
+    output_size=140737271009574) at /opt/intel/openvino.git/src/core/src/node.cpp:72
+72	ov::Node::Node(const OutputVector& arguments, size_t output_size) : Node() {
+(gdb) bt
+#0  ov::Node::Node (this=0x2, arguments=std::vector of length 0, capacity -3909374760347 = {...}, 
+    output_size=140737271009574) at /opt/intel/openvino.git/src/core/src/node.cpp:72
+#1  0x00007ffff33bd080 in ov::op::Op::Op (this=0x5555559f8570, 
+    args=std::vector of length 2, capacity 2 = {...})
+    at /opt/intel/openvino.git/src/core/src/op/op.cpp:16
+#2  0x00007ffff35902f9 in ov::op::util::BinaryElementwiseArithmetic::BinaryElementwiseArithmetic (
+    this=0x5555559f8570, arg0=..., arg1=..., autob=...)
+    at /opt/intel/openvino.git/src/core/src/op/util/binary_elementwise_arithmetic.cpp:24
+#3  0x00007ffff3362b53 in ov::op::v1::Multiply::Multiply (this=0x5555559f8570, arg0=..., 
+    arg1=..., auto_broadcast=...) at /opt/intel/openvino.git/src/core/src/op/multiply.cpp:61
+#4  0x00007ffff3370e7f in __gnu_cxx::new_allocator<ov::op::v1::Multiply>::construct<ov::op::v1::Multiply, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&>
+    (this=0x7fffffffb40f, __p=0x5555559f8570) at /usr/include/c++/9/ext/new_allocator.h:146
+#5  0x00007ffff3370d28 in std::allocator_traits<std::allocator<ov::op::v1::Multiply> >::construct<ov::op::v1::Multiply, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> (__a=..., __p=0x5555559f8570) at /usr/include/c++/9/bits/alloc_traits.h:483
+#6  0x00007ffff3370af3 in std::_Sp_counted_ptr_inplace<ov::op::v1::Multiply, std::allocator<ov::op::v1::Multiply>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> (this=0x5555559f8560, __a=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:548
+#7  0x00007ffff3370796 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ov::op::v1::Multiply, std::allocator<ov::op::v1::Multiply>, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> (this=0x7fffffffb618, __p=@0x7fffffffb610: 0x0, 
+    __a=...) at /usr/include/c++/9/bits/shared_ptr_base.h:679
+#8  0x00007ffff3370670 in std::__shared_ptr<ov::op::v1::Multiply, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ov::op::v1::Multiply>, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> (this=0x7fffffffb610, __tag=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:1344
+#9  0x00007ffff336c05b in std::shared_ptr<ov::op::v1::Multiply>::shared_ptr<std::allocator<ov::op::v1::Multiply>, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> (this=0x7fffffffb610, __tag=...) at /usr/include/c++/9/bits/shared_ptr.h:359
+#10 0x00007ffff3363d57 in std::allocate_shared<ov::op::v1::Multiply, std::allocator<ov::op::v1::Multiply>, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> (__a=...) at /usr/include/c++/9/bits/shared_ptr.h:702
+#11 0x00007ffff3363666 in std::make_shared<ov::op::v1::Multiply, ov::Output<ov::Node> const&, ov::Output<ov::Node> const&, ov::op::AutoBroadcastSpec const&> ()
+    at /usr/include/c++/9/bits/shared_ptr.h:718
+#12 0x00007ffff3362c8c in ov::op::v1::Multiply::clone_with_new_inputs (this=0x5555559f54c0, 
+    new_args=std::vector of length 2, capacity 2 = {...})
+    at /opt/intel/openvino.git/src/core/src/op/multiply.cpp:68
+#13 0x00007ffff158272e in ov::XmlDeserializer::createNode (this=0x7fffffffc3f0, 
+    inputs=std::vector of length 2, capacity 2 = {...}, node=..., 
+    weights=std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 2, weak count 0) = {...}, 
+    params=...) at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:700
+#14 0x00007ffff157f36e in ov::XmlDeserializer::parse_function (this=0x7fffffffc3f0, root=..., 
+    weights=std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:496
+#15 0x00007ffff157dba5 in ov::XmlDeserializer::on_adapter (this=0x7fffffffc3f0, name="net", 
+    adapter=...) at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:395
+#16 0x00007ffff328983d in ov::AttributeVisitor::on_attribute<std::shared_ptr<ov::Model> > (
+    this=0x7fffffffc3f0, name="net", value=std::shared_ptr<ov::Model> (empty) = {...})
+    at /opt/intel/openvino.git/src/core/include/openvino/core/attribute_visitor.hpp:106
+#17 0x00007ffff155fac5 in ov::frontend::ir::InputModel::InputModelIRImpl::convert (
+    this=0x55555573ccb0) at /opt/intel/openvino.git/src/frontends/ir/src/input_model.cpp:240
+#18 0x00007ffff155f7f3 in ov::frontend::ir::InputModel::convert (this=0x555555740a90)
+    at /opt/intel/openvino.git/src/frontends/ir/src/input_model.cpp:230
+#19 0x00007ffff154f878 in ov::frontend::ir::FrontEnd::convert (this=0x55555573e110, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:230
+#20 0x00007ffff3769285 in ov::frontend::FrontEnd::convert (this=0x555555734fc0, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 1, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:53
+#21 0x00007ffff38bb44a in InferenceEngine::details::ReadNetwork (
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="", exts=std::vector of length 0, capacity 0, 
+    ov_exts=std::vector of length 0, capacity 0, newAPI=true)
+    at /opt/intel/openvino.git/src/inference/src/ie_network_reader.cpp:515
+#22 0x00007ffff387c64a in ov::CoreImpl::ReadNetwork (this=0x555555737b30, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:557
+#23 0x00007ffff388a015 in ov::Core::read_model (this=0x7fffffffd140, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:1798
+#24 0x000055555565646a in ModelBase::prepareModel (this=0x555555737910, core=...)
+    at /opt/intel/open_model_zoo/demos/common/cpp/models/src/model_base.cpp:32
+#25 0x00005555556565c0 in ModelBase::compileModel (this=0x555555737910, config=..., core=...)
+    at /opt/intel/open_model_zoo/demos/common/cpp/models/src/model_base.cpp:45
+#26 0x0000555555663e45 in AsyncPipeline::AsyncPipeline (this=0x7fffffffd560, modelInstance=..., 
+    config=..., core=...)
+    at /opt/intel/open_model_zoo/demos/common/cpp/pipelines/src/async_pipeline.cpp:41
+#27 0x00005555555bf300 in main (argc=11, argv=0x7fffffffdb38)
+    at /opt/intel/open_model_zoo/demos/object_detection_demo/cpp/main.cpp:392
+

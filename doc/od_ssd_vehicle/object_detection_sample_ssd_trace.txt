@@ -1,0 +1,43 @@
+Breakpoint 2, ov::op::v1::Transpose::validate_and_infer_types (this=0x5555555dcb60)
+    at /opt/intel/openvino.git/src/core/src/op/transpose.cpp:52
+52	        NODE_VALIDATION_CHECK(this,
+(gdb) bt
+#0  ov::op::v1::Transpose::validate_and_infer_types (this=0x5555555dcb60)
+    at /opt/intel/openvino.git/src/core/src/op/transpose.cpp:52
+#1  0x00007ffff6b28c0d in ov::Node::constructor_validate_and_infer_types (this=0x5555555dcb60)
+    at /opt/intel/openvino.git/src/core/src/node.cpp:218
+#2  0x00007ffff21296d5 in ov::XmlDeserializer::createNode (this=0x7fffffffc920, 
+    inputs=std::vector of length 2, capacity 2 = {...}, node=..., weights=
+    std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 87, weak count 0) = {...}, 
+    params=...) at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:696
+#3  0x00007ffff212636e in ov::XmlDeserializer::parse_function (this=0x7fffffffc920, root=..., 
+    weights=std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 87, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:496
+#4  0x00007ffff2124ba5 in ov::XmlDeserializer::on_adapter (this=0x7fffffffc920, name="net", 
+    adapter=...) at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:395
+#5  0x00007ffff6d1883d in ov::AttributeVisitor::on_attribute<std::shared_ptr<ov::Model> > (this=
+    0x7fffffffc920, name="net", value=std::shared_ptr<ov::Model> (empty) = {...})
+    at /opt/intel/openvino.git/src/core/include/openvino/core/attribute_visitor.hpp:106
+#6  0x00007ffff2106ac5 in ov::frontend::ir::InputModel::InputModelIRImpl::convert (
+    this=0x5555555eeee0) at /opt/intel/openvino.git/src/frontends/ir/src/input_model.cpp:240
+#7  0x00007ffff21067f3 in ov::frontend::ir::InputModel::convert (this=0x5555555f2a00)
+    at /opt/intel/openvino.git/src/frontends/ir/src/input_model.cpp:230
+#8  0x00007ffff20f6878 in ov::frontend::ir::FrontEnd::convert (this=0x5555555fb9f0, model=
+    std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:230
+#9  0x00007ffff71f8285 in ov::frontend::FrontEnd::convert (this=0x5555555fbc60, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 1, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:53
+#10 0x00007ffff734a44a in InferenceEngine::details::ReadNetwork (
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="", exts=std::vector of length 1, capacity 1 = {...}, 
+    ov_exts=std::vector of length 0, capacity 0, newAPI=false)
+    at /opt/intel/openvino.git/src/inference/src/ie_network_reader.cpp:515
+#11 0x00007ffff730b64a in ov::CoreImpl::ReadNetwork (this=0x5555555e3a50, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:557
+#12 0x00007ffff7315def in InferenceEngine::Core::ReadNetwork (this=0x7fffffffd280, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:1513
+#13 0x000055555557698f in main (argc=7, argv=0x7fffffffd7b8)
+    at /opt/intel/openvino_install_git/samples/cpp/object_detection_sample_ssd/main.cpp:108
+(gdb) 
+
+

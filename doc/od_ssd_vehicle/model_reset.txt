@@ -1,0 +1,16 @@
+(gdb) p *model
+$2 = {_vptr.ModelBase = 0x5555557114f0 <vtable for ModelSSD+16>, inputTransform = {
+    reverseInputChannels = false, isTrivial = true, 
+    means = {<cv::Vec<double, 4>> = {<cv::Matx<double, 4, 1>> = {val = {0, 0, 0, 
+            0}}, <No data fields>}, <No data fields>}, 
+    stdScales = {<cv::Vec<double, 4>> = {<cv::Matx<double, 4, 1>> = {val = {1, 1, 1, 
+            0}}, <No data fields>}, <No data fields>}}, 
+  inputsNames = std::vector of length 0, capacity 0, 
+  outputsNames = std::vector of length 0, capacity 0, compiledModel = {_impl = 
+    std::shared_ptr<InferenceEngine::IExecutableNetworkInternal> (empty) = {get() = 0x0}, 
+    _so = std::shared_ptr<void> (empty) = {get() = 0x0}}, 
+  modelFileName = "/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", config = {deviceName = "", cpuExtensionsPath = "", clKernelsConfigPath = "", 
+    maxAsyncRequests = 0, compiledModelConfig = std::map with 0 elements, 
+    devices = std::set with 0 elements}, inputsLayouts = std::map with 0 elements}
+(gdb) 
+

@@ -1,0 +1,8 @@
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/cat_gray.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/cat.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/fish-bike.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/horse.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/truck_red.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/truck_jellow.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/bus.jpg
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/car_audi.jpg

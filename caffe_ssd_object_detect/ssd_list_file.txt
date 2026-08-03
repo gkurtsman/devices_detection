@@ -1,0 +1,4 @@
+/home/krtsmn/Develop/comp_vision/dnn/caffe_ssd/examples/images/cat_gray.jpg
+/home/krtsmn/Develop/comp_vision/dnn/caffe_ssd/examples/images/cat.jpg
+/home/krtsmn/Develop/comp_vision/dnn/caffe_ssd/examples/images/cropped_panda.jpg
+/home/krtsmn/Develop/comp_vision/dnn/caffe_ssd/examples/images/fish-bike.jpg

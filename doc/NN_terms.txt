@@ -1,0 +1,3629 @@
+terms:
+
+Tensorflow - python package for DNN
+Caffe module zoo - collection of trained DNN models
+OpenVino
+	pretrainded model format: IR (Intermediate Representation) format
+	*ssd.bin and *ssd.xml - The IR files for the inference model created using Model Optimizer
+
+objects classification
+objects localization
+objects detection
+ssd - single shot multibox detector
+voc - visual object classes
+
+useful examples and packages:
+
+opencv/samples/dnn/object_detection.cpp - example of working with NN and input picturelearnopencv/OpenPose
+
+learnopencv/ObjectDetection-YOLO
+to compile ObjectDetection-YOLO:
+g++ -ggdb /usr/bin/pkg-config /home/gkurtsman/Develop/ms/opencv/opencv3/opencv/build/unix-install/opencv.pc object_detection_yolo.cpp -o object_detection_yolo.out -D DNN_BACKEND_OPENCV=DNN_BACKEND_DEFAULT
+
+google search phrases:
+object detection ssd c++
+sbc computer CPU intel AMD 8 core 32GB ram cuda GPU
+
+learnOpencv and othre examples for volume task:
+
+1) Hough transform (learnopencv, used in volume)
+2) Canny Edge Detection (https://docs.opencv.org/master/da/d22/tutorial_py_canny.html and code
+						in opencv tree
+3) Mask-RCNN (learnopencv)
+
+object detection models using:
+
+1. VGG16_faster_rcnn_final.caffemodel
+1.1. /home/krtsmn/Develop/comp_vision/dnn/object_detection/caffe_trained_models/faster_rcnn_models/train.prototx
+
+2. ZF_faster_rcnn_final.caffemodel
+
+3. MobileNet-SSD
+	https://github.com/chuanqi305/MobileNet-SSD
+3.1. caffe modification for ssd:
+	https://github.com/weiliu89/caffe/tree/ssd
+3.2. intel caffe modification with ssd and voc examples:
+	https://github.com/intel/caffe
+
+4. VOC dataset:
+	http://host.robots.ox.ac.uk/pascal/VOC/
+
+5. labels:
+~/Develop/comp_vision/dnn/OpenVino/open_model_zoo/demos/whiteboard_inpainting_demo/python/coco_labels.txt
+
+6. Models working with caffe_ssd/examples/ssd/ssd_detect.cpp:
+/home/krtsmn/Develop/comp_vision/dnn/MobileNet-SSD_models/models/VGGNet/VOC0712/SSD_300x300/
+dataset to train the model:
+https://github.com/sfzhang15/RefineDet/tree/master/data/VOC0712
+
+images
+/home/krtsmn/Develop/comp_vision/workspace/volume/src/truck/caffe_dnn/truck_classification/data - jellow truck
+/home/krtsmn/Develop/comp_vision/workspace/volume/src/excavator_bucket/opencv_dnn/ - red truck
+/home/krtsmn/Develop/comp_vision/dnn/MobileNet-SSD/images - man, plane, bus, cat, women and dog,
+			cat and dog, horse and car and man etc.,
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/images/ - as above plus car
+/home/krtsmn/Develop/comp_vision/opencv/learnopencv/ObjectDetection-YOLO/ - birds, cars, people
+
+temporary system files modification
+
+/usr/include/c++/10/cstdlib, #75, include_next is replaced by include.
+
+Working object detection configurations:
+
+1.
+/home/krtsmn/Develop/comp_vision/dnn/devices_detection/truck_sample_caffe/run_ssd_truck.sh
+DNN package: caffe_ssd
+
+prototxt: MobileNet-SSD_models/models/VGGNet/VOC0712/SSD_300x300/deploy.prototxt
+caffemodel: MobileNet-SSD_models/models/VGGNet/VOC0712/SSD_300x300/VGG_VOC0712_SSD_300x300_iter_120000.caffemodel
+labels: /home/krtsmn/Develop/comp_vision/dnn/devices_detection/caffe_ssd_object_detect/labels_ssd_caffe.txt
+	__background__
+	aeroplane
+	bicycle
+	bird
+	boat
+	bottle
+	bus
+	car
+	cat
+	chair
+	cow
+	diningtable
+	dog
+	horse
+	motorbike
+	person
+	pottedplant
+	sheep
+	sofa
+	train
+	tvmonitor
+
+2. R-FCN models from caffe models zoo
+
+rfcn weithts files:
+https://modelzoo.co/model/r-fcn			VOC 0712 model (trained on VOC07+12 trainval) of R-FCN
+										COCO model (trained on 2014 train) of R-FCN
+rfcc prototxt files:
+https://github.com/rbgirshick/rcnn
+
+rfcn prototxt files:
+https://github.com/daijifeng001/R-FCN
+
+RFCN prototxt files:
+https://github.com/daijifeng001/R-FCN.git
+models/rfcn_prototxts/
+
+3. Salient object detection model (requires zero-centering by mean pixel 
+https://modelzoo.co/model/cnn-object-proposal-models-for-salient
+VGG16: https://gist.github.com/jimmie33/509111f8a00a9ece2c3d5dde6a750129
+GoogleNet: https://gist.github.com/jimmie33/509111f8a00a9ece2c3d5dde6a750129
+
+Current working
+
+1. create .binaryproto file and prepare scripts:
+1.1. create _Infrared ... files
+1.2. to change filenames without spaces:
+$ cd .../ir
+for f in *\ *; do mv "$f" "${f// /_}"; done
+
+1.3. ls > image_list.txt
+1.4.
+$ truck_sample_caffe/run_device_detect_scripts/create_lmdb.sh /home/krtsmn/Develop/comp_vision/workspace/pc_images/convert_volexcUP_392_36/ir/ /home/krtsmn/Develop/comp_vision/dnn/caffe/build/tools/ /home/krtsmn/Develop/comp_vision/workspace/pc_images/ lmdb_392_36
+
+$ /home/krtsmn/Develop/comp_vision/dnn/devices_detection/truck_sample_caffe/run_device_detect_scripts/make_mean.sh /home/krtsmn/Develop/comp_vision/workspace/pc_images/lmdb_392_36/ /home/krtsmn/Develop/comp_vision/workspace/pc_images/volexcUP_392_36.binaryproto /home/krtsmn/Develop/comp_vision/dnn/caffe/build/tools/
+
+1.5. to change filename in line with .prototxt to valid filename
+
+2. TRUCK: list of .bag files and playing second marks for truck determination
+   volexcUP_382_35.bag 34 OK
+						42 Nothing determinated owing to falling sand from bucket to truck
+							Try to use cv method (look on previous comment)
+						43
+		392_36,	11 car is recognized at color stream, but it is not under bucket
+				29	Nothing determinated owing to either overlap of truck and bucket
+						or cropped truch image (part of truck image is out of camera
+						field of view). 
+				34	Nothing determinated owing to: 1) overlap bucket and
+						truck 
+				38	as 34
+				39	as 34
+				53	as 34
+				56	as 34
+		396_36. 50	as 392_36,34
+		397_36,				# tractor
+				06,	dark
+				18,	dark
+				51	dark
+		400_36	26	dark
+				37	dark
+				59	dark
+?	somewhere it was at yard with light. Car was recognized
+		DARK TILL 901
+		903_52	11	bucket recognized as bottle, prob 0.55
+		904_52	39,44	bucket isn't recognized
+ 		905_52	8		bucket isn't recognized
+		941_53	17		as 34
+				54		arm with bucket as aeroplane (0.83), truck body as bottle (0.76)
+		968_53	18
+				19
+				40
+				51
+		969_53	38
+		970_53	15
+				16
+				17
+		971_53	29
+				31
+				32
+				33
+		972_53	09
+				23
+				38
+		973_53	15
+		975_53	41
+		976_53	10
+				27
+				42
+				54
+		977_53	3
+				32
+		978_53	26
+				41
+				58
+		979_53	4
+stop at 982
+
+4. List of next actions
+
++0. to measure time of working of SSD and Salient on pictures. DONE: 73ms
+
+1. Salient:
+ 1.1 to test images with many objects
+	volexcUP_381_35.bag
+			_Infrared_2_1569147762110.04052734375000.png
+		result:
+			arm, bucket, truck are detected.
+
+			_Infrared_2_1569147762609.86669921875000.png
+		result: arm, bucket
+
+			_Infrared_2_1569147763109.95996093750000.png
+		result: arm, bucket
+
+			_Infrared_2_1569147764610.17187500000000.png
+		result: arm, bucket
+
+			_Infrared_2_1569147765943.48583984375000.png
+		result: arm, bucket
+			_Infrared_2_1569147806780.49584960937500.png
+		result: bucket (arm and truck aren't present at image)
+
+			_Infrared_2_1569147808614.09863281250000.png
+		result: arm and bucket (truck aren't present)
+
+		_Infrared_2_1569147821448.38598632812500.png
+	result: nothing (only arm is present)
+
+	382_35 truck loading at night with strong headlights light
+			_Infrared_2_1569147835269.50708007812500.png
+		result: arm is detected, it's only is at image
+
+			_Infrared_2_1569147844103.87329101562500.png
+		result: arm and bucket. there is not truck at the image
+
+			_Infrared_2_1569147865272.30908203125000.png
+		result: arm, bucket and truck
+
+			_Infrared_2_1569147867772.69409179687500.png
+		result: arm, top part of bucket, truck
+
+			_Infrared_2_1569147868939.42651367187500.png
+		result: arm, top of bucket, truck
+
+			_Infrared_2_1569147870106.05395507812500.png
+		result: arm, bucket, truck
+	392_36
+			_Infrared_2_1569186886627.88598632812500.png
+		result: arm, bucket, truck
+
+			_Infrared_2_1569186888461.48828125000000.png
+				poor daylight
+		result: arm, truck, bucket as set of adjoin rectangles
+
+			_Infrared_2_1569186925631.53613281250000.png
+		result: arm,bucket,there isn't truck on the image
+
+			_Infrared_2_1569186934132.30541992187500.png
+		result: arm detected, bucket no detected owing to dropping soil.
+
+			_Infrared_2_1569186936299.07934570312500.png
+		result: arm is detected, bucket and truck are on the image not detected
+
+			_Infrared_2_1569186936799.27026367187500.png
+		result: arm and bucket are detected, truck on image not detected
+			with increased brightness/contrast truck is detected as set of rectangles.
+
+			_Infrared_2_1569186937965.95117187500000.png
+		result: arm and part of bucket are detected, truck on image not detected
+			with increased brightness/contrast truck is detected as set of rectangles
+
+			_Infrared_2_1569186939299.35668945312500.png
+		result: arm is detected with wrong width, bucket and truck on image not detected
+				with increased brightness/contrast truck is detected as set of rectangles
+
+	396_36	tractor loading, twilight, headlights are off.
+			_Infrared_2_1569187163777.09033203125000.png
+		result:
+			arm and bucket. truck isn't presented at the image
+
+			_Infrared_2_1569187165110.60400390625000.png
+		result:
+			arm and bucket. They are in dark zone. no track at the image
+
+			_Infrared_2_1569187186279.21020507812500.png
+		result:
+			arm and tractor at left. No bucket, it is in dark zone.
+
+			_Infrared_2_1569187204614.11206054687500.png
+		result:
+			arm and bucket. No tractor, small part of it is at the image.
+
+	397_36	tractor loading
+			_Infrared_2_1569187245209.92431640625000.png
+		result:
+			arm, bucket. Tractor at the image isn't detected (dark)
+
+	400_36	truck loading.
+			_Infrared_2_1569187445716.40161132812500.png
+		Program error: part of arm is considered as part of bucket
+
+	700_41	arm with bucket with building and desks around
+			_Infrared_2_1569215417645.03247070312500.png
+		result:
+			a) arm looks well,
+			b) bucket isn't exposited
+			c} piece of gorisontal roof is exposited
+		necessary program modification:
+			to reject horisontal rectangles;
+			vertical rectangles have to have big enough height
+			under arm rectangle has to be bucket rectangle
+	706_42	folded arm with bucket is moving away empty road 
+			_Infrared_2_1569217430157.74462890625000.png
+		result:
+			nothing is exposed
+	707_42	folded arm with bucket is moving away road with trucks in opposition direction
+			_Infrared_2_1569217500515.93823242187500.png
+		result:
+			some non-arm objects with light spoils are exposed
+	709_42	folded arm with bucket is moving away road with good seen trucks near camera
+			in opposition direction:
+			a)_Infrared_2_1569217637498.83935546875000.png - arm with heap of waste;
+				result: just waste is determined
+			b)_Infrared_2_1569217590661.21118164062500.png - folded arm with truck and sun
+				result: just truck body is determined
+			c)_Infrared_2_1569217594828.23168945312500.png - folded arm whth vertical truck body
+				result: just truck body is determined
+	710_42	excavator doesn't move at yard.
+			_Infrared_2_1569217707083.32592773437500.png
+		result: just waste is determined
+	726_42	excavator doesn't move at yard and truck near him. People too.
+			_Infrared_2_1569218759231.53588867187500.png
+				result: part of arm from top to waste is detected. Waste is detected.
+						Bucket is dark and isn't detected.
+						People are not detected.
+						Parts of truck are detected as non-vertical rectanges.
+						Truck is detected with ssd model.
+	727_42	excavator/ doesn't move at yard and truck near him. More people.
+			_Infrared_2_1569218832439.54589843750000.png
+				result: part of arm from top to waste is detected. Waste is detected.
+                        Bucket is dark and isn't detected.
+                        People are not detected.
+                        Parts of truck are detected as non-vertical rectanges.
+                        Truck is detected with ssd model. 
+	763_44	excavator is moving away the road and columnts an hills are moving beside.
+			_Infrared_2_1569221417239.43676757812500.png
+				result: no detections
+	860_51	excavator is moving away the road, at the left hand is black hill
+			Infrared_2_1569224467618.49975585937500.png
+				result: no detection
+	862_52	it's dark, is bucket determined?
+			_Infrared_2_1569224950336.61743164062500.png
+				result: no detection
+	867_52	around the bucket are trees
+			_Infrared_2_1569225286360.49169921875000.png
+			_Infrared_2_1569225289352.75146484375000.png
+				result:
+					arm is not vertical; determined as series of small rectangles;
+					bucket is determinated as rectangle
+			_Infrared_2_1569225295172.90844726562500.png
+					very dark background.
+					arm is almost horizontal;
+				result:
+					arm is determined;
+					bucket (very dark) not determinated, has dark brush on background;
+					telescope lever for manage arm is determined too.
+	868_52	it's dark, truck loading
+			_Infrared_2_1569225373898.89941406250000.png
+		result:
+			arm is in low dark zone. Isn't detected. Bright telescope and truck at big distanvr
+				are detected. If brightness is more, part of arm is detected. Button isn't
+				seen at the picture. Brightness increasing doesn't give a positive effect.
+
+			_Infrared_2_1569225392058.32397460937500.png
+		result:
+			arm and bucket are detected. truck's lanterns are detected. SSD detects truck's body.
+
+			_Infrared_2_1569225395224.01416015625000.png
+		result:
+			arm and part of bucket are detected
+			nothing is detected by ssd
+
+			_Infrared_2_1569225397889.63525390625000.png
+		result:
+			arm and part of bucket are detected
+			nothing is detected by ssd
+
+			_Infrared_2_1569225400388.87158203125000.png
+		result:
+			arm is detected; bucket ish't detected
+
+			_Infrared_2_1569225388226.51806640625000.png
+		result:
+			arm is detected, bucket is partly detected, truck is detected by series of rectangles
+
+			_Infrared_2_1569225365902.40405273437500.png
+		result:
+			arm only is detected
+
+			_Infrared_2_1569225357739.71655273437500.png
+		result:
+			arm, bucket are detected. Truck is detected by SSD.
+
+	894_52	trees behind bucket. Digs in shadow dark zone.
+
+			_Infrared_2_1569227047816.77905273437500.png
+		result:
+			bucket and arm are detected
+
+			_Infrared_2_1569227058317.28662109375000.png
+		result:
+			nothing, bright too
+
+			_Infrared_2_1569227097320.17089843750000.png
+		result:
+			arm
+
+			_Depth*
+		result:
+			sometimes arm, other times nothing
+
+			_Color*
+		result:
+			often arm is detected.
+
+	903_52		arm and bucket are motionless lighted up by headlights.
+		result: arm and bucket are detected well; no truck on the image
+
+	904_52		arm and bucket are motionless lighted up by headlights.
+		result: arm and bucket are detected well; no truck on the image
+
+	905_52		arm and bucket are motionless lighted up by headlights.
+		result: arm and bucket are detected well; no truck on the image
+
+	917_53  truck loading; noise owing camera bad working. Strong lanterns light from
+				excavator.
+			_Infrared_2_1569236393236.91040039062500.png
+		result: arm is detected
+
+			_Infrared_2_1569236396404.04931640625000.png
+		result:
+			arm and bucket deected
+
+			_Infrared_2_1569236398737.69409179687500.png
+		result:
+			arm, bucket, truck detected.
+
+			_Infrared_2_1569236401237.74829101562500.png
+		result:
+			arm, bucket, truck detected.
+
+			_Infrared_2_1569236400904.47314453125000.png
+		result:
+			arm, bucket, part of truck detected.
+
+			_Infrared_2_1569236401904.61035156250000.png
+		result:
+			arm, bucket, truck detected
+
+			_Infrared_2_1569236407238.31250000000000.png
+		result:
+			arm and bucket detected, there is not truck at image.
+
+			_Infrared_2_1569236416572.54589843750000.png
+		result:
+			arm and full bucket above truck are detected. Truck not.
+	925_53	noise, bucket hangs, at the end dark truck is seen
+			_Depth_1569236906482.15502929687500.png
+		result:
+			truck isn't detected.
+			at infrared frame only bucket with cap is detected
+			at depth frame arm and bucket with cap are detected
+	926_53  noise, tractor loading
+			_Infrared_2_1569237000768.21166992187500.png
+		result:
+			arm, bucket and tractor are detectid
+
+			_Infrared_2_1569236999935.42065429687500.png
+		result:
+			bucket and arm are detected, tractor isn't detected, though it is under bucket
+
+	930_53	noise, bucket lay without moving  at groung.
+		nothing is detected except frames with bucket a little lifted.
+			_Infrared_2_1569237305826.38964843750000.png
+		result:
+			 arm and bucket
+
+			_Infrared_2_1569237304493.21386718750000.png
+		result:
+			bucket only
+
+			_Infrared_2_1569237303660.23730468750000.png
+		result:
+			arm and bucket
+
+			_Infrared_2_1569237302326.89282226562500.png
+		result:
+			arm and bucket
+
+	941_53 truck loading. Night, headlights.
+			_Infrared_2_1569238008308.07592773437500.png
+		result:
+			arm, bucket, truck detected
+
+			_Infrared_2_1569238067291.99291992187500.png
+		result:
+			arm, bucket, truck detected
+
+	968_53	tractor loading, night, headlines
+			_Infrared_2_1569239854110.68066406250000.png
+		result:
+			arm, bucket, no tractor at the image
+			Program error: part of arm is considered as part of bucket
+
+			_Infrared_2_1569239854444.13842773437500.png
+		result:
+			nothing detected
+
+			_Infrared_2_1569239855111.26806640625000.png
+		result:
+			arm, bucket, no tractor at the image
+			Program error: part of arm is considered as part of bucket
+
+			_Infrared_2_1569239857446.63134765625000.png
+		result:
+			arm.
+			error: bucket and tractor are on the image but not detected
+
+			_Infrared_2_1569239858280.66503906250000.png
+		result:
+			arm, bucket and tractor.
+			error: bucket is very wide.
+
+			_Infrared_2_1569239858614.24707031250000.png
+		result:
+			arm, bucket, tractor.
+
+			_Infrared_2_1569239862283.93505859375000.png
+		result:
+			arm, bucket. no tractor at the image.
+
+			_Infrared_2_1569239877461.48486328125000.png
+		result:
+			arm, bucket. part of bucket at the image. no tractor at the image.
+
+	969_53	bucket hangs, no truck, night, headlights
+			_Infrared_2_1569239977107.32861328125000.png
+		result:
+			arm and bucket. no track in the image
+	
+	volexcUP_970_53.bag
+	volexcUP_971_53.bag
+	volexcUP_972_53.bag
+	volexcUP_973_53.bag
+	volexcUP_975_53.bag
+	volexcUP_976_53.bag
+	volexcUP_977_53.bag
+	volexcUP_978_53.bag
+	volexcUP_979_53.bag
+
+ + 1.2. to learn white and black pixels value.
+ + 1.2.1. to write program, calculating rectangular boards of white pixels arrays; to recalculate
+		coordinates of rectangle to input image coordinates; to diplay input image with
+		found rectangles.
+ + 1.3. write program of scanning white 
+ 1.4. to write program determining bucket coordinates (under arm).
+ 1.5. to test salient model with previous truck list. To look at trucks rectangles. 
+ 1.6. to make program of working with excavator films and measure min, max and average time of work with one frame. To fix numbers of min and max time values.
+
+2. SSD:
+ 2.1. to train real trucks recognition.
+	2.1.1. OpenVino trainig_extension, mmdetection.
+		2.1.1.1. I need to train starting on trained weights file.
+		2.1.1.1. to make annotation
+		2.1.1.2. to attach my dataset with annotation to mmdetection
+		2.1.1.3. to train truck detection model
+		2.1.1.4. to export weights to openvino
+		2.1.1.5. to detect trucks with new weights.
+    2.1.2.Raw dataset ("gena" comp :
+        /home/gena/Develop/comp_vision/workspace/pc_images/convert_volexcUP_)
+        382_35/ir/
+            _Infrared_2_1569147861605.32080078125000.png: truck is recognized
+            _Infrared_2_1569147862105.35742187500000.png: is
+            _Infrared_2_1569147863105.42895507812500.png: is not
+            _Infrared_2_1569147864438.90478515625000.png: not
+
+ 2.2. to combine Salient with SSD.
+
+3. to rewrite bucket volume processing. Instead of volume calculation has to be determination
+	of average height of heap above bucket (as positive, so negative one) during truck loading.
+	During ground dislocatoin number of arm forward and back movements has to be calculated.
+4. Demo
+ 4.1. to combine different models on .bag files
+ 4.2. to measure average time of frame processing.
+ 4.3. to use GPU if the time is unacceptable.
+
+4. Theory:
+ 4.1. how they create models?
+ 4.2. to find info about such projects
+ 4.3. to think about job/startup
+
++5. <hole>
+
+6. OpenVino at github settings:
+
+I work with the followint commit:
+******************
+commit 3eafa653f3816f2806c4f7344d4a82b67a6de036 (HEAD -> master, origin/master, origin/HEAD)
+Author: Marcin Kusmierski <marcin.kusmierski@intel.com>
+Date:   Wed Jul 20 12:53:45 2022 +0200
+
+    [GNA] Fix accuracy degradation in compact mode (#12150)
+*****************
+plus ~/Develop/comp_vision/dnn/OpenVino/openvino_install_git/samples/cpp/object_detection_sample_ssd,
+which doesn't work now.
+
+https://github.com/openvinotoolkit/openvino/wiki/BuildingCode#installing :
+
+source /opt/intel/openvino_install_git/openvino_env/bin/activate
+source /opt/intel/openvino_install_git/setupvars.sh
+source /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/btruck_train_venv/bin/activate
+
+7. training_extensions settings
+
+export PYTHONPATH=$PYTHONPATH:$OTE/ote_sdk
+export PYTHONPATH=$PYTHONPATH:$OTE/ote_sdk:$OTE/external/mmdetection
+
+XXX
+8. ote export process.
+
+Files/function/variables etc. work:
+
+$GITROOT/model/ote_trainingExt_models/vehicle-detection-0202_template.yaml is taken from
+	$OTE, branch misc:
+	models/object_detection/model_templates/vehicle-detection/vehicle-detection-0202/template.yaml
+	and modified
+$GIITROOT/vehicle-detection-0202.pth is taken from URL
+https://storage.openvinotoolkit.org/repositories/openvino_training_extensions/models/object_detection/v2/
+
+export process:
+file: ote_cli/ote_cli/tools/export.py
+#55
+func: def main(): 
+
+#66
+is_nncf = is_checkpoint_nncf(args.load_weights)
+
+file: truck_detect_venv/lib/python3.8/site-packages/torch/serialization.py
+
+#592
+return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+
+#842
+function: persistent_load((saved_id)
+if key not in loaded_storages
+note:
+	saved_id = ('storage', <class 'torch.FloatStorage'>, '119133648', 'cpu', 864)
+	key = 119133648
+	size=864
+	data_type=torch.FloatStorage
+
+#843
+load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+
+
+#91..#97
+log: prints environment with strings:
+	...
+	loading the model
+	...
+	Model architecture SSD
+ 
+file: external/mmdetection/detection_tasks/apis/detection/inference_task.py
+function:
+#423
+def export(self,
+               export_type: ExportType,
+               output_model: ModelEntity):
+    ...
+                with open(os.path.join(tempdir, bin_file), "rb") as f:
+                    output_model.set_data('openvino.bin', f.read())
+                with open(os.path.join(tempdir, xml_file), "rb") as f:
+                    output_model.set_data('openvino.xml', f.read())
+
+#437
+if torch.cuda.is_available():
+
+#440
+model = self._model.cpu()
+<pdb> type(model)
+	class 'mmdet.models.detectors.single_stage.SingleStageDetector'
+
+	file: truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py
+	#509
+	def cpu(self: T) -> T:
+
+	#385
+    	def _apply(self, fn):
+        	for module in self.children():
+            	module._apply(fn)
+
+	#1338
+		    def children(self) -> Iterator['Module']:
+        	for name, module in self.named_children(): 
+            	yield module
+
+#441
+note: model print is saved in $GITROOT/truck_learning/train_after_xmlbin/aux/export_model_441.txt
+
+file: external/mmdetection/submodule/mmdet/apis/export.py
+#250
+function:
+def export_model(model, config, output_dir, target='openvino', onnx_opset=11,
+                 input_shape=None, input_format='bgr', precision='FP32', alt_ssd_export=False,
+                 pruning_transformation=False):
+    assert onnx_opset in available_opsets
+    assert onnx_opset >= get_min_opset_version()
+
+...
+
+file: $OTE/training_extensions/external/mmdetection/submodule/mmdet/models/detectors/base.py
+function model.export(self, img, img_metas, **kwargs)
+
+	file: external/mmdetection/detection_tasks/apis/detection/inference_task.py
+	#127
+		print model_data: is equal to weights.pth.txt in $GITROOT/device_detect/
+		print model: some model (not xml)
+	#139
+        	model = self._create_model(self._config, from_scratch=True)
+	            'print model' shows model in some special format; look file:
+			uxiliary_files/OTEDetectionInferenceTask_model.txt
+	#142
+        	load_state_dict(model, model_data['model'])
+        		model the same as #139
+	!!!		note: model_data - weights.pth
+			note: type(model): mmdet.models.detectors.single_stage.SingleStageDetector in
+				file $OTE/external/mmdetection/submodule/mmdet/models/detectors/single_stage.py
+			note: class SingleStageDetector is based on class 'BaseDetector',
+				file external/mmdetection/submodule/mmdet/models/detectors/base.py:28 based on
+					class 'nn.Module', file $OTE/truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py.
+
+
+	#150
+			for name, weights in model.named_parameters():
+			note: name - item of weights.pth 'model' items; weights - tensor of the item
+			note: named_parameters() declared at file:
+				truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py,
+				in class Module, look at note in #142.
+
+				file: truck_detect_venv/lib/python3.8/site-packages/mmcv/runner/checkpoint.py:41
+				#41
+				def load_state_dict(module, state_dict, strict=False, logger=None):
+				#74
+				module._load_from_state_dict(state_dict, prefix, local_metadata, True, ...
+					file: truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py(1093)
+					#1093
+					def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict, ...
+
+		#165
+		return model
+return to:
+file: ote_sdk/ote_sdk/entities/model.py
+note: continuing "class ModelEntity
+#119
+_id = ID() if _id is None else _id
+
+
+
+		file: external/mmdetection/detection_tasks/apis/detection/inference_task.py
+		#114
+		self._training_work_dir = None
+file: $OTE/external/mmdetection/submodule/mmdet/apis/export.py
+#270
+function: export_to_onnx
+look at variable: dynamic_axes
+#278
+export_to_onnx(model, fake_data, export_name=onnx_model_path, opset=onnx_opset,
+                       alt_ssd_export=alt_ssd_export,
+                       target=target, verbose=False, strip_doc_string=True)
+        # add_node_names(onnx_model_path)
+        print(f'ONNX model has been saved to "{onnx_model_path}"')
+
+#57
+def export_to_onnx( ...
+#103
+model.export(...
+note: onnx model is saved in $GITROOT/truck_learning/train_after_xmlbin/aux/model.onnx
+	
+file: /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/external/mmdetection/submodule/mmdet/models/detectors/base.py
+
+function: def export(self, img, img_metas, **kwargs):
+#449
+def export(self, img, img_metas, **kwargs):
+note: function export writes file tmp/... with onnx model
+
+file: /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/truck_detect_venv/lib/python3.8/site-packages/torch/onnx/__init__.py
+function: def export(model, args, f, export_params=True, verbose=False, training=TrainingMode.EVAL,
+           input_names=None, output_names=None, aten=False, export_raw_ir=False,
+           operator_export_type=None, opset_version=None, _retain_param_name=True,
+           do_constant_folding=True, example_outputs=None, strip_doc_string=True,
+           dynamic_axes=None, keep_initializers_as_inputs=None, custom_opsets=None,
+           enable_onnx_checker=True, use_external_data_format=False):
+#32
+
+file: /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/truck_detect_venv/lib/python3.8/site-packages/torch/onnx/utils.py
+function: def _export(model, args, f, export_params=True, verbose=False, training=None,
+            input_names=None, output_names=None, operator_export_type=None,
+            export_type=ExportTypes.PROTOBUF_FILE, example_outputs=None,
+            opset_version=None, _retain_param_name=False, do_constant_folding=True,
+            strip_doc_string=True, dynamic_axes=None, keep_initializers_as_inputs=None,
+            fixed_batch_size=False, custom_opsets=None, add_node_names=True,
+            enable_onnx_checker=True, use_external_data_format=False,
+            onnx_shape_inference=True, use_new_jit_passes=True):
+!!! it looks like weights export is here.
+
+line: 694
+_model_to_graph()
+
+line: 708
+graph.export_onnx()
+
+external/mmdetection/submodule/mmdet/apis/export.py
+271: export_to_onnx()
+290: export_to_openvino()
+
+ote_sdk/ote_sdk/entities/model.py
+class ModelEntity
+
+file operations seeking:
+
+external/mmdetection/detection_tasks/apis/detection/inference_task.py:127
+
+
+./external/mmdetection/submodule/mmdet/apis/export.py
+line 57
+export_to_onnx(model,
+                   data,
+                   export_name,
+                   verbose=False,
+                   strip_doc_string=False,
+                   opset=10,
+                   alt_ssd_export=False, 
+                   target='onnx')
+
+line 144
+export_to_openvino(cfg, onnx_model_path, output_dir_path, input_shape=None,
+                       input_format='bgr', precision='FP32', with_text=False,
+                       pruning_transformation=False)
+
+#151
+output_names = set(out.name for out in onnx_model.graph.output)
+note: at #153:
+(Pdb) p output_names
+{'labels', 'saliency_map', 'boxes', 'feature_vector'}
+
+#156
+onnx.save(onnx_model, onnx_model_path)
+note:
+/tmp/tmp.../model.onnx, look at truck_learning/train.../aux/model_beforeMO.*
+
+#167
+    command_line = [mo_cmd,
+                    f'--input_model={onnx_model_path}',
+                    f'--mean_values={mean_values}',
+                    f'--scale_values={scale_values}',
+                    f'--output_dir={output_dir_path}',
+                    f'--output={output_names}',
+                    f'--data_type={precision}']
+
+#187
+	    run(command_line, check=True)
+
+XXX
+9. mo program source dir:
+
+to make thirdparty sumbols visible:
+	file: thirdparty/onnx/onnx/CMakeLists.txt
+	line: 442
+		to replace -fvisibility=hidden by -fvisibility=default
+openvino runtime build and install:
+https://github.com/openvinotoolkit/openvino/wiki
+
+/opt/intel/openvino_install_git/./openvino_env/lib/python3.8/site-packages/openvino/tools/mo/
+
+files for .onnx parsing
+		truck_learning/train_after_xmlbin/aux/breakpoints_pb.cc.txt // gdb breakpoints setting source file.
+		truck_learning/train_after_xmlbin/aux/pth_parsed_tree.txt // $OTE_XMLBIN/../aux/pth_parsed_tree.
+$OTE_XMLBIN/../aux/gdb_breakpoints.log.txt // trace .onnx file parsing using breakpoints
+
+python -m pdb /opt/intel/openvino_install_git/./openvino_env/lib/python3.8/site-packages/openvino/tools/mo/main.py --input_model=/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/auxiliary_files/model.onnx '--mean_values=[0, 0, 0] ' '--scale_values=[255, 255, 255] ' --output_dir=/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/onnx2binxml --output=feature_vector,saliency_map,labels,boxes --data_type=FP32 '--input_shape=[1, 3, 864, 864]'
+
+file: openvino_env/lib/python3.8/site-packages/openvino/tools/mo/main.py
+#533
+ret_code = driver(argv)
+
+#484
+def driver(argv: argparse.Namespace):
+
+#490
+graph, ngraph_function = prepare_ir(argv)
+
+	#373
+	def prepare_ir(argv : argparse.Namespace):
+	#394
+	ngraph_function = moc_pipeline(argv, moc_front_end)
+	
+		file: $OPENVINO/openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/pipeline.py
+		#22
+		def moc_pipeline(argv: argparse.Namespace, moc_front_end: FrontEnd):
+		#29
+		input_model = moc_front_end.load(argv.input_model)
+		note: argv.input_model is
+		 /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx
+		note: moc_front_end.load looks like runtime library(c++) function
+		note: (Pdb) p moc_front_end
+			<FrontEnd 'onnx'>
+			(Pdb) type(moc_front_end)
+			<class 'openvino.pyopenvino.FrontEnd'>
+		note: "class FrontEnd" is declared in:
+			src/frontends/common/include/openvino/frontend/frontend.hpp:22
+		note: "class FRONTEND_API InputModel {" is declared in
+			$OPENVINO_SRC/src/frontends/common/include/openvino/frontend/input_model.hpp and .cpp
+		note:
+			(Pdb) type(input_model)
+			<class 'openvino.pyopenvino.InputModel'>
+		note: cpp trace at file
+			$GITROOT/truck_learning/train_after_xmlbin/aux/trace_cpp_load.txt
+		note: following loads input_model
+c++0
+to build and install c++ library look at:
+https://github.com/openvinotoolkit/openvino/wiki
+
+		file: src/frontends/common/include/openvino/frontend/frontend.hpp
+		#64
+		inline InputModel::Ptr load(const Types&... vars) const
+		note: class ov::frontend::Frontend
+				public:
+
+		note: 'frontend::FrontEnd' and 'frontend::onnx::FrontEnd pointers are in file:
+			$GITROOT/aux/frontend_load_impl_guts.txt	
+
+		#65
+		return load_impl({ov::Any{vars}...});
+
+		file: src/frontends/common/src/frontend.cpp
+		note: headers tree:
+			$GITROOT/truck_learning/ote_output_model/auxiliary_files/logs/build_verbose_frontend.log.txt
+		#43
+		InputModel::Ptr FrontEnd::load_impl(const std::vector<ov::Any>& variants) const {
+		note: data chain of load_impl is in p.9.1
+		note: path 'const auto path = variants[0].as<std::string>()' is:
+				<path>/model_beforeMO.onnx
+		#47
+		FRONTEND_CALL_STATEMENT("Loading input model", model->m_actual = m_actual->load_impl(variants))
+		note: model type is ov::frontend::InputModel;
+		note: m_actual type is ov::frontend::onnx::InputModel
+		note: FrontEnd here has type:
+			const ov::frontend::FrontEnd * const
+			(gdb) ptype this
+				type = const class ov::frontend::FrontEnd {
+				  private:
+				    std::shared_ptr<void> m_shared_object;
+				    std::shared_ptr<ov::frontend::FrontEnd> m_actual;
+				  protected:
+				    std::vector<std::shared_ptr<ov::Extension>> m_extensions;
+
+				  public:
+				    FrontEnd(void);
+				    FrontEnd(const ov::frontend::FrontEnd &);
+				    FrontEnd(ov::frontend::FrontEnd &&);
+				    ov::frontend::FrontEnd & operator=(const ov::frontend::FrontEnd &);
+				    ov::frontend::FrontEnd & operator=(ov::frontend::FrontEnd &&);
+				    ~FrontEnd();
+				    ov::frontend::InputModel::Ptr load(const ov::AnyVector &) const;
+				    virtual std::shared_ptr<ov::Model> convert(const ov::frontend::InputModel::Ptr &) const;
+				    virtual void convert(const std::shared_ptr<ov::Model> &) const;
+				    virtual std::shared_ptr<ov::Model> convert_partially(const ov::frontend::InputModel::Ptr &) const;
+				    virtual std::shared_ptr<ov::Model> decode(const ov::frontend::InputModel::Ptr &) const;
+				    virtual void normalize(const std::shared_ptr<ov::Model> &) const;
+				    virtual std::string get_name(void) const;
+				    virtual void add_extension(const std::shared_ptr<ov::Extension> &);
+				    void add_extension(const std::vector<std::shared_ptr<ov::Extension>> &);
+				    void add_extension(const std::string &);
+				    void add_extension(const std::wstring &);
+				  protected:
+				    virtual bool supported_impl(const std::vector<ov::Any, std::allocator<ov::Any> > &) const;
+				    virtual ov::frontend::InputModel::Ptr load_impl(const std::vector<ov::Any, std::allocator<ov::Any> > &) const;
+				  private:
+				    static std::shared_ptr<ov::Model> create_copy(const std::shared_ptr<ov::Model> &, 
+				        const std::shared_ptr<void> &);
+				} * const
+				(gdb) 
+
+		file: src/frontends/onnx/frontend/src/frontend.cpp
+		note: headers tree:
+			$GITROOT/truck_learning/ote_output_model/auxiliary_files/logs/build_verbose_onnx_load.log.txt
+		#38
+		InputModel::Ptr FrontEnd::load_impl(const std::vector<ov::Any>& variants) const {
+		#44
+		return std::make_shared<InputModel>(path, m_extensions);
+
+		file: src/frontends/onnx/frontend/src/input_model.cpp
+		#18
+		InputModel::InputModel(const std::string& path, frontend::ExtensionHolder extensions)
+	    : m_editor{std::make_shared<onnx_editor::ONNXModelEditor>(path, std::move(extensions))} {}
+		note: m_editor class is declared in ov::frontend::onnx::InputModel, file
+			src/frontends/onnx/frontend/src/input_model.hpp
+
+			file: src/frontends/onnx/frontend/src/editor.cpp
+			#235
+			onnx_editor::ONNXModelEditor::ONNXModelEditor(const std::string& model_path, frontend::ExtensionHolder extensions) {...
+			#238
+			m_pimpl{new ONNXModelEditor::Impl{model_path}, [](Impl* impl) {
+			#220
+			Impl(const std::string& model_path)
+    		    : m_model_proto{
+			note: struct onnx_editor::ONNXModelEditor::Impl {
+			note: m_model_proto type is ONNX_NAMESPACE::ModelProto (gdb version:
+				class ngraph_onnx::ModelProto)
+
+			#222
+			std::make_shared<ONNX_NAMESPACE::ModelProto>(ngraph::onnx_common::parse_from_file(model_path)
+
+			file: src/frontends/onnx/onnx_common/src/parser.cpp
+			#17
+			ONNX_NAMESPACE::ModelProto parse_from_file(const std::string& file_path) {
+			    std::ifstream file_stream{file_path, std::ios::in | std::ios::binary};
+			note: file_path=$GITROOT/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx
+			#24
+			auto model_proto = parse_from_istream(file_stream);
+			note: model_proto type is in openvino.git/build directory (created during building):
+				class ONNX_API ModelProto final
+				file
+				./build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+			note: model_proto type printed by gdb:
+				class ngraph_onnx::ModelProto : public google::protobuf::MessageLite {
+			note: class ModelProto has graph_ member, type GraphProto, which has
+				nodes, type NodeProto, as template of RepeatedPtrField construction.
+			note: class NodeProto has members:
+					output and functions set_output();
+					input and functions set_input();
+			note: there is class TensorProto;
+				
+			#45
+			ONNX_NAMESPACE::ModelProto parse_from_istream(std::istream& model_stream) {
+			note: class ModelProto is declared in $OTE_XMLBIN/../aux/onnx_ngraph_onnx-ml.pb.h,
+				original: $OPENVINO_SRC/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+				#1483
+					class ONNX_API ModelProto final
+			note: gdb shows ModelProto type as
+				class ngraph_onnx::ModelProto : public google::protobuf::MessageLite
+			#54
+				ONNX_NAMESPACE::ModelProto model_proto;
+				note: using constructor ModelProto();
+					next: load ModelProto data from .onnx file
+				note: ModelProto::graph_ can be built in model_proto using function:
+					inline void ModelProto::unsafe_arena_set_allocated_graph(
+						::ngraph_onnx::GraphProto* graph), i.e. GraphProto object can be
+						implemented indpendently.
+			#55
+			if (!model_proto.ParseFromIstream(&model_stream))
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc
+			#286
+			bool MessageLite::ParseFromIstream(std::istream* input) {
+			note: input - file_stream, which is got after creating stream from file_path.
+			#288
+			return ParseFromZeroCopyStream(&zero_copy_input) && input->eof();
+			#267
+			bool MessageLite::ParseFromZeroCopyStream(io::ZeroCopyInputStream* input) {
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h
+			#595
+			bool MessageLite::ParseFrom(const T& input
+			#598
+			func: bool MessageLite::ParseFrom(const T& input) {...
+			return internal::MergeFromImpl<alias>(input, this, flags)
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc
+			#153
+			bool MergeFromImpl(io::ZeroCopyInputStream* input, MessageLite* msg,
+                   MessageLite::ParseFlags parse_flags) {
+			#156
+			internal::ParseContext ctx(io::CodedInputStream::GetDefaultRecursionLimit(),
+				aliasing, &ptr, input);
+			note: namespace google
+					namespace protobuf
+					namespace internal
+			#158
+			ptr = msg->_InternalParse(ptr, &ctx);
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#2896
+			char* ModelProto::_InternalParse()
+
+			note:: NodeProto::NodeProtp constructor at line 1988 is called.
+			note: TensorProto constructor at line 4559 is called
+
+********** start **********************
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+			#388
+			ParseContext(int depth, bool aliasing, const char** start, T&&... args)
+		      : EpsCopyInputStream(aliasing), depth_(depth) {
+			#390
+			*start = InitFrom(std::forward<T>(
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#250
+			const char* EpsCopyInputStream::InitFrom(io::ZeroCopyInputStream* zcis) {
+			#255
+			func: const char* EpsCopyInputStream::InitFrom(io::ZeroCopyInputStream* zcis) {
+			if (zcis->Next(&data, &size)) {
+
+********* loop ************************
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+
+note: 'ParseContext ctx'. class ParseContext is defined in 
+	./thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h file
+note: add_node() is declared in
+	build/src/frontends/tensorflow/cost_graph.pb.h:1854 file:line
+			function: ModelProto::_InternalParse()
+note: look at file
+		 $GITROOT/truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.bp.comments.txt
+
+			#3924
+			switch (tag >> 3) (case 1)
+			#3931
+			ptr = ctx->ParseMessage(_internal_add_node(), ptr);
+
+				file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+				#8060
+					inline ::ngraph_onnx::NodeProto* GraphProto::_internal_add_node() {
+						return node_.Add();
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+				#2245
+				inline Element* RepeatedPtrField<Element>::Add() {
+					return RepeatedPtrFieldBase::Add<TypeHandler>();
+				#1795
+				inline typename TypeHandler::Type* RepeatedPtrFieldBase::Add( {
+					typename TypeHandler::Type* result =
+				      TypeHandler::NewFromPrototype(prototype, arena_);
+				note: (gdb) p result
+					$1 = (google::protobuf::internal::GenericTypeHandler<ngraph_onnx::NodeProto>::Type *) 0x268b000
+
+			file: ./thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#291
+			const char* ParseContext::ParseMessage(MessageLite* msg, const char* ptr)
+			#293
+			ptr = ReadSizeAndPushLimitAndDepth(ptr, &old);
+				#280
+				const char* ParseContext::ReadSizeAndPushLimitAndDepth(const char* ptr,
+                                                       int* old_limit) {
+				#286
+				*old_limit = PushLimit(ptr, size);
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+				#128
+				PROTOBUF_MUST_USE_RESULT int PushLimit(const char* ptr, int limit) {
+			#294
+			ptr = ptr ? msg->_InternalParse(ptr, this) : nullptr;
+			
+
+			#2960 (case 7)
+			ptr = ctx->ParseMessage(_internal_mutable_graph(), ptr);
+
+				file:build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+				#7655
+				inline ::ngraph_onnx::GraphProto* ModelProto::_internal_mutable_graph() {
+				#7658
+				auto* p = CreateMaybeMessage<::ngraph_onnx::GraphProto>(GetArenaForAllocation());
+				(ngraph_onnx::GraphProto *) p
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#291
+			const char* ParseContext::ParseMessage(MessageLite* msg, const char* ptr) {
+			#293
+			ptr = ReadSizeAndPushLimitAndDepth(ptr, &old);
+			#294
+			ptr = ptr ? msg->_internalparse(ptr, this) : nullptr;
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#4701
+			_internal_add_dims(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+
+			file:
+			build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+			#8515
+			inline void TensorProto::_internal_add_dims(::PROTOBUF_NAMESPACE_ID::int64 value) {
+				dims_.Add(value);
+			}
+			note: dims_ is member of TensorProto declared as:
+					::PROTOBUF_NAMESPACE_ID::RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 > dims_
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#2971(case 8)
+			ptr = ctx->ParseMessage(_internal_add_opset_import(), ptr);
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+				#291
+				const char* ParseContext::ParseMessage(MessageLite* msg, const char* ptr) {
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+			#7324
+			inline ::ngraph_onnx::OperatorSetIdProto* ModelProto::_internal_add_opset_import() {
+			#7325
+			return opset_import_.Add();
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+				#2245
+				inline Element* RepeatedPtrField<Element>::Add() {
+					return RepeatedPtrFieldBase::Add<TypeHandler>();
+				#1795
+				inline typename TypeHandler::Type* RepeatedPtrFieldBase::Add(
+					return cast<TypeHandler>(rep_->elements[current_size_++]);
+
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#3931
+			ptr = ctx->ParseMessage(_internal_add_node(), ptr);
+				file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+				#8060
+				inline ::ngraph_onnx::NodeProto* GraphProto::_internal_add_node() {
+					 return node_.Add();
+				}
+				note: node_: class google::protobuf::RepeatedPtrField<ngraph_onnx::NodeProto>
+				note: gdb entry with 'si' command
+					file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+					#2245
+					inline Element* RepeatedPtrField<Element>::Add() {
+					#1796
+					inline typename TypeHandler::Type* RepeatedPtrFieldBase::Add(
+					    typename TypeHandler::Type* prototype) {
+					#1800
+					  typename TypeHandler::Type* result =
+					      TypeHandler::NewFromPrototype(prototype, arena_);
+						  return reinterpret_cast<typename TypeHandler::Type*>(
+					      AddOutOfLineHelper(result));
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#294
+			func: char* parsecontext::parsemessage(messagelite* msg, const char* ptr) {
+			ptr = ptr ? msg->_internalparse(ptr, this) : nullptr;
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			function: NodeProto::_InternalParse()
+			#2093
+			while (!ctx->Done(&ptr)) {
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+			#388
+			class PROTOBUF_EXPORT ParseContext : public EpsCopyInputStream {
+			#395
+			bool Done(const char** ptr) { return DoneWithCheck(ptr, group_depth_);
+			#225
+			func: bool DoneWithCheck(const char** ptr, int d) {
+			auto res = DoneFallback(overrun, d);
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#189
+			func:
+			std::pair<const char*, bool> EpsCopyInputStream::DoneFallback(int overrun,
+                                                              int depth)
+			p = NextBuffer(overrun, depth);
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			func: 
+			#122
+			loop
+			while (StreamNext(&data))
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+			function bool StreamNext(const void** data)
+			#315
+			bool res = zcis_->Next(data, &size_);
+********** end loop difference ****************************
+			file:thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl.cc
+			#254
+			bool IstreamInputStream::Next(const void** data, int* size) {
+			#255
+			return impl_.Next(data, size);
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+			#230
+			buffer_used_ = copying_stream_->Read(buffer_.get(), buffer_size_);
+			note: buffer_ type is char*, read from .pth file
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl.cc
+			#272
+			func: int IstreamInputStream::CopyingIstreamInputStream::Read(void* buffer,int size) {
+			input_->read(reinterpret_cast<char*>(buffer), size);
+
+PPPPPPPPPPPPPPPPP return PPPPPPPPPPPPPPPPPPP
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+			#230
+			buffer_used_ = copying_stream_->Read(buffer_.get(), buffer_size_);
+			note: buffer: text of onnx model file
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl.cc
+			#256
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#255
+			if (zcis->Next(&data, &size)) {
+			#263
+			return ptr
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+			#316
+			if (res) overall_limit_ -= size_;
+			#317
+			return res
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#123
+			if (size_ > kSlopBytes) {
+			note: #122: loop: while (StreamNext(&data)) {
+			#129
+			return buffer_;
+			#190
+			note: end of the stream
+			if (p == nullptr) {
+			#204
+			return {p, false};
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+			#227
+			return res.second;
+			(gdb) p *ptr
+			$3 = 0x7ffeed063088 "\n\003\065\065\070\n\004\061\064\061\064\n\004\061\064\061\065\022\004\061\064\061\063\032\bConv_16"
+			#395
+			bool Done(const char** ptr) { return DoneWithCheck(ptr, group_depth_); }
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#2093
+			while (!ctx->Done(&ptr)) {
+			#2191
+			return ptr;
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#295
+			depth_++;
+			#297
+			return ptr;
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#3931
+			ptr = ctx->ParseMessage(_internal_add_node(), ptr);
+			#4051
+			return ptr
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#297
+			return ptr;
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#2960
+			ptr = ctx->ParseMessage(_internal_mutable_graph(), ptr);
+			#3034
+			return ptr;
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc
+			note: ctx type: class PROTOBUF_EXPORT ParseContext : public EpsCopyInputStream {,
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h:379
+			#158
+			ptr = msg->_InternalParse(ptr, &ctx);
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#2896
+			const char* ModelProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx)
+			#2899
+			while (!ctx->Done(&ptr)) {
+			note: this loop parses onnx model in memory using tags
+			note: breakpoints for tags:
+				b build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2901
+				c
+				d <n>
+				source /home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/breakpoints_pb.cc.txt
+			note: parsing breakpoints trace log:
+				truck_learning/train_after_xmlbin/aux/gdb_breakpoints.log.txt
+			note:										^
+				extract from gdb_breakpoints.log.txt	|
+					truck_learning/train_after_xmlbin/aux/pth_parsed_tree.txt
+			note: classes sequence
+				bp2: AttributeProto
+				bp4: ValueInfoProto
+				bp6: node_proto
+				bp10: model_proto
+				bp16: graph_proto
+				bp20: TensorProto
+				bp24: TensorShapeProto_Dimension
+				bp26: TensorShapeProto
+				bp28: TypeProto_Tensor
+				bp40: TypeProto
+				bp42: OperatorSetIdProto
+
+!!! next: onnx model changes its content in case 7
+			#2960
+			ptr = ctx->ParseMessage(_internal_mutable_graph(), ptr);
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			#291
+			const char* ParseContext::ParseMessage(MessageLite* msg, const char* ptr) {
+			#294
+			ptr = ptr ? msg->_InternalParse(ptr, this) : nullptr;
+
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc
+			#3929
+			do {
+				...
+				ptr = ctx->ParseMessage(_internal_add_node(), ptr);
+				...
+			} while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc
+			#127
+			return msg.IsInitializedWithErrors();
+			#161
+			return CheckFieldPresence(ctx, *msg, parse_flags);
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h
+			#598
+			return internal::MergeFromImpl<alias>(input, this, flags);
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc
+			#268
+			return ParseFrom<kParse>(input);
+			#288
+			return ParseFromZeroCopyStream(&zero_copy_input) && input->eof();
+
+			file: src/frontends/onnx/onnx_common/src/parser.cpp
+			#60
+				return model_proto;
+
+PPPPPPPPPPPPP end return PPPPPPPPPPPPPPPPPPPP
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h
+			#250
+			const char* EpsCopyInputStream::InitFrom(io::ZeroCopyInputStream* zcis) {
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc
+			function:
+			const char* EpsCopyInputStream::InitFrom(io::ZeroCopyInputStream* zcis)
+			#255
+			if (zcis->Next(&data, &size)
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+			#213
+			bool CopyingInputStreamAdaptor::Next(const void** data, int* size) {
+			#230
+			buffer_used_ = copying_stream_->Read(buffer_.get(), buffer_size_);
+			note: buffer_ contains .pth file data
+			note: buffer is declared in irdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl_lite.h:243 as std::unique_ptr<uint8_t[]>
+
+			file: thirdparty/protobuf/protobuf/src/google/protobuf/io/zero_copy_stream_impl.cc
+			#272
+			input_->read(reinterpret_cast<char*>(buffer), size);
+			note: print buffer in gdb:
+				p/c (char[8192])*((char*)buffer)
+			note: input_ - stream on "model_beforeMO.onnx" file 
+		file: src/frontends/common/src/input_model.cpp
+		#29
+		Place::Ptr InputModel::get_place_by_tensor_name(const std::string& tensor_name) const {
+		#33
+		FRONTEND_RETURN_STATEMENT("get_place_by_tensor_name", m_actual->get_place_by_tensor_name(tensor_name))
+
+		#57
+		ov::frontend::Place::Ptr InputModel::get_place_by_tensor_name(const std::string& tensor_name) const {
+		#58
+		if (m_editor->is_correct_tensor_name(tensor_name)) {
+
+		file: src/frontends/onnx/frontend/src/editor.cpp
+		#622
+		bool onnx_editor::ONNXModelEditor::is_correct_tensor_name(const std::string& name) const {
+		#585
+		void onnx_editor::ONNXModelEditor::update_mapper_if_needed() const {
+		#586
+		if (!m_pimpl->m_is_mapper_updated) {
+		#587
+		m_pimpl->m_edge_mapper = EdgeMapper(m_pimpl->m_model_proto->graph());
+
+		file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+		#7616
+		inline const ::ngraph_onnx::GraphProto& ModelProto::graph() const {
+		#7618
+		return _internal_graph();
+		#7611
+		inline const ::ngraph_onnx::GraphProto& ModelProto::_internal_graph() const {
+		#7613
+		return p != nullptr ? *p : reinterpret_cast<const ::ngraph_onnx::GraphProto&>(
+		#7614
+		::ngraph_onnx::_GraphProto_default_instance_);
+
+		file: src/frontends/onnx/frontend/src/edge_mapper.cpp
+		#17
+		onnx_editor::EdgeMapper::EdgeMapper(const ONNX_NAMESPACE::GraphProto& graph_proto)
+		#19
+		m_node_outputs(graph_proto.node().size()) {
+		#18
+		: m_node_inputs(graph_proto.node().size()),
+
+		file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+		#8069
+		GraphProto::node() const {
+		#8071
+		return node_;
+
+		file: src/frontends/onnx/frontend/src/edge_mapper.cpp
+		#18
+		: m_node_inputs(graph_proto.node().size()),
+
+		file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+		#2219
+		inline int RepeatedPtrField<Element>::size() const {
+		#2220
+		return RepeatedPtrFieldBase::size();
+		#1755
+		inline int RepeatedPtrFieldBase::size() const { return current_size_; }
+
+		file: src/frontends/onnx/frontend/src/edge_mapper.cpp
+		#19
+		m_node_outputs(graph_proto.node().size()) {
+
+		file: src/bindings/python/thirdparty/pybind11/include/pybind11/attr.h
+		#312
+		args_convert.reserve(f.nargs);
+
+
+		#59
+		return std::make_shared<PlaceTensor>(tensor_name, m_editor);
+		
+\c++0
+		note: after #29 input_model is loaded
+		input_model = moc_front_end.load(argv.input_model)
+
+		file: $OPENVINO/openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/pipeline.py
+		
+		#31
+		user_shapes, outputs, freeze_placeholder = fe_user_data_repack(
+			input_model, argv.placeholder_shapes, argv.placeholder_data_types,
+	        argv.output, argv.freeze_placeholder_with_value, moc_front_end.get_name())
+
+			file: openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/extractor.py
+			#267
+			def fe_user_data_repack(    input_model: InputModel,
+			    input_user_shapes: [None, list, dict, np.array],
+			    input_user_data_types: dict,
+			    outputs: list,
+			    freeze_placeholder: dict,
+			    framework: str, )
+
+				#283
+					_input_shapes, _freeze_placeholder = fe_input_user_data_repack(
+				        input_model,
+				        input_user_shapes,
+				        freeze_placeholder,
+				        framework,
+				        input_user_data_types=)
+		file: openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/pipeline.py
+		#145
+		ngraph_function = moc_front_end.convert(input_model)
+following cpp code converts input_model object to ngraph_funcion (looks like  ov::Model)
+c++1
+file: src/frontends/common/src/frontend.cpp
+#51
+std::shared_ptr<ov::Model> FrontEnd::convert(const InputModel::Ptr& model) const
+
+	file: src/frontends/onnx/frontend/src/frontend.cpp
+		#74
+		std::shared_ptr<ngraph::Function> FrontEnd::convert(const InputModel::Ptr& model)
+		#90
+		return model_onnx->convert();
+
+			file: src/frontends/onnx/frontend/src/input_model.cpp
+			#200
+			std::shared_ptr<Model> InputModel::convert()
+			#201
+			auto converted_model = m_editor->get_function();
+			note: converted_model has type: ov::Model
+
+			file: src/frontends/onnx/frontend/src/editor.cpp
+			#446
+			std::shared_ptr<Model> onnx_editor::ONNXModelEditor::get_function() const {
+			#447
+			return ngraph::onnx_import::detail::import_onnx_model(
+				m_pimpl->m_model_proto, m_model_path, m_extensions)
+
+			file: src/frontends/onnx/frontend/src/utils/onnx_internal.cpp
+			#89
+			std::shared_ptr<Function> import_onnx_model(
+					std::shared_ptr<ONNX_NAMESPACE::ModelProto> model_proto,
+					const std::string& model_path,
+                    ov::frontend::ExtensionHolder extensions)) {
+					return graph.convert();
+				}
+				note: model_path is truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx
+				#93
+				Graph graph{model_proto, std::move(extensions)};
+				note: Graph::m_cache contains map with 384 elements ov::Node.
+
+					file: src/frontends/onnx/frontend/src/core/graph.cpp
+					#131
+					Graph::Graph(const std::shared_ptr<ONNX_NAMESPACE::ModelProto>&
+						model_proto, ov::frontend::ExtensionHolder extensions) :
+							Graph(model_proto, common::make_unique<GraphCache>(),
+							std::move(extensions)) {}
+				note: src/frontends/onnx/frontend/src/core/graph.hpp
+					src/frontends/onnx/frontend/src/core/graph.cpp
+				note: ModelProto is created in InputModel::InputModel constructor
+					during onnx loading in onnx_editor's m_pimpl initialization.
+					#134
+					Graph::Graph(const std::shared_ptr<ONNX_NAMESPACE::ModelProto>& model_proto,
+			             std::unique_ptr<GraphCache>&& cache,
+            			 ov::frontend::ExtensionHolder extensions)
+				    : m_cache{std::move(cache)},
+				      m_extensions{std::move(extensions)} {
+					#139
+				    const auto ops_bridge = detail::init_ops_bridge(m_extensions.conversions);
+					note: type of ops_bredge is:
+						 const class ngraph::onnx_import::OperatorsBridge {
+						#63
+						OperatorsBridge ops_bridge = init_ops_bridge(m_extensions.conversions);
+					#140
+				    m_model = common::make_unique<Model>(
+							model_proto, detail::build_model_opset(*model_proto, ops_bridge));
+					note: m_model type is ngraph::onnx_import::Model
+						#87
+						Model::ModelOpSet build_model_opset(
+								const ONNX_NAMESPACE::ModelProto& model_proto,
+								const OperatorsBridge& ops_bridge) {
+							#92
+							auto opset_imports = model_proto.opset_import();
+								file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+								#7333
+							#117
+							return opset;
+							note: opset type is std::unordered_map with 147 elements
+						file: src/frontends/onnx/frontend/src/core/model.cpp
+						#38
+						ngraph::onnx_import::Model::Model(
+							std::shared_ptr<ONNX_NAMESPACE::ModelProto> model_proto,
+							ModelOpSet&& model_opset)
+							:m_model_proto{std::move(model_proto)},
+							m_opset{std::move(model_opset)} {}
+					$142
+					transform::expand_onnx_functions(*model_proto);
+					note: some operations with NodeProto nodes of graph_proto of ModelProto.
+						file:src/frontends/onnx/frontend/src/core/transform.cpp
+						#58
+						void ngraph::onnx_import::transform::expand_onnx_functions(
+							ONNX_NAMESPACE::ModelProto& model_proto)
+					#147
+					for (const auto& initializer_tensor : m_model->get_graph().initializer())
+					note: makes 383 loops
+					note: type of initializer_tensor is ngraph_onnx::TensorProto
+							value of initializer_tensor is taken from
+								m_model->m_model_proto->graph_
+					#148
+					initializer_tensor : m_model->get_graph().initializer())
+					note: initializer_tensor type is
+						ngraph_onnx::TensorProto
+					#149
+					Tensor tensor = Tensor{initializer_tensor};
+					note: tensor type is "class ngraph::onnx_import::Tensor" declared \
+							in file src/frontends/onnx/frontend/src/core/tensor.hpp
+					note:Tensor::Tensor() is file \
+							src/frontends/onnx/frontend/src/core/tensor.hpp:358
+						file:src/frontends/onnx/frontend/src/core/tensor.hpp
+						#361
+						if (m_shape == Shape{0})
+							file: src/core/src/shape.cpp
+							#20
+							ov::Shape::Shape(const std::initializer_list<size_t>& axis_lengths)
+								or
+							#18
+							ov::Shape::Shape(const std::initializer_list<size_t>& axis_lengths)
+					#150
+					std::shared_ptr<default_opset::Constant> ng_constant;
+					note: type of ng_constant is: std::shared_ptr<ov::op::v0::Constant>
+					note: class Constant contains member ov::Node
+					#153
+					ng_constant = tensor.get_ng_constant();
+						file: src/frontends/onnx/frontend/src/core/tensor.hpp
+						namespace ngraph {
+						namespace onnx_import {
+
+						#442
+							std::shared_ptr<ngraph::op::Constant> get_ng_constant() const {
+						#450
+						return make_ng_constant<float>(element::f32)
+						#484
+						std::shared_ptr<ngraph::op::Constant> make_ng_constant(
+							const element::Type& type) const {
+						#486
+						int data_size = detail::get_data_size(*m_tensor_proto);
+						note: data_size = 1536
+						note: m_shape = {16, 96, 1, 1};
+								16*96 = 1536
+						#487
+						if (detail::has_tensor_external_data(*m_tensor_proto)) {
+
+						#491
+						constant = std::make_shared<ngraph::op::Constant>(type, m_shape,
+								detail::get_data_ptr(*m_tensor_proto));
+							file: src/core/src/op/constant.cpp
+							#207
+							size_t size =
+								(shape_size(m_shape) * m_element_type.bitwidth() + 7) >> 3;
+								note: shape_size() is defined in
+									 src/core/include/openvino/core/shape.hpp
+							#208
+							std::memcpy(get_data_ptr_nc(), data, size);
+							note: get_data_ptr_nc() defined in file:
+								src/core/include/openvino/op/constant.hpp
+							note: data is ngraph::onnx_import::detail::get_data_ptr
+									(*m_tensor_proto);
+								file: src/core/include/openvino/op/constant.hpp
+								#535
+								void* get_data_ptr_nc() {
+								#536
+								return (m_data ? m_data->get_ptr() : nullptr);
+									file: src/core/include/ngraph/runtime/aligned_buffer.hpp
+									#37
+									void* get_ptr() {
+									return m_aligned_buffer;
+									note:
+										gdb) p m_aligned_buffer
+										$5 = 0x555555010000 <error: 
+											Cannot access memory at address 0x555555010000>
+
+						note: constant type is std::shared_ptr<ov::op::v0::Constant>
+						note: "this" is const ngraph::onnx_import::Tensor * const
+					#161
+					initializers.emplace(initializer_tensor.name(), tensor)
+					#163
+					m_cache->emplace_node(initializer_tensor.name(), std::move(ng_constant));
+					note: ng_constant has type:
+						std::shared_ptr<ov::op::v0::Constant>;
+						it is eqVual ngraph::op::v0::Constant, look at:
+							src/core/include/ngraph/op/constant.hpp:
+								using ov::op::v0::Constant;
+							src/core/include/openvino/op/constant.hpp
+					note: name is "bbox_head.reg_convs.0.3.weight", as in .onnx file
+					note: ng_constant has member 'm_data'
+					note: emplace() second parameter has type:
+						ov::Output<ov::Node> &&
+					#168
+					for (const auto& input : m_model->get_graph().input()) {
+					note: input type is ngraph_onnx::ValueInfoProto
+						m_model->get_graph() aka model_proto->graph() aka
+							_internal_graph() aka ModelProto::graph_ returns GraphProto type.
+					note: class ONNX_API ValueInfoProto is in file
+						build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h:816
+
+						file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+						#8305
+						GraphProto::input() const {
+						return input_;
+					note: makes 1 loop
+					#175
+					auto ng_node = value_info.get_ng_node(m_parameters, initializers);
+					note: inializers is map with 383 elements
+						file: src/frontends/onnx/frontend/src/core/value_info.hpp
+						#53
+						std::shared_ptr<ngraph::Node> get_ng_node(ParameterVector& parameters,
+							const std::map<std::string, Tensor>& initializers) const {
+						note: in file
+							./src/core/include/openvino/op/parameter.hpp
+								using ParameterVector =
+									std::vector<std::shared_ptr<op::v0::Parameter>>;
+						#55
+						const auto it = initializers.find(get_name());
+						note: get_name() = "image"
+
+						#56
+						if (it != std::end(initializers))
+						note: is false
+
+						#59
+						parameters.push_back(get_ng_parameter());
+							#64
+							std::shared_ptr<ngraph::op::Parameter> get_ng_parameter() const {
+							note: parameter type is: std::shared_ptr<ov::op::v0::Parameter>
+							#65
+							auto parameter = std::make_shared<ngraph::op::Parameter>(
+									get_element_type(), get_shape());
+							note: element_type() = ov::element::Type_t::f32
+							note: shape_type is variable m_partial_shape, type
+								class ov::PartialShape
+							file:src/core/src/op/parameter.cpp
+							#18
+							op::Parameter::Parameter(const element::Type& element_type,
+								const ov::PartialShape& pshape)
+							    : m_partial_shape(pshape),
+							      m_element_type(element_type),
+							      m_is_relevant_to_shapes(false) {
+							note: declared in file
+								./src/core/include/openvino/op/parameter.hpp
+							#22
+							constructor_validate_and_infer_types()
+
+							file: src/core/src/node.cpp
+							#252
+							void ov::Node::set_output_type(size_t i,
+								const element::Type& element_type, const PartialShape& pshape) {
+							#193
+							ov::descriptor::Output&
+								ov::Node::get_output_descriptor(size_t position) {
+							#196
+							auto tensor_descriptor =
+								make_shared<descriptor::Tensor>(element::dynamic,
+								PartialShape::dynamic(), this, i);
+							#197
+							auto tensor_descriptor = 
+								make_shared<descriptor::Tensor>(element::dynamic,
+								PartialShape::dynamic(), this, i);
+							#199
+							return m_outputs[position];
+						#60
+						return parameters.back();
+						note: parameters.back() type is
+							std::shared_ptr<ov::op::v0::Parameter> (use count 1, weak count 1) =
+							{get() = 0x55555559b8f0
+						note: *parameters.back() is
+							{<ov::op::Op> = {<ov::Node> = 
+								{<std::enable_shared_from_this<ov::Node>> = ...
+
+					note: ng_node is part of parameter.
+					note: op::Parameter::Parameter(const element::Type& element_type,
+						const ov::PartialShape& pshape),
+						in file src/core/src/op/parameter.cpp;
+					note: function constructor_validate_and_infer_types() is
+						 in file src/core/src/node.cpp:217
+
+					#176
+					m_cache->emplace_node(input.name(), std::move(ng_node));
+
+					#182
+					for (const auto& node_proto : m_model->get_graph().node()) {
+					note: makes 578 loops
+					note: emplaced to m_cache:
+						breakpoints: 962
+						Graph::Graph: 383+1 = 384
+						make_ng_nodes(): 578
+
+				file:src/frontends/onnx/frontend/src/core/graph.cpp
+				#261
+				std::shared_ptr<Function> Graph::convert() {
+				note: Function is ov::Model in file src/core/include/ngraph/function.hpp
+					#262
+					convert_to_ngraph_nodes()
+					note: after the function Graph::m_cache contains
+							map with 962 elements ov::Node
+						#214
+						void Graph::convert_to_ngraph_nodes() {
+						note: m_model:
+							type: ngraph::onnx_import::Model is declared in file
+								src/frontends/onnx/frontend/src/core/model.hpp:26
+								id of constructor's declaration ModelOpSet is here, also:
+								using ModelOpSet = std::unordered_map<std::string, OperatorSet>;
+								OperatorSet: file src/frontends/onnx/frontend/include/onnx_import/core/operator_set.hpp
+								using OperatorSet =	std::unordered_map<std::string, Operator>;
+								using Operator = std::function<OutputVector(const Node&)>;
+							note: node_proto type is ngraph_onnx::NodeProto
+							note: node type is class ngraph::onnx_import::Node
+						note: looks like convert_to_ngraph_nodes converts m_model to
+							ov::Model nodes
+
+							file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+							#2219
+							inline int RepeatedPtrField<Element>::size() const {
+						#218
+						for (const auto& node_proto : m_model->get_graph().node()) {
+						note: node() returns NodeProto
+						#219
+						const Node node{node_proto, *this};
+						note: class ngraph::onnx::import::Node is declared in file
+							src/frontends/onnx/frontend/include/onnx_import/core/node.hpp
+
+							file: src/frontends/onnx/frontend/src/core/node.cpp
+							#284
+							Node::Node(const ONNX_NAMESPACE::NodeProto& node_proto,
+								const Graph& graph) : m_pimpl{new Impl{node_proto, graph},
+								[](Impl* impl) {
+							#20
+							Impl(const ONNX_NAMESPACE::NodeProto& node_proto, const Graph& graph)
+							note: class Node::Impl {
+							note: the constructors (Node and Impl) assign private variables and
+								 nothing more.
+						#227
+						OutputVector ng_nodes{make_ng_nodes(node)};
+						note: ng_nodes type is vector of vector std::shared_ptr<ov::Node>
+						note: the following is a loop
+						#352
+						OutputVector Graph::make_ng_nodes(const Node& onnx_node) {
+						note: onnx_node type is
+							ngraph::onnx_import::Node
+							in 	file
+								./src/frontends/onnx/frontend/include/onnx_import/core/node.hpp,
+						note: ov::Node is in file
+								./src/frontends/onnx/frontend/src/core/node.cpp
+						#353
+						const auto ng_node_factory = 
+							m_model->get_operator(onnx_node.op_type(), onnx_node.domain());
+						note: (gdb) p onnx_node.op_type()
+							$6 = "Shape"
+							next in loop:
+							"Slice", "Conv", "Clip", "Conv" etc.
+						note: "ShapeOf and other operations are declared in files
+							./src/core/include/openvino/opsets/opset8_tbl.hpp
+							src/core/include/openvino/op/*
+						note: "ShapeOf and other operations are defined in files
+							src/core/src/op/*
+						#357
+						ng_subgraph_outputs = ng_node_factory(onnx_node);
+							file: src/frontends/onnx/frontend/src/op/shape.cpp
+							#19
+							OutputVector shape(const Node& node) {
+							#20
+								const auto data = node.get_ng_inputs().at(0);
+							note: ops functions are in directory
+								src/frontends/onnx/frontend/src/op/
+								"Shape","Slice", "Conv", "Clip", "Conv" etc.
+							note: data type is class ov::Output<ov::Node> [with NodeType=ov::Node]
+							 {data = (m_node = std::shared_ptr<ov::Node>
+								(use count 3, weak count 1) = {get() = 0x55555559b8f0},
+								m_index = 0),
+								declared in file src/core/include/openvino/core/node_output.hpp
+								defined in file src/core/src/node_output.cpp, look further code.
+							note: opsets are defined in file
+								src/core/include/openvino/opsets/opset8_tbl.hpp
+							note: (gdb) p node.op_type()
+										$9 = "Shape"
+										(gdb) p node.get_name()
+										$10 = "Shape_0"
+										(gdb) p node.output(0)
+										$11 = "349"
+
+								file: src/core/include/openvino/core/node_output.hpp
+								#46
+								Output(const std::shared_ptr<T>& node) : Output(node ?
+									node->get_default_output() : Output<Node>()) {}
+								note: class class OPENVINO_API Output<Node> {
+									note: ov::Node in class declaration
+							#21
+							return {std::make_shared<default_opset::ShapeOf>(data)};
+								file: src/core/src/op/shape_of.cpp
+								#27
+								op::v3::ShapeOf::ShapeOf(const Output<Node>& arg,
+										element::Type output_type)
+									note: declaration in file
+										src/core/include/openvino/op/shape_of.hpp
+										#20 (namespace v3)
+										ShapeOf(const Output<Node>& arg,
+											const element::Type output_type = element::i64);
+								#28
+								constructor_validate_and_infer_types();
+									file: src/core/src/node.cpp
+									#218
+									validate_and_infer_types();
+										file: src/core/src/op/shape_of.cpp
+										#31
+										void op::v3::ShapeOf::validate_and_infer_types() {
+										...
+										}
+									#219
+									}
+								#29
+								}
+
+							file: src/frontends/onnx/frontend/src/core/node.cpp
+							#296
+							OutputVector Node::get_ng_inputs() const {
+							#297
+							return m_pimpl->get_ng_inputs();
+							note:
+								(gdb) p this
+								$15 = (const ngraph::onnx_import::Node * const) 0x7fffffffce70
+								(gdb) p m_pimpl
+								$16 = std::unique_ptr<ngraph::onnx_import::Node::Impl> = {get()...
+							note: class Node::Impl is declared and defined:
+								src/frontends/onnx/frontend/src/core/node.cpp
+							#195
+							OutputVector Node::Impl::get_ng_inputs() const {
+								note: result type: vector of ov::Node
+							#199
+							result.push_back(m_graph->get_ng_node_from_cache(name));
+
+								file: src/frontends/onnx/frontend/src/core/graph.cpp
+								#336
+								Output<ngraph::Node> Graph::get_ng_node_from_cache
+									(const std::string& name) const {
+
+								file: src/frontends/onnx/frontend/src/core/graph.cpp
+								#336
+								Output<ngraph::Node> Graph::get_ng_node_from_cache
+									const std::string& name)
+								return m_cache->get_node(name);
+								note: returns ov::Node	
+								...
+								file: src/frontends/onnx/frontend/src/core/graph_cache.cpp
+								#21
+								Output<ngraph::Node> GraphCache::get_node(
+									const std::string& name) const {
+								#23
+								return m_graph_cache_map.at(name);
+								note: name="image"
+								note: (gdb) p m_graph_cache_map
+									$9 = std::map with 384 elements = {["1000"] = {
+								    m_node = std::shared_ptr<ov::Node> ... 
+
+							file: src/core/include/openvino/core/node_output.hpp
+							$46
+							Output(const std::shared_ptr<T>& node) : Output(node ?
+								node->get_default_output() : Output<Node>()) {}
+							file: src/core/src/node.cpp
+							#110
+							ov::Output<ov::Node> ov::Node::get_default_output() {
+							#111
+							return output(get_default_output_index());
+						#372
+						set_friendly_names(onnx_node, ng_subgraph_outputs);
+						#379
+						return ng_subgraph_outputs;
+						note: ng_subgraph_outputs type is vector of std::shared_ptr<ov::Node>
+
+					#264 return create_function();
+				file: src/frontends/onnx/frontend/src/core/graph.cpp
+				#311
+				std::shared_ptr<Function> Graph::create_function() {
+				#312
+					auto function = std::make_shared<Function>(get_ng_outputs(), m_parameters, get_name());
+					note: ngraph::onnx_import::get_ng_outputs(): std::vector of length 4, capacity 4 = {
+						{m_node = std::shared_ptr<Node> (use count 3, weak count 2) = {get()=
+								0x5555562d9200}, m_index = 0},
+						{m_node = std::shared_ptr<ov::Node> (use count 3, weak count 2) = {get()=
+								0x5555562d8460}, m_index = 0}, {
+				    	m_node = std::shared_ptr<ov::Node> (use count 3, weak count 2) = {get() =
+								0x5555562d9ac0}, 
+					    m_index = 0}, {m_node = std::shared_ptr<ov::Node> (use count 3,
+							weak count 2) = {get() = 0x5555562eadd0}, m_index = 0}}
+						get_ng_outputs(), m_parameters, get_name());
+					note: m_parameters: std::vector of length 1, capacity 1 = {
+						std::shared_ptr<ov::op::v0::Parameter> (use count 5,
+						weak count 2) = {get() = 0x5555558f5a90}}
+					note: get_name="torch-jit-export"
+				}
+					#340
+					OutputVector Graph::get_ng_outputs() const {
+					#342
+					for (const auto& output : m_model->get_graph().output()) {
+
+					note: m_model is std::unique_ptr<ngraph::onnx_import::Model>,
+						declared in file src/frontends/onnx/frontend/src/core/model.hpp
+					note: m_model->get_graph() is m_model->m_model_proto->graph a.k.a.
+						 model_proto->graph().output() == m_model->m_model_proto->graph_->output_
+					note: m_cache contains 962 elements
+
+					#343
+					const auto& ng_output = get_ng_node_from_cache(output.name());
+					note: output type is
+						class ngraph_onnx::ValueInfoProto : public google::protobuf::MessageLite
+					note: ng_output type is ov::Output<ov::Node>
+					note: m_model type is 'class ngraph::onnx_import::Model'
+
+					#337
+					return m_cache->get_node(name);
+					note: m_cache type is std::unique_ptr<ngraph::onnx_import::GraphCache>
+
+					file: src/frontends/onnx/frontend/src/core/graph_cache.cpp
+					#21
+					Output<ngraph::Node> GraphCache::get_node(const std::string& name) const {
+					#23
+					return m_graph_cache_map.at(name);
+					note: m_graph_cache_map contains map of ov::Node elements. 384 nodes.
+
+					file: src/core/src/model.cpp
+					#110
+					ov::Model::Model(const OutputVector& results, const ngraph::ParameterVector& parameters, const std::string& name)
+					note: ov::Model debug data are in file
+						truck_learning/train_after_xmlbin/aux/mo_ovModel_guts.txt
+					#191
+					void ov::Model::prerequirements(bool detect_variables, bool detect_parameters){
+					note: here Model is created with nodes etc.
+
+					#196
+					const auto& ordered_ops = get_ordered_ops();
+						#268
+						std::vector<shared_ptr<ov::Node>> ov::Model::get_ordered_ops() const {
+						note: nodes are taken from get_results(),get_sinks(),get_parameters().
+						#282
+						for (const auto& r : get_results()) {
+
+						#292
+						auto order = m_topological_sorter(nodes);
+						note: declared as topological_sort_t m_topological_sorter;
+						file: src/core/include/openvino/core/graph_util.hpp
+						#224
+						std::vector<std::shared_ptr<Node>> topological_sort(T root_nodes) {
+						note: m_topological_sorter is declared as topological_sort
+							in constructor definition.
+						note: m_topological_sort() takes nodes from graph and put it in ov::Model
+								I have to tarke nodes from ov::Model and put it in graph.
+
+					...
+				#313
+				const auto& onnx_outputs = m_model->get_graph().output();
+				note: onnx_outputs, type google::protobuf::RepeatedPtrField<ngraph_onnx::ValueInfoProto>
+				#321
+				return function;
+				note: function: type ov::Model, contains 1969 nodes,
+					ov::Model (?) declared in src/core/include/openvino/core/model.hpp
+
+\c++1
+		file: openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/pipeline.py
+		#146
+		return ngraph_function
+		
+file: openvino_env/lib/python3.8/site-packages/openvino/tools/mo/main.py
+#489
+note: ngraph_function is loaded here:
+	graph, ngraph_function = prepare_ir(argv), now we are at #490
+
+	file: openvino_env/lib/python3.8/site-packages/openvino/tools/mo/main.py
+	#373
+	def prepare_ir(argv : argparse.Namespace):
+		#394
+		ngraph_function = moc_pipeline(argv, moc_front_end)
+			file:openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/pipeline.py
+			#22
+			moc_pipeline()
+			#29
+			input_model = moc_front_end.load(argv.input_model)
+			note:
+				argv.input_model'=/home/gena/Develop/comp_vision/dnn/openvino_dev/
+					devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx'
+			note: look above 'c++0' text
+#490
+note:
+(Pdb) p ngraph_function
+<Model: 'torch-jit-export'
+inputs[
+<ConstOutput: names[image] shape{1,3,864,864} type: f32>
+]
+outputs[
+<ConstOutput: names[boxes] shape{..200,5} type: f32>,
+<ConstOutput: names[labels] shape{..200} type: i64>,
+<ConstOutput: names[feature_vector] shape{1,416,1,1} type: f32>,
+<ConstOutput: names[saliency_map] shape{1,27,27} type: u8>
+]>
+(Pdb) type(ngraph_function)
+	<class 'openvino.pyopenvino.Model'>
+(Pdb) 
+(Pdb) p Model
+<class 'openvino.pyopenvino.Model'
+(Pdb) p output_dir
+'/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/one_iter/export/cpp'
+
+#493
+ret_res = moc_emit_ir(ngraph_function, argv)
+note: (Pdb) type(ngraph_function)
+	<class 'openvino.pyopenvino.Model'>
+(Pdb) 
+
+	file: ./openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/serialize.py
+	#15
+	def moc_emit_ir(ngraph_function: Model, argv: argparse.Namespace):
+
+	#16
+	output_dir = argv.output_dir if argv.output_dir != '.' else os.getcwd()
+
+	#45 - serialize(ngraph_function, (orig_model_name + ".xml").encode('utf-8'), (orig_model_name + ".bin").encode('utf-8'))
+	(Pdb) p ngraph_function
+	<Model: 'torch-jit-export'
+	inputs[
+	<ConstOutput: names[image] shape{1,3,864,864} type: f32>
+	]
+	outputs[
+	<ConstOutput: names[boxes] shape{..200,5} type: f32>,
+	<ConstOutput: names[labels] shape{..200} type: i64>,
+	<ConstOutput: names[feature_vector] shape{1,416,1,1} type: f32>,
+	<ConstOutput: names[saliency_map] shape{1,27,27} type: u8>
+	]>
+|
+V
+file: $OPENVINO/python/python3.8/openvino/runtime/__init__.py
+	from openvino.pyopenvino import serialize
+|
+V
+non text file.
+./openvino_env/lib/python3.8/site-packages/openvino/runtime/__pycache__/__init__.cpython-38.pyc
+|
+V
+c++2
+
+../../openvino_install_git/openvino_env/lib/python3.8/site-packages/openvino/libs/libopenvino.so
+../../openvino_install_git/runtime/lib/intel64/libopenvino.so
+to build and install c++ library look at:
+https://github.com/openvinotoolkit/openvino/wiki
+
+|
+V
+file: src/core/src/graph_util.cpp
+#812
+void ov::serialize(const std::shared_ptr<const ov::Model>& m,
+                   const std::string& xml_path,
+                   const std::string& bin_path,
+                   ov::pass::Serialize::Version version)
+|
+V
+file: openvino.git/src/core/src/pass/manager.cpp, 
+(src/core/include/openvino/pass/manager.hpp)
+#52
+func: void ov::pass::Manager::run_passes(shared_ptr<ov::Model> func)
+|
+V
+note: ??? loop at #65, have to be upper shell loop.
+
+#100
+function_changed = function_pass->run_on_model(func)
+|
+V
+file openvino.git/src/core/src/pass/serialize.cpp
+#1019:
+bool pass::Serialize::run_on_model(const std::shared_ptr<ngraph::Function>& f_orig)
+|
+V
+#1032
+serializeFunc(xml_file, bin_file, f, m_version, m_custom_opsets);
+note: print Node:
+	  to print one of (ov::Model)'s node pointer: p ((ov::Node*)f->m_cached_ordered_ops[<index>])
+	  to print member of the node: p ((ov::Node*)f->m_cached_ordered_ops[<index>])-><member_name>,
+	    e.g. p ((ov::Node*)f->m_cached_ordered_ops[1])->m_friendly_name
+
+#987
+void serializeFunc(std::ostream& xml_file,
+                   std::ostream& bin_file,
+                   std::shared_ptr<ov::Model> f,
+                   ov::pass::Serialize::Version ver,
+                   const std::map<std::string, ngraph::OpSet>& custom_opsets,
+                   bool deterministic = false) {
+#1008
+XmlSerializer visitor(net_node, name, custom_opsets, constant_write_handler, version, deterministic);
+#354
+XmlSerializer(pugi::xml_node& data,
+                  const std::string& node_type_name,
+                  const std::map<std::string, ngraph::OpSet>& custom_opsets,
+                  ConstantWriter& constant_write_handler,
+                  int64_t version,
+                  bool deterministic = false)
+        : m_xml_node(data),
+          m_node_type_name(node_type_name),
+          m_custom_opsets(custom_opsets),
+          m_constant_write_handler(constant_write_handler),
+          m_version(version),
+          m_deterministic(deterministic) {}
+#1009
+visitor.on_attribute(name, f);
+
+file: src/core/include/openvino/core/attribute_visitor.hpp
+#22
+note: commetns to:
+#57
+class OPENVINO_API AttributeVisitor
+
+#103
+void on_attribute(const std::string& name, AT& value)
+note: value - ov::Model
+
+#104
+AttributeAdapter<AT> adapter(value);
+note: ov::Model is in adapter
+
+file: src/core/src/pass/serialize.cpp
+#503
+func: void on_adapter(get_name_with_context(), adapter)
+|
+V
+#518
+function:             ngfunction_2_ir(m_xml_node,
+                            *adapter.get(),
+                            m_custom_opsets,
+                            m_constant_write_handler,
+                            m_version,
+                            m_deterministic);
+note: 2nd argument (*adapter.get()) has type:
+	(const ngraph::Function &) @0x2682cf0: {<std::enable_shared_from_this<ov::Model>>
+note: !!! looks like writing of .bin file
+	somewhere between lines 929 and 941.
+	file .bin size grows in #805..#937 loop. breakpoint at #934
+note: trace file is:
+	$OTE_XMLBIN/../aux/trace_bin_xml_Write.txt
+note: #1011 - xml_doc.save(xml_file);
+
+	file: src/core/include/openvino/core/attribute_adapter.hpp
+	#81
+	const AT& get() override {
+	
+#926 data are written in file after this line is executed at 6th breakpoint
+|
+V
+file: src/core/src/op/constant.cpp
+#537
+func: bool ov::op::v0::Constant::visit_attributes(AttributeVisitor& visitor)
+#549
+func: visitor.on_attribute("value", m_data);
+!!! after this func there are 3480 bytes in file.bin
+
+file: /opt/intel/openvino.git/src/core/src/pass/serialize.cpp
+#367
+void on_adapter(const std::string& name, ngraph::ValueAccessor<void>& adapter) override {
+#767
+void ngfunction_2_ir(pugi::xml_node& netXml,
+                     const ngraph::Function& f,
+                     const std::map<std::string, ngraph::OpSet>& custom_opsets,
+                     ConstantWriter& constant_node_write_handler,
+                     int64_t version,
+                     bool deterministic) {
+note: this function contains loop where nodes are passed to on_adapter() function (look later #803)
+note: sorted_ops(type ngraph::Function) f is grouped in result (vector of ov::Node elements):
+		a. typical xml header containing name("net"), version, child("layers") etc.(look
+			../xmlbin_to_pth/data/model_beforeMO.xml file)
+		b. parameters;
+		c. something not paramenet, not output and not sink
+		d. sink
+		e. results
+note: look #518: second argument adapter.get() returns 'ov::Model' variable,
+		which is considered as 'ngraph::Function f' in ngfunction().
+
+note: #805	xml_node() creation (loop)
+#806
+ngraph::Node* node = n.get();
+note: ngraph::Node* node is:
+(ov::Node *) 0x38d5320
+
+#367
+func:void on_adapter(const std::string& name, ngraph::ValueAccessor<void>& adapter) override
+
+#423
+    block 'else if' ... : here data is written in file
+#425
+    int64_t offset = m_constant_write_handler.write(static_cast<const char*>(a->get()->get_ptr()), size);
+    ! this line writes into file model.bin
+
+#941
+.bin file is written between #929 and #941
+
+#957
+}
+return from function ng_function_2_1()
+
+#527
+}
+return from function on_adapter() of 'class XmlSerializer : public ngraph::AttributeVisitor'
+
+file: src/core/include/openvino/core/attribute_visitor.hpp
+#107
+   void on_attribute(const std::string& name, AT& value) {
+        AttributeAdapter<AT> adapter(value);
+        start_structure(name);
+        on_adapter(get_name_with_context(), adapter);
+		finish_structure();
+
+file: src/core/src/pass/serialize.cpp:
+#1011
+xml_doc.save(xml_file);
+\c++2
+
+XXX
+9.1 classes map of  InpotModel data load
+			note: look at file: src/frontends/common/src/frontend.cpp #43
+		return model (type ov::frontend::InputModel>)
+
+		1. class ov::frontend::InputModel
+			file: src/frontends/common/include/openvino/frontend/input_model.hpp:18
+		2. class ov::frontend::onnx::InputModel : public ov::frontend::InputModel {
+			file: src/frontends/onnx/frontend/src/input_model.hpp
+		3. class onnx_editor::ONNXModelEditor::ONNXModelEditor(const std::string& model_path, frontend::ExtensionHolder extensions)
+			file: src/frontends/onnx/frontend/src/editor.cpp
+				src/frontends/onnx/frontend/src/editor.hpp
+			note: m_editor is declared in class onnx::InputModel,
+						has type std::shared_ptr<ov::onnx_editor::ONNXModelEditor>,
+					file: src/frontends/onnx/frontend/src/input_model.hpp:17;
+				m_editor is initialized in InputModel::InputModel(),
+					file: src/frontends/onnx/frontend/src/input_model.cpp:18
+		4. struct struct onnx_editor::ONNXModelEditor::Impl {
+			file: src/frontends/onnx/frontend/src/editor.cpp
+			note: (gdb) p (((ov::frontend::onnx::InputModel*)imptr)->m_editor)->m_pimpl
+					$16 = std::unique_ptr<ov::onnx_editor::ONNXModelEditor::Impl> = {get() = 0x1b8cab0}
+		5.	m_model_proto (type: class ONNX_API ModelProto) 
+
+			file: ./build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+			note:
+				file: src/frontends/onnx/frontend/src/frontend.cpp
+				#46 
+				(gdb) p (((ov::frontend::onnx::InputModel*)imptr)->m_editor)->m_pimpl->m_model_proto
+				$17 = std::shared_ptr<ngraph_onnx::ModelProto> (use count 1, weak count 0) = {get() = 0x1bbc970}
+				(gdb) p *((((ov::frontend::onnx::InputModel*)imptr)->m_editor)->m_pimpl->m_model_proto)
+XXX
+9.2 the following classes are declared in ./build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h file:
+			#define PROTOBUF_INTERNAL_EXPORT_onnx_2fonnx_5fngraph_5fonnx_2dml_2eproto ONNX_API
+
+			namespace ngraph_onnx {
+				struct ONNX_API TableStruct_onnx_2fonnx_5fngraph_5fonnx_2dml_2eproto 43..53
+			namespace ngraph_onnx {
+				enum AttributeProto_AttributeType 148..164
+				enum TensorProto_DataType : int 180..198
+				enum TensorProto_DataLocation 214..217
+
+				AttributeProto 281..813
+				ValueInfoProto	816..998
+				NodeProto, 1001..1275
+				TrainingInfoProto 1278..1480
+				ModelProto, lines 1483..1815
+				StringStringEntryProto 1818..1980
+				TensorAnnotation 1983..2145
+				GraphProto, 2148..2450
+				TensorProto_Segment 2453..2605
+				TensorProto, 2608..3117
+				SparseTensorProto 3121..3306
+				TensorShapeProto_Dimension 3309..3505
+				TensorShapeProto 3508..3651
+				TypeProtoTensor, 3654..3811
+				TypeProto_Sequence 3814..3956
+				TypeProto_Map 3959..4116
+				TypeProto_Optional 4120..4261
+				TypeProto_SparseTensor 4264..4421
+				TypeProto_Opaque 4424..4586
+				TypeProto 4590..4885
+				OperatorSetIdProto 4888..5045
+				OperatorSetIdProto 5049..5348
+
+9.3 TensorProto using in classes of ...pg.h
+
+9.3.1 
+				enumx, ONNX_API and other functions (not in a class)
+
+				AttributeProto
+					TensorProto& tensors(int index)
+					TensorProto* add_tensors()
+					TensorProto >& tensors()
+					SparseTensorProto* mutable_sparse_tensors(int index);
+					RepeatedPtrField< ::ngraph_onnx::SparseTensorProto;
+					SparseTensorProto& sparse_tensors(int index) 
+					SparseTensorProto* add_sparse_tensors()
+					SparseTensorProto& sparse_tensors(int index)
+					SparseTensorProto* add_sparse_tensors()
+					SparseTensorProto >& sparse_tensors()
+
+					 variable declared in the class:
+						tensors_
+						sparse_tensors_
+						RepeatedPtrField< ::ngraph_onnx::TensorProto > tensors_
+						RepeatedPtrField< ::ngraph_onnx::SparseTensorProto > sparse_tensors_
+				GraphProto
+					Functions:
+					TensorProto& initializer(int index)
+					TensorProto* add_initializer()
+					RepeatedPtrField< ::ngraph_onnx::initializer()
+					::SparseTensorProto* mutable_sparse_initializer(int index)
+					RepeatedPtrField< ::ngraph_onnx::SparseTensorProto >*
+						 mutable_sparse_initializer()
+					SparseTensorProto& sparse_initializer(int index)
+					SparseTensorProto* add_sparse_initializer()
+					RepeatedPtrField< ::ngraph_onnx::SparseTensorProto >& sparse_initializer()
+
+					variables:
+					RepeatedPtrField< ::ngraph_onnx::TensorProto > initializer_
+					RepeatedPtrField< ::ngraph_onnx::SparseTensorProto > sparse_initializer_;
+
+				TensorProto_Segment
+					segment constructors
+				TensorProto
+					static constexpr DataType FLOAT
+					static constexpr DataTyp UINT8
+					etc.
+
+					Funcions:
+					int dims_size()
+					int64 dims(int index)
+					void set_dims(int index, ::PROTOBUF_NAMESPACE_ID::int64 value)
+					void add_dims(::PROTOBUF_NAMESPACE_ID::int64 value)
+					repeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >& dims()
+					RepeatedField< ::PROTOBUF_NAMESPACE_ID::int64 >* mutable_dims()
+
+					int float_data_size()
+					void clear_float_data()
+					float float_data(int index)
+					void set_float_data(int index, float value)
+					void add_float_data(float value)
+					RepeatedField< float >& float_data()
+					RepeatedField< float >* mutable_float_data()
+
+					int int32_data_size()
+					void clear_int32_data()
+					int32 int32_data(int index)
+					void set_int32_data(int index, ::PROTOBUF_NAMESPACE_ID::int32 value)
+					void add_int32_data(::PROTOBUF_NAMESPACE_ID::int32 value)
+					const RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >& int32_data()
+					RepeatedField< ::PROTOBUF_NAMESPACE_ID::int32 >* mutable_int32_data()
+
+					... the same ^ for string_data, int_64_data, double_data,
+						external_data ...
+					std::string& name()
+					void set_name(ArgT0&& arg0, ArgT... args)
+					std::string* mutable_name()
+					void set_allocated_name(std::string* name);
+
+					std::string& raw_data()
+					void set_raw_data(ArgT0&& arg0, ArgT... args);
+					std::string* mutable_raw_data();
+					void set_allocated_raw_data(std::string* raw_data);
+
+					doc_strint: tne same as raw_data
+					also:
+					- ngraph_onnx::TensorProto_Segment& segment() 
+					- data_location
+
+					Variables:
+						typedef void InternalArenaConstructable_;
+					 	typedef void DestructorSkippable_;
+						_has_bits_;
+						_cached_size_;
+						dims_;
+						float_data_;
+						int32_data_;
+						int32_data_cached_byte_size_;
+						string_data_;
+						int64_data_;
+						_int64_data_cached_byte_size_;
+						string_data_;
+						int64_data_;
+						_int64_data_cached_byte_size_;
+						double_data_;
+						uint64_data_;
+						_uint64_data_cached_byte_size_;
+						external_data_;
+						name_;
+						 raw_data_;
+						doc_string_;
+						segment_;
+						data_type_;
+						int data_location_;
+
+XXX
+9.3 ()
+			TensorProto_.. typedefs  4707
+						ngraph_onnx::Tensor, Sequence, Map, Optional,
+						SparseTensor, Opaque
+
+			look at notes in chapter 9 of this doc. 
+
+			src/core/include/openvino/core/model.hpp:
+			ov::Model   class OPENVINO_API Model lines 42..364
+
+			src/core/include/openvino/core/node.hpp:
+			ov::Node  class OPENVINO_API Node lines 119..525
+
+		chain:
+		model->m_actual < ov::frontend::onnx::InputModel < m_editor (type: ONNXModelEditor(path, extensions)) < m_editor.pimpl < Impl(model_path) < m_model_proto (type: ngraph_onnx::ModelProto) < parse_from_file(model_path) < parse_from_istream < class ngraph_onnx::ModelProto : public google::protobuf::MessageLite::MessageLite::ParseFromIstream(model_stream) < 
+		< if (zcis->Next(&data, &size)), function const char* EpsCopyInputStream::InitFrom(io::ZeroCopyInputStream* zcis) < IstreamInputStream::Next(const void** data, int* size) < function CopyingInputStreamAdaptor::Next(), copying_stream_->Read(buffer_.get(), buffer_size_);(buffer_ - member of public class ofclass CopyingInputStreamAdaptor) < input_->read(reinterpret_cast<char*>(buffer), size) (data from pth to buffer)
+
+		i. common: load_impl
+			model->m_actual = m_actual->load_impl(...
+			return model
+		i. onnx: load_impl
+				return std::make_shared<InputModel>(path, m_extensions);
+			note: return placed ov::frontend::onnx::InputModel instance into InputModel model->m_actual
+		i. onnx: in InputModel::InputModel
+			note: m_editor is initialized by class ONNXModelEditor
+		...
+		i. model_proto = parse_from_istream(file_stream);
+			
+XXX
+10. bin file records
+size:			12		12		3456		128		4096		128		1152
+offset:			0		12		24			3480	3608		7704	8732
+file length:	0		0		3480		3480				7704	8994
+
+XXX
+11. ote train procesS
+
+$GITROOT/truck_learning/scripts/ote_train.sh
+$GITROOT/truck_learning/scripts/ote_train_inWeights.sh
+$GITROOT/truck_learning/ote_output_model/auxiliary_files/logs/ote_train.log.txt
+
+$GITROOT/model/ote_trainingExt_models/vehicle-detection-0202_template.yaml original is in:
+	look at 8. ote export
+$GITROOT/openvino_examples/cpp/ssd_detect/aux/ov_model.txt is gdb ov::model print
+
+$GITROOT/model/ote_trainingExt_models/vehicle-detection-0202_template.yaml
+original: branch misc; file:
+	./models/object_detection/model_templates/vehicle-detection/vehicle-detection-0202/template.yaml
+
+$OTE/external/mmdetection/configs/custom-object-detection/gen3_mobilenetV2_SSD/template.yaml
+
+etc.
+
+YAML:
+repo: training_extensions_068464a9f
+branch: misc
+file: models/object_detection/model_templates/vehicle-detection/vehicle-detection-0203/template.yaml
+
+Input/Output tensors of vehicle model:
+https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/vehicle-detection-0202
+
+Finetuning models: https://github.com/openvinotoolkit/mmdetection/blob/825488ada5e07f8461c991ab37578bab5eedf423/docs/tutorials/finetune.md
+
+11.1 ote train with weights load  process.
+ote_train_inWeights_pdb.sh
+ 
+file:
+$OTE/ote_cli/ote_cli/tools/train.py
+#113
+def main
+
+#147
+if args.load_weights:
+        model_adapters = {
+            "weights.pth": ModelAdapter(read_binary(args.load_weights)),
+        }
+=> class ModelAdapter, file ote_sdk/ote_sdk/usecases/adapters/model_adapter.py, #23, #53,
+	#47
+	|
+	V
+	class ModelEntity, file: ote_sdk/ote_sdk/entities/model.py:
+	#87
+	|
+	V
+	load_model, file: external/mmdetection/detection_tasks/apis/detection/inference_task.py
+	#127
+		print model_data: is equal to weights.pth.txt in $GITROOT/device_detect/
+		print model: some model (not xml)
+	#139
+        	model = self._create_model(self._config, from_scratch=True)
+	            'print model' shows model in some special format; look file:
+			uxiliary_files/OTEDetectionInferenceTask_model.txt
+	#142
+        	load_state_dict(model, model_data['model'])
+        		model the same as #139
+	!!!		model_data - weights.pth
+i		file: truck_detect_venv/lib/python3.8/site-packages/mmcv/runner/checkpoint.py:41
+		#41
+		def load_state_dict(module, state_dict, strict=False, logger=None):
+		#74
+		module._load_from_state_dict(state_dict, prefix, local_metadata, True, ...
+			file: truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py(1093)
+			#1093
+			def _load_from_state_dict(self, state_dict, prefix, local_metadata, strict, ...
+
+	#150
+	for name, weights in model.named_parameters():
+!!! this is point of connecting WEITGS in checkpoint .pth file with trained model.
+	|
+	V
+	file: $OTE/truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py
+	class: Module
+	func: def named_parameters(self, prefix: str = '', recurse: bool = True) -> Iterator[Tuple[str, Parameter]]:
+	#1264
+
+file: again ote_cli/ote_cli/tools/train.py
+#159
+  environment.model = ModelEntity(
+     train_dataset=dataset,
+     configuration=environment.get_model_configuration(),
+     model_adapters=model_adapters,
+  )
+	pdb command: p environment.model.train_dataset prints something like annotation
+
+#171
+   task = task_class(task_environment=environment)
+	|
+	V
+	file: ote_sdk/ote_sdk/utils/argument_checks.py
+	#215
+	_check_input_parameters_type()
+	#232
+
+	file: external/mmdetection/detection_tasks/apis/detection/inference_task.py
+	#78
+	logger.info('Loading OTEDetectionTask')
+	#80
+	print('ENVIRONMENT')
+environment is printed
+	#84
+	run('pip list', shell=True, check=True)
+pip list is printed
+	#86
+	self._task_environment = task_environment
+	
+
+!!! a lot of console output, including "Loaded model weights"
+#175
+   task.train(dataset, output_model, train_parameters=TrainParameters())
+	note: detection_tasks.apis.detection.train_task.OTEDetectionTrainingTask object
+	|
+	V
+file: ./external/mmdetection/detection_tasks/apis/detection/train_task.py
+
+#52
+class OTEDetectionTrainingTask(OTEDetectionInferenceTask, ITrainingTask):
+#89
+#def train(self, dataset: DatasetEntity, output_model: ModelEntity, train_parameters: Optional[TrainParameters] = None):
+
+
+#130
+func: train_detector(model=self._model, dataset=mm_train_dataset, cfg=training_config, validate=True)
+
+file: external/mmdetection/submodule/mmdet/apis/train.py
+
+#82
+func: def train_detector(model,
+                   dataset,
+                   cfg,
+                   distributed=False,
+                   validate=False,
+                   timestamp=None,
+                   meta=None,
+                   val_dataloader=None,
+                   compression_ctrl=None):
+
+#169
+runner = build_runner(
+        cfg.runner,
+        default_args=dict(
+            model=model,
+            optimizer=optimizer,
+            work_dir=cfg.work_dir,
+            logger=logger,
+            meta=meta))
+
+#260
+runner.run(data_loaders, cfg.workflow, compression_ctrl=compression_ctrl) - training loop is completed
+
+file: truck_detect_venv/lib/python3.8/site-packages/mmcv/runner/epoch_based_runner.py
+
+#72
+func: def run(self, data_loaders, workflow, max_epochs=None, **kwargs):
+
+11.2  ote train without weights load  process.
+ote_train_pdb.sh
+
+file: $OTE/ote_cli/ote_cli/tools/train.py
+#113
+def main
+(Pdb) n
+
+!!! a lot of console output, including "[ INFO ] Loading the model"
+$HOME/logs/train.pyN173.log.txt
+
+#173
+output_model = ModelEntity(dataset, environment.get_model_configuration())
+	file: ote_sdk/ote_sdk/entities/task_environment.py
+	#113
+	def get_model_configuration(self)
+
+    file: ote_sdk/ote_sdk/entities/task_environment.py
+    #19
+    class TaskEnvironment:
+        ... frozen importlib ...
+
+    file: ote_cli/ote_cli/tools/demo.py
+    #32
+    from ote_cli.registry import find_and_parse_model_template
+
+	file: ote_sdk/ote_sdk/entities/model.py
+	#49
+	def __init__(
+!!!		configuration is ModelConfiguration object:
+!!!		described in ote_sdk/ote_sdk/entities/model.py #37
+!!!		file: ote_sdk/ote_sdk/configuration/configurable_parameters.py
+!!!		file: ote_sdk/ote_sdk/entities/label_schema.py
+
+file: $OTE/ote_cli/ote_cli/tools/train.py
+#175
+task.train(dataset, output_model, train_parameters=TrainParameters())
+
+(Pdb) p output_model.train_dataset
+<in file $GITROOT/truck_learning/ote_output_model/training/output_model.train_dataset_visible.txt>
+
+	file: external/mmdetection/detection_tasks/apis/detection/train_task.py
+	#89
+	def train(self, dataset: DatasetEntity, output_model: ModelEntity, train_parameters: Optional[TrainParameters] = None):
+	#92
+	logger.info('Training the model')
+	#128
+	self._model.train()
+		file:truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py
+		#1432
+			def train(self: T, mode: bool = True) -> T:
+    #129
+    logger.info('Start training')
+    #130
+    train_detector(model=self._model, dataset=mm_train_dataset, cfg=training_config, validate=True)
+		file: external/mmdetection/submodule/mmdet/apis/train.py
+		#82
+		def train_detector(model,
+                   dataset,
+                   cfg,
+                   distributed=False,
+                   validate=False,
+                   timestamp=None,
+                   meta=None,
+                   val_dataloader=None,
+                   compression_ctrl=None):
+
+            #125
+            load_checkpoint(model=model, filename=cfg.load_from, map_location=map_location)
+			(Pdb) p cfg.load_from
+				'https://storage.openvinotoolkit.org/repositories/openvino_training_extensions/models/object_detection/v2/mobilenet_v2-2s_ssd-992x736.pth'
+			(Pdb) p model
+			note: model is in file $GITROOT/truck_learning/ote_output_model/training/train_detector_paramModel.txt
+
+			#260
+			runner.run(data_loaders, cfg.workflow, compression_ctrl=compression_ctrl)
+
+			file: $OTE/truck_detect_venv/lib/python3.8/site-packages/mmcv/runner/epoch_based_runner.py
+			#72
+			def run(self, data_loaders, workflow, max_epochs=None, **kwargs):
+
+			#127
+			epoch_runner(data_loaders[i], **kwargs)
+
+			file:external/mmdetection/detection_tasks/extension/utils/runner.py
+			#55
+			self.model.train()
+
+			file: truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py
+			#1432
+			def train(self: T, mode: bool = True) -> T:
+
+			#1447
+			self.training = mode
+			note: then recursion to $1447
+
+			#1448
+			for module in self.children():
+
+			#1449
+			module.train(mode)
+
+				file: external/mmdetection/submodule/mmdet/models/backbones/imgclsmob.py
+				#105 note: don't make breakpoint here
+				def train(self, mode=True):
+					note: this function is inside code of function def generate_backbones():
+
+				#108
+				for i in range(self.frozen_stages + 1):
+
+				file: truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py
+				#950
+				def __setattr__(self, name: str, value: Union[Tensor, 'Module']) -> None
+
+				#993
+				buffers[name] = value
+				!!! looks like weights
+				note: trace and buffers contents are in file
+					doc/od_ssd_vehicle/trace_buffers_module.py_n993.txt
+
+    #131
+    logger.info('Training completed')
+
+	#143
+	comment: # Load best weights.
+
+	file: external/mmdetection/detection_tasks/apis/detection/train_task.py
+	#151
+	Use {checkpoint_file_path} for final model weights.'
+		
+		file: truck_detect_venv/lib/python3.8/site-packages/torch/nn/modules/module.py
+		#1171
+
+		def load_state_dict(self, state_dict: 'OrderedDict[str, Tensor]',
+		note: metadata are in file
+			"truck_learning/ote_output_model/auxiliary_files/ote_train_checkpoint_metadata.txt"
+
+one step training .pth, .xml, .bin:
+	$GITROOT/model/ote_trainingExt_models/vehicle-detection-0204_weights/
+
+file: $OTE/ote_cli/ote_cli/tools/train.py
+#177
+save_model_data(output_model, args.save_model_to)
+	file:ote_cli/ote_cli/utils/io.py
+	#36
+	def save_model_data(model, folder)
+
+11.3 python view_pth.py
+
+model = torch.load('/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/weights.pth')
+
+useful python commands:
+>>> type(model)				# <class 'dict'>
+	print(model.keys())		# dict_keys(['model', 'config', 'confidence_threshold', 'VERSION', 'anchors'])
+	print(model[<some key>]	# value correspondenting with the key, e.g.:
+	print(model['model'])	# prints all weights tensors
+>>> for k in model['model'].keys(): # prints keys of model['model']
+...     print(k)
+... 
+# the upper keys are in file: model_model_keys.txt
+# 'config' keys/val are in file: model_config_keys_vals.txt
+# 'anchors' keys/val are in file: model_anchors_keys_vals.txt
+
+file: truck_detect_venv/lib/python3.8/site-packages/torch/serialization.py
+#494
+def load(f, map_location=None, pickle_module=pickle, **pickle_load_args):
+
+#589
+_check_dill_version(pickle_module)
+(Pdb) p pickle_module
+note: <module 'pickle' from '/usr/lib/python3.8/pickle.py'>
+	description in /usr/lib/python3.8/pickletools.py
+
+#592
+return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+
+#836
+def _load(zip_file, map_location, pickle_module, pickle_file='data.pkl', **pickle_load_args)
+(Pdb) p zip_file
+<torch._C.PyTorchFileReader object at 0x7f2009ab1eb0>
+
+PyTorchFileReader: torch/_C/__init__.pyi.in - python to C++ binding
+                   torch/csrc/jit/python/init.cpp:
+						py::class_<PyTorchStreamReader, std::shared_ptr<PyTorchStreamReader>>(
+						      m, "PyTorchFileReader"),
+					.def "get_storage_from_record"
+note: gk_debug in file truck_detect_venv/lib/python3.8/site-packages/torch/serialization.py
+
+#878
+data_file = io.BytesIO(zip_file.get_record(pickle_file))
+note: zip_file described under #836 line^.
+
+(pdb) type(data_file
+<class '_io.BytesIO'>
+
+#880
+unpickler = UnpicklerWrapper(data_file, **pickle_load_args
+(Pdb) p pickle_load_args
+{'encoding': 'utf-8'}
+
+#881
+unpickler.persistent_load = persistent_load
+#882
+result = unpickler.load()
+
+file: /usr/lib/python3.8/pickle.py
+(Pdb) b /usr/lib/python3.8/pickle.py:1186
+(Pdb) b /usr/lib/python3.8/pickle.py:1136
+
+
+#873
+def find_class(self, mod_name, name):
+#874
+mod_name = load_module_mapping.get(mod_name, mod_name)
+#875
+return super().find_class(mod_name, name)
+note:
+	look file $GITROOT/truck_learning/ote_output_model/auxiliary_files/pth_mod_names.txt
+	breakpoints before persistent_load:
+	mod_name='torch'
+		name='FloatStorage'
+
+#848
+def persistent_load(saved_id):
+(Pdb) p saved_id
+('storage', <class 'torch.FloatStorage'>, '184666464', 'cpu', 864)
+(Pdb) type(saved_id)
+<class 'tuple'>
+(Pdb) p saved_id[1]
+<class 'torch.FloatStorage'>
+
+(Pdb) 
+
+(Pdb) bt
+  /usr/lib/python3.8/bdb.py(580)run()
+-> exec(cmd, globals, locals)
+  <string>(1)<module>()
+  /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/scripts/view_pth.py(2)<module>()
+-> model = torch.load('/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/weights.pth')
+  /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/truck_detect_venv/lib/python3.8/site-packages/torch/serialization.py(607)load()
+-> return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+> /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/truck_detect_venv/lib/python3.8/site-packages/torch/serialization.py(848)_load()
+-> def persistent_load(saved_id):
+
+#849
+assert isinstance(saved_id, tuple)
+
+#857
+load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+
+#841
+def load_tensor(data_type, size, key, location):
+#845
+storage = zip_file.get_storage_from_record(name, size, dtype).storage()
+note:
+(Pdb) type(storage)
+<class 'torch.FloatStorage'>
+
+(Pdb) type(zip_file)
+<class 'torch._C.PyTorchFileReader'>
+note1: class declared in:
+$OTE/truck_detect_venv/lib/python3.8/site-packages/torch/_C/__init__.pyi
+note2:
+	csrc directory at 'pytorch' package:
+		file: torch/csrc/jit/python/init.cpp
+		#1014
+	???	py::class_<PyTorchStreamReader>(m, "PyTorchFileReader")
+		#1039
+	      .def(
+          "get_storage_from_record",
+
+#846
+loaded_storages[key] = restore_location(storage, location)
+	note: loaded_storage[key] = numbers equal to tensor members of .pth.txt file.
+#858
+storage = loaded_storages[key]
+#845
+return storage
+(Pdb) n
+--Call--
+> /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/truck_detect_venv/lib/python3.8/site-packages/torch/_utils.py(136)_rebuild_tensor_v2()
+
+note: call during return, beginning of weights next part loading.
+
+file: truck_detect_venv/lib/python3.8/site-packages/torch/_utils.py
+#137
+tensor = _rebuild_tensor(storage, storage_offset, size, stride)
+note: tensor is first part of model:
+tensor([[[[ 7.7442e-04, -4.0501e-05, -3.4222e-04],
+...
+[-1.3943e-42, -1.3943e-42, -1.3943e-42]]]])
+
+note: first 
+(Pdb) p tensor.size()
+torch.Size([32, 3, 3, 3])
+
+#138
+tensor.requires_grad = requires_grad
+	note: tensor is first tensor of .pth file.
+
+11.4 view_pth.py outline
+
+a) file weights.pth is zip file.
+b) unzipping into '<./ or unzip output dir argument>/archive/data' directory
+c) file names are keys in .pth file
+d) these files contains tensors in float32 format
+e) ??? verify ??? size of every file is size of tensor
+f) file archive/data.pkl contains some info about files in data dir.
+   ??? investigate the data ???
+
+
+11.4.1 start:
+model = torch.load('/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/weights.pth')
+
+function: def load(f, map_location=None, pickle_module=pickle, **pickle_load_args): 
+args:
+	f - linux file name
+	pickle - look at https://docs.python.org/3/library/pickle.html
+		pickle is Python objects serialization/deserialization tool.
+
+11.4.2
+function _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+args:
+	opened_zipfile - stream structure in conformance with pickle specification
+		zipfile is build from .pth file data.
+
+11.4.3 interface of Python code and c++ libraries
+pybind11 tool
+
+11.4.4 Python io package is used.
+	io is usual Python package, installed using pip tool.
+	_io subpackage is hardcore of Python interpreter.
+function io.BytesIO of _io module reads .pth data
+
+11.4.5
+class UnpicklerWrapper(pickle_module.Unpickler):
+	is used for unpickler load function monkey-patchint implementing
+		monkey-patching is Python tool for functions replacing (as virtual functions in c++)
+	pickle_module.Unpickler base class is component of pickler system
+The UnpicklerWrapper calls persistent_load() function to load Tensors
+
+11.4.6 persistent_load() function
+	
+	calls load_tensor() function many times.
+		every time load_tensor() loads part of model tensor. After the function calling series
+			model full tensor is loaded.
+
+XXX
+12. open_model_zoo: demos/object_detection_demo/cpp/main.cpp
+
+$GITROOT/$GITROOT/openvino_examples/cpp/ssd_detect/scripts/ssd_demo_object_detect.sh
+
+12.1 source $OPENVINO/setupvars.sh
+12.2
+	to cmake all demos in object_detection with build_demos.sh script:
+	$   ./build_demos.sh -b=object_detection_demo
+	$ gdb --args /opt/intel/open_model_zoo/demos/build/intel64/Debug/object_detection_demo -at ssd -i /home/gena/Develop/comp_vision/dnn/openvino_dev/vehicle_images/bus.jpg -m /opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml -o /home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/openvino_examples/cpp/ssd_detect/output_files/out.bmp -d CPU
+12.3 using model, load model, where are weights?
+
+file: demos/object_detection_demo/cpp/main.cpp
+#312
+int main(int argc, char* argv[]) {
+#370
+model.reset(new ModelSSD(FLAGS_m, static_cast<float>(FLAGS_t), FLAGS_auto_resize, labels, FLAGS_layout));
+
+	file: demos/common/cpp/models/src/detection_model_ssd.cpp
+	#36
+	ModelSSD::ModelSSD(const std::string& modelFileName,
+                   float confidenceThreshold,
+                   bool useAutoResize,
+                   const std::vector<std::string>& labels,
+                   const std::string& layout)
+    	: DetectionModel(modelFileName, confidenceThreshold, useAutoResize, labels, layout) {}
+
+	file:  demos/common/cpp/models/src/detection_model.cpp
+	#26
+	DetectionModel::DetectionModel(const std::string& modelFileName,
+                               float confidenceThreshold,
+                               bool useAutoResize,
+                               const std::vector<std::string>& labels,
+                               const std::string& layout)
+    	: ImageModel(modelFileName, useAutoResize, layout),
+	      confidenceThreshold(confidenceThreshold),
+    	  labels(labels) {}
+
+	file: demos/common/cpp/models/include/models/model_base.h
+	#36
+	ModelBase(const std::string& modelFileName, const std::string& layout = "")
+        : modelFileName(modelFileName),
+          inputsLayouts(parseLayoutString(layout)) {} 
+
+		file: demos/common/cpp/utils/src/args_helper.cpp
+			#132
+			std::map<std::string, ov::Layout> parseLayoutString(const std::string& layout_string)
+
+	file: demos/common/cpp/utils/include/utils/ocv_common.hpp
+	#205
+	class InputTransform {
+	public:
+    InputTransform() : reverseInputChannels(false), isTrivial(true) {}
+
+file: /usr/include/c++/9/bits/unique_ptr.h (file: demos/object_detection_demo/cpp/main.cpp:370)
+	#:395
+	reset(pointer __p = pointer()) noexcept
+
+file: demos/object_detection_demo/cpp/main.cpp
+#385
+model->setInputsPreprocessing(FLAGS_reverse_input_channels, FLAGS_mean_values, FLAGS_scale_values);
+	file: demos/common/cpp/models/include/models/model_base.h
+	#58
+    void setInputsPreprocessing(bool reverseInputChannels,
+                                const std::string& meanValues,
+                                const std::string& scaleValues) {
+
+#390
+
+AsyncPipeline pipeline(std::move(model),
+       ConfigFactory::getUserConfig(FLAGS_d, FLAGS_nireq, FLAGS_nstreams, FLAGS_nthreads),
+       core);
+
+	file: demos/common/cpp/pipelines/src/async_pipeline.cpp
+	#41
+	AsyncPipeline::AsyncPipeline(std::unique_ptr<ModelBase>&& modelInstance,
+			const ModelConfig& config, ov::Core& core)
+note: class AsyncPipeline declared in file: ./demos/common/cpp/pipelines/include/pipelines/async_pipeline.h
+
+	compiledModel = model->compileModel(config, core);
+	file: demos/common/cpp/models/src/model_base.cpp
+		#28
+		std::shared_ptr<ov::Model> ModelBase::prepareModel(ov::Core& core) { ...
+		slog::info << "Reading model " << modelFileName << slog::endl;
+		#45
+		auto model = prepareModel(core);
+			file: demos/common/cpp/models/src/detection_model_ssd.cpp
+				#152
+				void ModelSSD::prepareInputsOutputs(std::shared_ptr<ov::Model>& model) {
+		#32
+!!!		std::shared_ptr<ov::Model> model = core.read_model(modelFileName);
+			note: model data: doc/od_ssd_vehicle/read_model.txt
+		#35
+		prepareInputsOutputs(model);
+			file: demos/common/cpp/models/src/detection_model_ssd.cpp
+			#152
+			void ModelSSD::prepareInputsOutputs(std::shared_ptr<ov::Model>& model) {
+			#156
+			for (const auto& input : model->inputs()) {
+				note: input type is "const ov::Output<ov::Node> &"
+				note: ov::node is in model->inputs()[i].m_node 
+			#157
+			auto inputTensorName = input.get_any_name();
+			#159
+			ov::Layout inputLayout = getInputLayout(input);
+				file:demos/common/cpp/models/src/model_base.cpp
+				#51
+				ov::Layout ModelBase::getInputLayout(const ov::Output<ov::Node>& input)
+			#197
+			model = ppp.build();
+				file: $OPENVINO_SRC/src/core/src/preprocess/pre_post_process.cpp
+				#162
+				std::shared_ptr<Model> PrePostProcessor::build() {
+				#163
+				auto function = m_impl->m_function;
+				note: function type is std::shared_ptr<ov::Model>
+					...
+				#191
+				for (const auto& output_info : m_impl->m_outputs) {
+				#192
+				output_info.m_impl->build(results);
+					file: $OPENVINO/src/core/src/preprocess/preprocess_impls.cpp
+					#321
+					void OutputInfo::OutputInfoImpl::build(ov::ResultVector& results) {
+					note: probably, tensors multiplication.
+		#40
+		return model;
+note: model looks like ov::Model variable, loaded by mo program, its 1st c++ part
+
+	file: $OPENVINO_SRC/src/inference/src/ie_core.cpp
+		#1797
+		std::shared_ptr<ov::Model> Core::read_model(const std::string& modelPath, const std::string& binPath)
+
+		...
+	file: openvino.git/src/inference/src/ie_core.cpp
+	#557
+		return InferenceEngine::details::ReadNetwork(modelPath, binPath, extensions, ov_extensions, newAPI);
+		p modelPath
+			"/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/
+				vehicle-detection-0202.xml"
+		p binPath
+			= ""
+		...
+	file: src/inference/src/ie_network_reader.cpp
+	#184
+		create_if_exists("IRv7", std::string("inference_engine_ir_v7_reader") + std::string(IE_BUILD_POSTFIX));
+		...
+	#212
+		CNNNetwork load_ir_v7_network(const std::string& modelPath,
+                              const std::string& binPath,
+                              const std::vector<IExtensionPtr>& exts) {
+	(gdb)		InferenceEngine::(anonymous namespace)::load_ir_v7_network (
+    	modelPath=<error reading variable: Cannot access memory at address 0x6d00000071>, 
+	    binPath=<error reading variable: Cannot access memory at address 0x650000007c>, 
+    	exts=<error reading variable: Cannot access memory at address 0x6e00000071>)
+	    at /opt/intel/openvino.git/src/inference/src/ie_network_reader.cpp:214
+	(gdb) 
+
+	file: src/frontends/common/src/frontend.cpp
+	#53
+
+	file: src/frontends/ir/src/input_model.cpp
+	#226
+	_impl = std::make_shared<InputModelIRImpl>(stream, weights, extensions);
+
+!!!	(gdb) p *weights
+	$32 = {
+	  _vptr.AlignedBuffer = 0x7ffff15fb9c0 <vtable for ngraph::runtime::SharedBuffer<std::shared_ptr<ngraph::runtime::AlignedBuffer> >+16>, 
+	  m_allocated_buffer = 0x7ffff0d85040 "\201\200\200;\257\217\231:\234\r\026;\204\035\002\071\a\324\350:i\300\272:71e\273\227\062\024;E\354v;\237\271\234:\234(\224:\261m\257:\203\003\205\272\367b\304:r4\027:\324@\212\273n\370(;\335\300p;5L\270:\237J\006;\t\356@;\254Us:\372\020\066;\236K\375:&;0\273\004\325j;!e\222;v\f#;\247", 
+	  m_aligned_buffer = 0x7ffff0d85040 "\201\200\200;\257\217\231:\234\r\026;\204\035\002\071\a\324\350:i\300\272:71e\273\227\062\024;E\354v;\237\271\234:\234(\224:\261m\257:\203\003\205\272\367b\304:r4\027:\324@\212\273n\370(;\335\300p;5L\270:\237J\006;\t\356@;\254Us:\372\020\066;\236K\375:&;0\273\004\325j;!e\222;v\f#;\247", m_byte_size = 7269196}
+
+	#233
+	std::shared_ptr<Function> InputModel::InputModelIRImpl::convert() {
+	#238
+		ov::XmlDeserializer visitor(m_root, m_weights, m_opsets, m_extensions, variables, version);
+		m_weights contains buffers with binary .bin file content
+
+			file: openvino.git/src/frontends/ir/src/ir_deserializer.hpp
+			#62
+			explicit XmlDeserializer(const pugi::xml_node& node,
+		std::shared_ptr<ngraph::Function> function;
+		visitor.on_attribute("net", function);
+	note: after #240, at #241 function (std::shared_ptr<ov::Model>)
+		is printed at file doc/od_ssd_vehicle/deserializer_visitor_class_Function.txt
+
+			file: src/core/include/openvino/core/attribute_visitor.hpp
+			#106
+			on_adapter(get_name_with_context(), adapter);
+
+				file: src/frontends/ir/src/ir_deserializer.cpp
+	`			#384
+				void XmlDeserializer::on_adapter(const std::string& name,
+					ngraph::ValueAccessor<std::shared_ptr<ngraph::Function>>& adapter) {
+	note: ngraph parsing and setting
+
+	file: src/frontends/ir/src/input_model.cpp
+	#242
+	ParsePreProcess(m_root, m_weights, function);
+
+	#244
+	return function;
+********************************************************************************
+	!!! model is printed in doc/od_ssd_vehicle/parse_preprocess_function.txt !!!
+********************************************************************************
+	file: src/frontends/ir/src/frontend.cpp
+	#228
+	auto ir_model = std::dynamic_pointer_cast<InputModel>(model);
+	#230
+	return ir_model->convert();
+
+	(gdb) p *ir_model
+$14 = {<ov::frontend::InputModel> = {
+    _vptr.InputModel = 0x7ffff15fc080 <vtable for ov::frontend::ir::InputModel+16>, 
+    m_shared_object = std::shared_ptr<void> (empty) = {get() = 0x0}, 
+    m_actual = std::shared_ptr<ov::frontend::InputModel> (empty) = {get() = 0x0}}, 
+  _impl = std::shared_ptr<ov::frontend::ir::InputModel::InputModelIRImpl> (use count 1, weak count 0) = {get() = 0x55555573ccb0}}
+
+	file: src/frontends/common/src/frontend.cpp
+	#53
+std::shared_ptr<ov::Model> FrontEnd::convert(const InputModel::Ptr& model) const {
+    FRONT_END_CHECK_IMPLEMENTED(m_actual, convert);
+    FRONTEND_RETURN_STATEMENT("Converting input model",
+                              FrontEnd::create_copy(m_actual->convert(model->m_actual), m_shared_object))
+}
+
+
+12.4. weights from .bin loading
+trace file: $GITROOT/doc/od_ssd_vehicle/node_constructor_trace.txt
+
+    file: src/frontends/ir/src/input_model.cpp
+    #226
+    _impl = std::make_shared<InputModelIRImpl>(stream, weights, extensions);
+
+!!! trace: doc/od_ssd_vehicle/weights_none_empty_trace_readable.txt
+!!! (gdb) p *weights
+    $32 = { 
+      _vptr.AlignedBuffer = 0x7ffff15fb9c0 <vtable for ngraph::runtime::SharedBuffer<std::shared_ptr<ngraph::runtime::AlignedBuffer> >+16>, 
+      m_allocated_buffer = 0x7ffff0d85040 "\201\200\200;\257\217\231:\234\r\026;\204\035\002\071\a\324\350:i\300\272:71e\273\227\062\024;E\354v;\237\271\234:\234(\224:\261m\257:\203\003\205\272\367b\304:r4\027:\324@\212\273n\370(;\335\300p;5L\270:\237J\006;\t\356@;\254Us:\372\020\066;\236K\375:&;0\273\004\325j;!e\222;v\f#;\247", 
+      m_aligned_buffer = 0x7ffff0d85040 "\201\200\200;\257\217\231:\234\r\026;\204\035\002\071\a\324\350:i\300\272:71e\273\227\062\024;E\354v;\237\271\234:\234(\224:\261m\257:\203\003\205\272\367b\304:r4\027:\324@\212\273n\370(;\335\300p;5L\270:\237J\006;\t\356@;\254Us:\372\020\066;\236K\375:&;0\273\004\325j;!e\222;v\f#;\247", m_byte_size = 7269196}
+
+trace file: $GITROOT/doc/od_ssd_vehicle/weights_none_empty_trace.txt
+
+#10 0x00007ffff154f5aa in ov::frontend::ir::FrontEnd::load_impl (this=0x55555573e110, 
+    variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:224
+note to trace frame #11: at #45 "auto model = std::make_shared<InputModel>();"
+note input_model is loaded at src/frontends/ir/src/frontend.cpp:132
+note src/frontends/ir/src/frontend.cpp:142:
+
+file: src/frontends/ir/src/frontend.cpp
+#215:
+	bin_stream.read(aligned_weights_buffer->get_ptr<char>(), aligned_weights_buffer->size());
+note: .bin file reading into alighned_buffer
+
+#218
+	weights = std::make_shared<ngraph::runtime::SharedBuffer<std::shared_ptr<ngraph::runtime::AlignedBuffer>>>(
+            aligned_weights_buffer->get_ptr<char>(),
+            aligned_weights_buffer->size(),
+            aligned_weights_buffer);
+		weights contain .bin file data in raw buffer
+			+ ngraph AlignedBuffer table (?).
+
+XXX
+13. object detection sample
+the environment:
+$GITROOT/truck_learning/scripts/ote_start.sh
+the sample run:
+$GITROOT/openvino_examples/cpp/ssd_detect/scripts/ssd_vehicle_detect_cpu.sh
+debugging:
+gdb --args $OPENVINO/samples/cpp/build_samples/intel64/Debug/object_detection_sample_ssd -m /opt/intel/openvino_install_git/openvino_env/lib/python3.8/site-packages/openvino/model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml -i /home/gena/Develop/comp_vision/workspace/pc_images/convert_volexcUP_392_36/ir/_Infrared_2_1569186912963.61425781250000_bright.png -d CPU
+or
+source $GITROOT/openvino_examples/cpp/ssd_detect/scripts/ssd_vehicle_detect_cpu_gdb.sh
+error:
+note:
+worked wthout error using eariler verions of openvino
+
+error described in doc/od_ssd_vehicle/object_detection_sample_ssd_error.txt
+trace is saved in doc/od_ssd_vehicle/object_detection_sample_ssd_trace.txt
+
+file:
+gena comp: /opt/intel/openvino_install_git/samples/cpp/object_detection_sample_ssd/main.cpp
+#108
+CNNNetwork network = ie.ReadNetwork(FLAGS_m);
+note: error "check valid permutation ... failed at core/src/op/transpose.cpp:52"
+	Permutation AxisVector{2325296494862836529, 2058040976023299051, 0, 2418173487719978803}
+	is not valid for input shape {1,16,32,32}
+
+13.2  
+$ZOO/demos/object_detection_demo/cpp/
+Q: what is $OPENVINO_SRC/thirdparty/open_model_zoo/demos/object_detection_demo/cpp ?
+
+13.2.1 running points:
+'pipeline' variable fulfills running
+'pipeline.submitData()' submits data and startImage metadata
+'pipeline.getResult()' ?
+
+13.2.3
+$ cd demos/object_detection_demo/cpp
+$ source $GITROOT/openvino_examples/cpp/ssd_detect/scripts/ssd_demo_object_detect_gdb.sh
+file: main.cpp
+#390
+AsyncPipeline pipeline(std::move(model),
+	ConfigFactory::getUserConfig(FLAGS_d, FLAGS_nireq, FLAGS_nstreams, FLAGS_nthreads), core);
+
+	file: $ZOO/demos/common/cpp/pipelines/src/async_pipeline.cpp
+	#39
+	AsyncPipeline::AsyncPipeline(std::unique_ptr<ModelBase>&& modelInstance,
+		const ModelConfig& config, ov::Core& core)
+	note:
+(gdb) p modelInstance
+$2 = (std::unique_ptr<ModelBase, std::default_delete<ModelBase> > &&) @0x7fffffffcdf0: std::unique_ptr<ModelBase> = {get() = 0x0}
+(gdb) p config
+$3 = (const ModelConfig &) @0x7fffffffd470: {deviceName = "CPU", cpuExtensionsPath = "", 
+  clKernelsConfigPath = "", maxAsyncRequests = 0, 
+  compiledModelConfig = std::map with 2 elements = {["AFFINITY"] = {
+      _so = std::vector of length 0, capacity 0, _temp = 
+    std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, _impl = 
+    std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x55555573a4c0}}, 
+    ["NUM_STREAMS"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x55555573a500}}}, devices = std::set with 1 element = {[0] = "CPU"}}
+(gdb) p core
+$4 = (ov::Core &) @0x7fffffffce50: {_impl = 
+    std::shared_ptr<ov::Core::Impl> (use count 1, weak count 1) = {get() = 0x5555557363d0}}
+
+	note: class AsyncPipeline is declared in
+			$ZOO/demos/common/cpp/pipelines/include/pipelines/async_pipeline.h
+
+file: main.cpp (continue)
+#443
+while (keepRunning && (result = pipeline.getResult())) {
+
+	file: demos/common/cpp/pipelines/src/async_pipeline.cpp
+	#131
+	std::unique_ptr<ResultBase> AsyncPipeline::getResult(bool shouldKeepOrder) {
+	#132
+	auto infResult = AsyncPipeline::getInferenceResult(shouldKeepOrder);
+	@150
+	shouldKeepOrder ? completedInferenceResults.find(outputFrameId) :
+		completedInferenceResults.begin();
+	note: completedInferenceResults is declared in
+		file demos/common/cpp/pipelines/include/pipelines/async_pipeline.h, #105 as
+		std::unordered_map<int64_t, InferenceResult> completedInferenceResults;
+	note: struct InferenceResult is defined in demos/common/cpp/models/include/models/results.h:53
+		as struct InferenceResult : public ResultBase {
+
+XXX
+14. my info files
+doc/files/scripts_list.txt
+doc/files/pth_list.txt
+doc/od_ssd_vehicle/
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+files:
+truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.bp.comments.txt _______onnx file
+																			_______parsing (?)
+truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.bp.txt _______ onnx	file parsing (?)
+truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.source.txt _____onnx file parsing(?)
+truck_learning/train_after_xmlbin/aux/nodes_names.txt ______ov::Node names created from .xml file
+truck_learning/train_after_xmlbin/aux/proto_model_structure.txt _____ private members of models,
+															   _____ nodes, graph classes
+truck_learning/train_after_xmlbin/aux/ov_model_get_ops_steps.txt _____ steps of getting 
+														____ops(ov::Node vectir) from ov::Model
+truck_learning/train_after_xmlbin/aux/trace_get_node_onnx_xml.txt ____ trace of get_node() from
+																 ____.onnx and from .xml
+models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml ______application input
+																	_____arguments
+src/core/include/openvino/core/node.hpp ______ class OPENVINO_API ov::Node
+src/frontends/onnx/frontend/include/onnx_import/core/node.hpp ______class ONNX_IMPORTER_API Node
+
+truck_learning/train_after_xmlbin/aux/trace_emplace_node.txt ______tracing emplace_node() from Graph::Graph and from make_ng_nodes()
+
+truck_learning/train_after_xmlbin/aux/breakpoint_emplace_node.log.txt _____long breakpoint tracing emplace_node() from Graph::Graph and from make_ng_nodes() 
+
+truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx
+
+truck_learning/train_after_xmlbin/aux/ov_nodes_with_members_fromOnnx.txt _____nodes with inputs and outputs created from onnx model
+
+truck_learning/train_after_xmlbin/aux/ov_nodes_with_members_fromXML.txt _____nodes with inputs and outputs created from onnx XML file
+
+truck_learning/train_after_xmlbin/aux/initializers_xml.txt _____ nodes Constant op created from XML
+
+truck_learning/ote_output_model/auxiliary_files/nm_libopenvino.so.txt and other nm_* ___ library
+										functions and names links
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx end of files
+
+CCCC
+15. current work
+
+what with BitBucket 
+how to include TensorProto to class (which) written to ProtoBuf?
+from trace in file: truck_learning/train_after_xmlbin/aux/trace_tensor_tensor.txt
+TensorProto<-AttributeProto<-NodeProto:<-GraphProto<-ModelProto
+
+investigate TensorProto class' functions and variables. What are there except tensor data?`
+
+in pb.h to find classes with TensorProto members
+to trace running in TensofProto::TensorProto,
+file: $GITROOT/truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.bp.comments.txt #456
+look at records conveerted to TensorProto's data.
+file: $GITROOT/truck_learning/train_after_xmlbin/aux/val_get_constant.txt
+contains "Constant" type nodes
+
+Q. What makes demo with weights?
+look at p.12. (line # 2927)
+
+reconvert_guts.cpp:80
+
+#1678
+to prolong investigation of make_ng_constant()
+#3041
+	to investigate working with tensors.
+#3008
+	std::shared_ptr<ov::Model> model = core.read_model(modelFileName);
+
+
+$GITROOT/truck_learning/train_after_xmlbin/aux/breakpoint_emplace_node.log.txt is
+	trace file with many make_ng_nodes lines.
+truck_learning/train_after_xmlbin/aux/graph_construct_m_cache.txt, truck_learning/train_after_xmlbin/aux/graph_convert_m_cache.txt cache filling after Graph::Graph creation and graph_convert()
+How they creep on graph? ng_subgraph_outputs?
+
+make_ng_nodes goes to emplace_node from line graph.cpp:376 (look ~/tmp/emplace.log.txt);
+ - how it makes ng_node_output->m_node(type ov::Node) from onnx_node(type ngraph::onnx_import::Node)?
+ - where is new emplaced element of std::map? files ~/tmp/1.txt, ~/tmp/2.txt
+ - emplace parameters: name, ov::Node
+	name is taken from node_proto, ov::Node is taken ?
+
+
+1. file ~/tmp/get_ng_node.txt
+
+2.	breakpoint at src/frontends/onnx/frontend/src/core/graph_cache.cpp:11
+	emplace_node(const std::string& name, Output<ngraph::Node>&& node) {
+and backtrace.
+
+3. to convert ov::Model to ngraph::onnx_import::Model
+4. how to get ngraph::onnx_import::Node from OutputVector 
+	OutputVector is in line 3071 of this file
+	look e.g. src/frontends/onnx/frontend/src/op/shape.cpp
+	
+
+Question:
+#1589 ngraph::onnx_import::Model::Model
+where is the Model's ngraph Nodes created?
+
+to investigate conversion process wih $PUGIXML/convert_xml_onnx.cpp
+	How to convert nm_node to parameter?
+
+#1559 graph cache with created ov::Nodes
+#1612 graph cache with created more ov::Nodes
+#1729 create_function() ->
+#1770 Model::Model() ->
+#1641 OutputVector Graph::make_ng_nodes(const Node& onnx_node)
+
+to do: 
+in reconvert() to GraphProto constructor object and fill it using
+	truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.bp.comments.txt file
+
+traces:
+truck_learning/train_after_xmlbin/aux/trace_ModelProto_constructor.txt
+truck_learning/train_after_xmlbin/aux/trace_ModelProto_using.txt
+
+opened files:
+src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:55
+src/frontends/onnx/frontend/src/editor.cpp:222
+./build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h:1483
+build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2902
+src/frontends/onnx/onnx_common/src/parser.cpp:45
+thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc:250
+thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.cc
+src/frontends/onnx/onnx_common/src/parser.cpp
+
+XXX
+15.1 object detection program flows:
+15.1 reading xml and bin:
+		openvino_examples/cpp/ssd_detect/scripts/ssd_demo_object_detect.sh
+		openvino_examples/cpp/ssd_detect/scripts/ssd_vehicle_detect_cpu.sh
+15.2 training from scratch and writing pth: truck_learning/scripts/ote_train.sh
+15.3 reading pth, training and writing pth: truck_learning/scripts/ote_train_inWeights.sh
+15.4 reading pth and writing xml/bin:
+		truck_learning/scripts/ote_export.sh
+		truck_learning/scripts/ote_mo.sh
+
+15.5 next plan:
+
+15.5.1 to look at beginning file of truck learning:
+$GITROOT/model/ote_trainingExt_models/vehicle-detection-0202.pth
+$GITROOT/model/ote_trainingExt_models/vehicle-detection-0204_weights/storage_vehicle-detection-0204.pth 
+$GITROOT/model/ote_trainingExt_models/mobilenet_v2-2s_ssd-992x736.pth
+
+!!! look at outline 11.4
+
+15.5.2 create training output .pth file
+1) to try "ote_export" files 15.5.1.
+2) if 1) doesn't work to create .pth file using "ote_train" with one annotation/input files;
+	then "ote_export" created .pth file
+15.5.3 to analyze created .pth and resulting .xml and .bin files
+
+15.5.4 to replace weiths in .pth file using result of 15.5.3.
+
+15.5.5 To export pth file to .bin and .xml
+
+15.5.6 To recognize vessels from $WORKSPACE
+
+15.5.7 if 15.5.6 works, to prolong training
+
+XXX
+16. xml to ONNX points:
+
+16.1 file: src/core/src/pass/serialize.cpp,
+func: ngfunction_2_ir
+	- to read xml and bin to pugi::xml_document;
+	- to convert pugi::xml_document to ngraph::Function;
+	- to convert ngraph::Function to ov::Model
+
+16.3. save onnx model file from 'class InputModel' based on 1st c++ part and 1st python part
+
+16.4. OutputVector, ResultVector, Output, Input
+defined in file
+	src/core/include/openvino/core/node_vector.hpp
+as:
+
+namespace ov {
+using OutputVector = std::vector<Output<Node>>; (
+
+or
+std::vector<ov::Output<ov::Node>>
+ov::Output is in file ./src/core/include/openvino/core/node_output.hpp
+	class OPENVINO_API Output<Node>
+ov::Input is in file src/core/include/openvino/core/node_input.hpp
+	class OPENVINO_API Input<Node>
+also:
+using NodeVector = std::vector<std::shared_ptr<Node>>;
+using ResultVector = std::vector<std::shared_ptr<ov::op::v0::Result>>;
+
+XXX
+16.5. 
+demos/object_detection_demo/cpp/main.cpp
+
+XXX
+17. ov::Model to ModelProto convershion process (with GraphProto::graph_)
+	ngraph::onns_importGraph to ngraph_onnx::GraphProto* graph_
+ov
+
+
+X. bitbucket
+
+App pass: b557C5VCZXTTVAAV65TL

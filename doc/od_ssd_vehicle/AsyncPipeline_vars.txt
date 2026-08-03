@@ -1,0 +1,89 @@
+file: ./demos/common/cpp/pipelines/src/async_pipeline.cpp
+
+#41
+*model:
+{_vptr.ModelBase = 0x5555557114f0 <vtable for ModelSSD+16>, inputTransform = {
+    reverseInputChannels = false, isTrivial = true, 
+    means = {<cv::Vec<double, 4>> = {<cv::Matx<double, 4, 1>> = {val = {0, 0, 0, 
+            0}}, <No data fields>}, <No data fields>}, 
+    stdScales = {<cv::Vec<double, 4>> = {<cv::Matx<double, 4, 1>> = {val = {1, 1, 1, 
+            0}}, <No data fields>}, <No data fields>}}, 
+  inputsNames = std::vector of length 0, capacity 0, 
+  outputsNames = std::vector of length 0, capacity 0, compiledModel = {_impl = 
+    std::shared_ptr<InferenceEngine::IExecutableNetworkInternal> (empty) = {get() = 0x0}, 
+    _so = std::shared_ptr<void> (empty) = {get() = 0x0}}, 
+  modelFileName = "/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", config = {deviceName = "", cpuExtensionsPath = "", clKernelsConfigPath = "", 
+    maxAsyncRequests = 0, compiledModelConfig = std::map with 0 elements, 
+    devices = std::set with 0 elements}, inputsLayouts = std::map with 0 elements}
+
+core:
+(ov::Core &) @0x7fffffffd140: {_impl = 
+    std::shared_ptr<ov::Core::Impl> (use count 1, weak count 1) = {get() = 0x555555737b30}}
+
+modelInstance:
+$4 = (std::unique_ptr<ModelBase, std::default_delete<ModelBase> > &&) @0x7fffffffd0e0: std::unique_ptr<ModelBase> = {get() = 0x0}
+
+step over #41 to #43:
+log:
+[ INFO ] Reading model /opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml
+[ INFO ] Model name: torch-jit-export
+[ INFO ] 	Inputs: 
+[ INFO ] 		image, f32, {1,3,512,512}, [N,C,H,W]
+[ INFO ] 	Outputs: 
+[ INFO ] 		detection_out, f32, {1,1,200,7}, [...]
+[New Thread 0x7fffedc00700 (LWP 6853)]
+[New Thread 0x7fffed3ff700 (LWP 6854)]
+[New Thread 0x7fffecbfe700 (LWP 6855)]
+[New Thread 0x7fffe7fff700 (LWP 6856)]
+[New Thread 0x7fffe77fe700 (LWP 6857)]
+[New Thread 0x7fffd083d980 (LWP 6858)]
+[New Thread 0x7fffd043ba00 (LWP 6859)]
+[ INFO ] The model /opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml is loaded to CPU
+[ INFO ] 	Device: CPU
+[ INFO ] 		Number of streams: 4
+[ INFO ] 		Number of threads: AUTO
+
+var compiledModel:
+$5 = {
+  _impl = std::shared_ptr<InferenceEngine::IExecutableNetworkInternal> (use count 2, weak count 1) = {get() = 0x555555793ab0}, _so = warning: RTTI symbol not found for class 'std::_Sp_counted_deleter<void*, ov::util::load_shared_object(char const*)::{lambda(void*)#1}, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_deleter<void*, ov::util::load_shared_object(char const*)::{lambda(void*)#1}, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+std::shared_ptr<void> (use count 3, weak count 0) = {
+    get() = 0x55555594d830}}
+
+continue to #59
+
+log:
+[ INFO ] 	Number of inference requests: 5
+
+
+var model:
+{_vptr.ModelBase = 0x5555557114f0 <vtable for ModelSSD+16>, inputTransform = {
+    reverseInputChannels = false, isTrivial = true, 
+    means = {<cv::Vec<double, 4>> = {<cv::Matx<double, 4, 1>> = {val = {0, 0, 0, 
+            0}}, <No data fields>}, <No data fields>}, 
+    stdScales = {<cv::Vec<double, 4>> = {<cv::Matx<double, 4, 1>> = {val = {1, 1, 1, 
+            0}}, <No data fields>}, <No data fields>}}, 
+  inputsNames = std::vector of length 1, capacity 1 = {"image"}, 
+  outputsNames = std::vector of length 1, capacity 1 = {"detection_out"}, compiledModel = {
+    _impl = std::shared_ptr<InferenceEngine::IExecutableNetworkInternal> (use count 17, weak count 1) = {get() = 0x555555793ab0}, _so = warning: RTTI symbol not found for class 'std::_Sp_counted_deleter<void*, ov::util::load_shared_object(char const*)::{lambda(void*)#1}, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_deleter<void*, ov::util::load_shared_object(char const*)::{lambda(void*)#1}, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+std::shared_ptr<void> (use count 8, weak count 0) = {
+      get() = 0x55555594d830}}, 
+  modelFileName = "/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", config = {deviceName = "CPU", cpuExtensionsPath = "", clKernelsConfigPath = "", 
+    maxAsyncRequests = 0, compiledModelConfig = std::map with 2 elements = {["AFFINITY"] = {
+        _so = std::vector of length 0, capacity 0, _temp = 
+    std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, _impl = 
+    std::shared_ptr<ov::Any::Base> (use count 2, weak count 1) = {get() = 0x5555557371c0}}, 
+      ["NUM_STREAMS"] = {_so = std::vector of length 0, capacity 0, 
+        _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+        _impl = std::shared_ptr<ov::Any::Base> (use count 2, weak count 1) = {
+          get() = 0x555555737200}}}, devices = std::set with 1 element = {[0] = "CPU"}}, 
+  inputsLayouts = std::map with 0 elements}
+
+var compiledModel:
+
+  _impl = std::shared_ptr<InferenceEngine::IExecutableNetworkInternal> (use count 17, weak count 1) = {get() = 0x555555793ab0}, _so = warning: RTTI symbol not found for class 'std::_Sp_counted_deleter<void*, ov::util::load_shared_object(char const*)::{lambda(void*)#1}, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+warning: RTTI symbol not found for class 'std::_Sp_counted_deleter<void*, ov::util::load_shared_object(char const*)::{lambda(void*)#1}, std::allocator<void>, (__gnu_cxx::_Lock_policy)2>'
+std::shared_ptr<void> (use count 8, weak count 0) = {
+    get() = 0x55555594d830}
+

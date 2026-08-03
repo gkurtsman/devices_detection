@@ -1,0 +1,46 @@
+[ INFO ] OpenVINO
+[ INFO ] 	version: 2022.2.0
+[ INFO ] 	build: custom_master_3eafa653f3816f2806c4f7344d4a82b67a6de036
+[ INFO ] Reading model /opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml
+
+Breakpoint 1, ov::frontend::ir::(anonymous namespace)::GetIRVersion (model=...)
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:53
+53	        if (node_name == "net") {
+(gdb) bt
+#0  ov::frontend::ir::(anonymous namespace)::GetIRVersion (model=...)
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:53
+#1  0x00007ffff154e6e6 in ov::frontend::ir::FrontEnd::supported_impl (this=0x55555573e110, 
+    variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:94
+#2  0x00007ffff3779b4a in ov::frontend::FrontEnd::supported<std::vector<ov::Any, std::allocator<ov::Any> > > (this=0x55555573e110)
+    at /opt/intel/openvino.git/src/frontends/common/include/openvino/frontend/frontend.hpp:160
+#3  0x00007ffff377c372 in ov::frontend::FrontEndManager::Impl::search_priority (
+    this=0x55555573d5d0, variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/manager.cpp:185
+#4  0x00007ffff377ae3d in ov::frontend::FrontEndManager::Impl::load_by_model (
+    this=0x55555573d5d0, variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/manager.cpp:83
+#5  0x00007ffff377cd25 in ov::frontend::FrontEndManager::load_by_model_impl (
+    this=0x7ffff451f6c8 <InferenceEngine::(anonymous namespace)::get_frontend_manager()::manager>, variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/manager.cpp:230
+#6  0x00007ffff377ce8a in ov::frontend::FrontEndManager::load_by_model<std::vector<ov::Any, std::allocator<ov::Any> > > (
+    this=0x7ffff451f6c8 <InferenceEngine::(anonymous namespace)::get_frontend_manager()::manager>)
+    at /opt/intel/openvino.git/src/frontends/common/src/manager.cpp:243
+#7  0x00007ffff38bb2eb in InferenceEngine::details::ReadNetwork (
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="", exts=std::vector of length 0, capacity 0, 
+    ov_exts=std::vector of length 0, capacity 0, newAPI=true)
+    at /opt/intel/openvino.git/src/inference/src/ie_network_reader.cpp:506
+#8  0x00007ffff387c64a in ov::CoreImpl::ReadNetwork (this=0x555555737b30, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:557
+#9  0x00007ffff388a015 in ov::Core::read_model (this=0x7fffffffd140, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:1798
+#10 0x000055555565646a in ModelBase::prepareModel (this=0x555555737910, core=...)
+    at /opt/intel/open_model_zoo/demos/common/cpp/models/src/model_base.cpp:32
+#11 0x00005555556565c0 in ModelBase::compileModel (this=0x555555737910, config=..., core=...)
+    at /opt/intel/open_model_zoo/demos/common/cpp/models/src/model_base.cpp:45
+#12 0x0000555555663e45 in AsyncPipeline::AsyncPipeline (this=0x7fffffffd560, modelInstance=..., 
+    config=..., core=...)
+    at /opt/intel/open_model_zoo/demos/common/cpp/pipelines/src/async_pipeline.cpp:41
+#13 0x00005555555bf300 in main (argc=11, argv=0x7fffffffdb38)
+    at /opt/intel/open_model_zoo/demos/object_detection_demo/cpp/main.cpp:392
+(gdb)

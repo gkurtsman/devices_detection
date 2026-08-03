@@ -1,0 +1,3417 @@
+From ece3769802a68ecec9e7417c789c1d2e15fb4368 Mon Sep 17 00:00:00 2001
+From: Gena Kurtsman <krtsmn@localhost.localdomain>
+Date: Sat, 26 Jun 2021 13:42:25 +0300
+Subject: [PATCH] gk modification: ssd_detect.cpp works
+
+---
+ examples/demo.py            |   72 +
+ examples/demo.py.bak        |   71 +
+ examples/deploy.prototxt    | 3102 +++++++++++++++++++++++++++++++++++
+ examples/ssd/ssd_detect.cpp |   38 +-
+ examples/ssd/ssd_detect.py  |    6 +-
+ 5 files changed, 3281 insertions(+), 8 deletions(-)
+ create mode 100644 examples/demo.py
+ create mode 100644 examples/demo.py.bak
+ create mode 100644 examples/deploy.prototxt
+
+diff --git a/examples/demo.py b/examples/demo.py
+new file mode 100644
+index 00000000..bb83d967
+--- /dev/null
++++ b/examples/demo.py
+@@ -0,0 +1,72 @@
++import numpy as np  
++import sys,os  
++import cv2
++caffe_root = '/home/krtsmn/Develop/comp_vision/dnn/caffe_ssd/'
++sys.path.insert(0, caffe_root + 'python')  
++import caffe  
++
++
++net_file= 'deploy.prototxt'  
++caffe_model='mobilenet_iter_73000.caffemodel'  
++# test_dir = "images"
++test_dir = "/home/krtsmn/tmp/"
++
++if not os.path.exists(caffe_model):
++    print(caffe_model + " does not exist")
++    exit()
++if not os.path.exists(net_file):
++    print(net_file + " does not exist")
++    exit()
++net = caffe.Net(net_file,caffe_model,caffe.TEST)  
++
++CLASSES = ('background',
++           'aeroplane', 'bicycle', 'bird', 'boat',
++           'bottle', 'bus', 'car', 'cat', 'chair',
++           'cow', 'diningtable', 'dog', 'horse',
++           'motorbike', 'person', 'pottedplant',
++           'sheep', 'sofa', 'train', 'tvmonitor')
++
++
++def preprocess(src):
++    img = cv2.resize(src, (300,300))
++    img = img - 127.5
++    img = img * 0.007843
++    return img
++
++def postprocess(img, out):   
++    h = img.shape[0]
++    w = img.shape[1]
++    box = out['detection_out'][0,0,:,3:7] * np.array([w, h, w, h])
++
++    cls = out['detection_out'][0,0,:,1]
++    conf = out['detection_out'][0,0,:,2]
++    return (box.astype(np.int32), conf, cls)
++
++def detect(imgfile):
++    origimg = cv2.imread(imgfile)
++    img = preprocess(origimg)
++    
++    img = img.astype(np.float32)
++    img = img.transpose((2, 0, 1))
++
++    net.blobs['data'].data[...] = img
++    out = net.forward()  
++    box, conf, cls = postprocess(origimg, out)
++
++    for i in range(len(box)):
++       p1 = (box[i][0], box[i][1])
++       p2 = (box[i][2], box[i][3])
++       cv2.rectangle(origimg, p1, p2, (255,0,0))
++       p3 = (max(p1[0], 15), max(p1[1], 15))
++       title = "%s:%.2f" % (CLASSES[int(cls[i])], conf[i])
++       cv2.putText(origimg, title, p3, cv2.FONT_ITALIC, 0.6, (0, 255, 0), 1)
++    cv2.imshow("SSD", origimg)
++ 
++    k = cv2.waitKey(0) & 0xff
++        #Exit if ESC pressed
++    if k == 27 : return False
++    return True
++
++for f in os.listdir(test_dir):
++    if detect(test_dir + "/" + f) == False:
++       break
+diff --git a/examples/demo.py.bak b/examples/demo.py.bak
+new file mode 100644
+index 00000000..5eef8081
+--- /dev/null
++++ b/examples/demo.py.bak
+@@ -0,0 +1,71 @@
++import numpy as np  
++import sys,os  
++import cv2
++caffe_root = '/home/yaochuanqi/work/ssd/caffe/'
++sys.path.insert(0, caffe_root + 'python')  
++import caffe  
++
++
++net_file= 'deploy.prototxt'  
++caffe_model='mobilenet_iter_73000.caffemodel'  
++test_dir = "images"
++
++if not os.path.exists(caffe_model):
++    print(caffe_model + " does not exist")
++    exit()
++if not os.path.exists(net_file):
++    print(net_file + " does not exist")
++    exit()
++net = caffe.Net(net_file,caffe_model,caffe.TEST)  
++
++CLASSES = ('background',
++           'aeroplane', 'bicycle', 'bird', 'boat',
++           'bottle', 'bus', 'car', 'cat', 'chair',
++           'cow', 'diningtable', 'dog', 'horse',
++           'motorbike', 'person', 'pottedplant',
++           'sheep', 'sofa', 'train', 'tvmonitor')
++
++
++def preprocess(src):
++    img = cv2.resize(src, (300,300))
++    img = img - 127.5
++    img = img * 0.007843
++    return img
++
++def postprocess(img, out):   
++    h = img.shape[0]
++    w = img.shape[1]
++    box = out['detection_out'][0,0,:,3:7] * np.array([w, h, w, h])
++
++    cls = out['detection_out'][0,0,:,1]
++    conf = out['detection_out'][0,0,:,2]
++    return (box.astype(np.int32), conf, cls)
++
++def detect(imgfile):
++    origimg = cv2.imread(imgfile)
++    img = preprocess(origimg)
++    
++    img = img.astype(np.float32)
++    img = img.transpose((2, 0, 1))
++
++    net.blobs['data'].data[...] = img
++    out = net.forward()  
++    box, conf, cls = postprocess(origimg, out)
++
++    for i in range(len(box)):
++       p1 = (box[i][0], box[i][1])
++       p2 = (box[i][2], box[i][3])
++       cv2.rectangle(origimg, p1, p2, (0,255,0))
++       p3 = (max(p1[0], 15), max(p1[1], 15))
++       title = "%s:%.2f" % (CLASSES[int(cls[i])], conf[i])
++       cv2.putText(origimg, title, p3, cv2.FONT_ITALIC, 0.6, (0, 255, 0), 1)
++    cv2.imshow("SSD", origimg)
++ 
++    k = cv2.waitKey(0) & 0xff
++        #Exit if ESC pressed
++    if k == 27 : return False
++    return True
++
++for f in os.listdir(test_dir):
++    if detect(test_dir + "/" + f) == False:
++       break
+diff --git a/examples/deploy.prototxt b/examples/deploy.prototxt
+new file mode 100644
+index 00000000..88021a94
+--- /dev/null
++++ b/examples/deploy.prototxt
+@@ -0,0 +1,3102 @@
++name: "MobileNet-SSD"
++input: "data"
++input_shape {
++  dim: 1
++  dim: 3
++  dim: 300
++  dim: 300
++}
++layer {
++  name: "conv0"
++  type: "Convolution"
++  bottom: "data"
++  top: "conv0"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 32
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv0/bn"
++  type: "BatchNorm"
++  bottom: "conv0"
++  top: "conv0"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv0/scale"
++  type: "Scale"
++  bottom: "conv0"
++  top: "conv0"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv0/relu"
++  type: "ReLU"
++  bottom: "conv0"
++  top: "conv0"
++}
++layer {
++  name: "conv1/dw"
++  type: "Convolution"
++  bottom: "conv0"
++  top: "conv1/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 32
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 32
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv1/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv1/dw"
++  top: "conv1/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv1/dw/scale"
++  type: "Scale"
++  bottom: "conv1/dw"
++  top: "conv1/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv1/dw/relu"
++  type: "ReLU"
++  bottom: "conv1/dw"
++  top: "conv1/dw"
++}
++layer {
++  name: "conv1"
++  type: "Convolution"
++  bottom: "conv1/dw"
++  top: "conv1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 64
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv1/bn"
++  type: "BatchNorm"
++  bottom: "conv1"
++  top: "conv1"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv1/scale"
++  type: "Scale"
++  bottom: "conv1"
++  top: "conv1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv1/relu"
++  type: "ReLU"
++  bottom: "conv1"
++  top: "conv1"
++}
++layer {
++  name: "conv2/dw"
++  type: "Convolution"
++  bottom: "conv1"
++  top: "conv2/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 64
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    group: 64
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv2/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv2/dw"
++  top: "conv2/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv2/dw/scale"
++  type: "Scale"
++  bottom: "conv2/dw"
++  top: "conv2/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv2/dw/relu"
++  type: "ReLU"
++  bottom: "conv2/dw"
++  top: "conv2/dw"
++}
++layer {
++  name: "conv2"
++  type: "Convolution"
++  bottom: "conv2/dw"
++  top: "conv2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv2/bn"
++  type: "BatchNorm"
++  bottom: "conv2"
++  top: "conv2"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv2/scale"
++  type: "Scale"
++  bottom: "conv2"
++  top: "conv2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv2/relu"
++  type: "ReLU"
++  bottom: "conv2"
++  top: "conv2"
++}
++layer {
++  name: "conv3/dw"
++  type: "Convolution"
++  bottom: "conv2"
++  top: "conv3/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 128
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv3/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv3/dw"
++  top: "conv3/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv3/dw/scale"
++  type: "Scale"
++  bottom: "conv3/dw"
++  top: "conv3/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv3/dw/relu"
++  type: "ReLU"
++  bottom: "conv3/dw"
++  top: "conv3/dw"
++}
++layer {
++  name: "conv3"
++  type: "Convolution"
++  bottom: "conv3/dw"
++  top: "conv3"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv3/bn"
++  type: "BatchNorm"
++  bottom: "conv3"
++  top: "conv3"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv3/scale"
++  type: "Scale"
++  bottom: "conv3"
++  top: "conv3"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv3/relu"
++  type: "ReLU"
++  bottom: "conv3"
++  top: "conv3"
++}
++layer {
++  name: "conv4/dw"
++  type: "Convolution"
++  bottom: "conv3"
++  top: "conv4/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    group: 128
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv4/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv4/dw"
++  top: "conv4/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv4/dw/scale"
++  type: "Scale"
++  bottom: "conv4/dw"
++  top: "conv4/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv4/dw/relu"
++  type: "ReLU"
++  bottom: "conv4/dw"
++  top: "conv4/dw"
++}
++layer {
++  name: "conv4"
++  type: "Convolution"
++  bottom: "conv4/dw"
++  top: "conv4"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv4/bn"
++  type: "BatchNorm"
++  bottom: "conv4"
++  top: "conv4"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv4/scale"
++  type: "Scale"
++  bottom: "conv4"
++  top: "conv4"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv4/relu"
++  type: "ReLU"
++  bottom: "conv4"
++  top: "conv4"
++}
++layer {
++  name: "conv5/dw"
++  type: "Convolution"
++  bottom: "conv4"
++  top: "conv5/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 256
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv5/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv5/dw"
++  top: "conv5/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv5/dw/scale"
++  type: "Scale"
++  bottom: "conv5/dw"
++  top: "conv5/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv5/dw/relu"
++  type: "ReLU"
++  bottom: "conv5/dw"
++  top: "conv5/dw"
++}
++layer {
++  name: "conv5"
++  type: "Convolution"
++  bottom: "conv5/dw"
++  top: "conv5"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv5/bn"
++  type: "BatchNorm"
++  bottom: "conv5"
++  top: "conv5"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv5/scale"
++  type: "Scale"
++  bottom: "conv5"
++  top: "conv5"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv5/relu"
++  type: "ReLU"
++  bottom: "conv5"
++  top: "conv5"
++}
++layer {
++  name: "conv6/dw"
++  type: "Convolution"
++  bottom: "conv5"
++  top: "conv6/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    group: 256
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv6/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv6/dw"
++  top: "conv6/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv6/dw/scale"
++  type: "Scale"
++  bottom: "conv6/dw"
++  top: "conv6/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv6/dw/relu"
++  type: "ReLU"
++  bottom: "conv6/dw"
++  top: "conv6/dw"
++}
++layer {
++  name: "conv6"
++  type: "Convolution"
++  bottom: "conv6/dw"
++  top: "conv6"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv6/bn"
++  type: "BatchNorm"
++  bottom: "conv6"
++  top: "conv6"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv6/scale"
++  type: "Scale"
++  bottom: "conv6"
++  top: "conv6"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv6/relu"
++  type: "ReLU"
++  bottom: "conv6"
++  top: "conv6"
++}
++layer {
++  name: "conv7/dw"
++  type: "Convolution"
++  bottom: "conv6"
++  top: "conv7/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 512
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv7/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv7/dw"
++  top: "conv7/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv7/dw/scale"
++  type: "Scale"
++  bottom: "conv7/dw"
++  top: "conv7/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv7/dw/relu"
++  type: "ReLU"
++  bottom: "conv7/dw"
++  top: "conv7/dw"
++}
++layer {
++  name: "conv7"
++  type: "Convolution"
++  bottom: "conv7/dw"
++  top: "conv7"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv7/bn"
++  type: "BatchNorm"
++  bottom: "conv7"
++  top: "conv7"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv7/scale"
++  type: "Scale"
++  bottom: "conv7"
++  top: "conv7"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv7/relu"
++  type: "ReLU"
++  bottom: "conv7"
++  top: "conv7"
++}
++layer {
++  name: "conv8/dw"
++  type: "Convolution"
++  bottom: "conv7"
++  top: "conv8/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 512
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv8/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv8/dw"
++  top: "conv8/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv8/dw/scale"
++  type: "Scale"
++  bottom: "conv8/dw"
++  top: "conv8/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv8/dw/relu"
++  type: "ReLU"
++  bottom: "conv8/dw"
++  top: "conv8/dw"
++}
++layer {
++  name: "conv8"
++  type: "Convolution"
++  bottom: "conv8/dw"
++  top: "conv8"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv8/bn"
++  type: "BatchNorm"
++  bottom: "conv8"
++  top: "conv8"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv8/scale"
++  type: "Scale"
++  bottom: "conv8"
++  top: "conv8"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv8/relu"
++  type: "ReLU"
++  bottom: "conv8"
++  top: "conv8"
++}
++layer {
++  name: "conv9/dw"
++  type: "Convolution"
++  bottom: "conv8"
++  top: "conv9/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 512
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv9/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv9/dw"
++  top: "conv9/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv9/dw/scale"
++  type: "Scale"
++  bottom: "conv9/dw"
++  top: "conv9/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv9/dw/relu"
++  type: "ReLU"
++  bottom: "conv9/dw"
++  top: "conv9/dw"
++}
++layer {
++  name: "conv9"
++  type: "Convolution"
++  bottom: "conv9/dw"
++  top: "conv9"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv9/bn"
++  type: "BatchNorm"
++  bottom: "conv9"
++  top: "conv9"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv9/scale"
++  type: "Scale"
++  bottom: "conv9"
++  top: "conv9"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv9/relu"
++  type: "ReLU"
++  bottom: "conv9"
++  top: "conv9"
++}
++layer {
++  name: "conv10/dw"
++  type: "Convolution"
++  bottom: "conv9"
++  top: "conv10/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 512
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv10/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv10/dw"
++  top: "conv10/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv10/dw/scale"
++  type: "Scale"
++  bottom: "conv10/dw"
++  top: "conv10/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv10/dw/relu"
++  type: "ReLU"
++  bottom: "conv10/dw"
++  top: "conv10/dw"
++}
++layer {
++  name: "conv10"
++  type: "Convolution"
++  bottom: "conv10/dw"
++  top: "conv10"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv10/bn"
++  type: "BatchNorm"
++  bottom: "conv10"
++  top: "conv10"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv10/scale"
++  type: "Scale"
++  bottom: "conv10"
++  top: "conv10"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv10/relu"
++  type: "ReLU"
++  bottom: "conv10"
++  top: "conv10"
++}
++layer {
++  name: "conv11/dw"
++  type: "Convolution"
++  bottom: "conv10"
++  top: "conv11/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 512
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv11/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv11/dw"
++  top: "conv11/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv11/dw/scale"
++  type: "Scale"
++  bottom: "conv11/dw"
++  top: "conv11/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv11/dw/relu"
++  type: "ReLU"
++  bottom: "conv11/dw"
++  top: "conv11/dw"
++}
++layer {
++  name: "conv11"
++  type: "Convolution"
++  bottom: "conv11/dw"
++  top: "conv11"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv11/bn"
++  type: "BatchNorm"
++  bottom: "conv11"
++  top: "conv11"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv11/scale"
++  type: "Scale"
++  bottom: "conv11"
++  top: "conv11"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv11/relu"
++  type: "ReLU"
++  bottom: "conv11"
++  top: "conv11"
++}
++layer {
++  name: "conv12/dw"
++  type: "Convolution"
++  bottom: "conv11"
++  top: "conv12/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    group: 512
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv12/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv12/dw"
++  top: "conv12/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv12/dw/scale"
++  type: "Scale"
++  bottom: "conv12/dw"
++  top: "conv12/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv12/dw/relu"
++  type: "ReLU"
++  bottom: "conv12/dw"
++  top: "conv12/dw"
++}
++layer {
++  name: "conv12"
++  type: "Convolution"
++  bottom: "conv12/dw"
++  top: "conv12"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 1024
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv12/bn"
++  type: "BatchNorm"
++  bottom: "conv12"
++  top: "conv12"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv12/scale"
++  type: "Scale"
++  bottom: "conv12"
++  top: "conv12"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv12/relu"
++  type: "ReLU"
++  bottom: "conv12"
++  top: "conv12"
++}
++layer {
++  name: "conv13/dw"
++  type: "Convolution"
++  bottom: "conv12"
++  top: "conv13/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 1024
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    group: 1024
++    #engine: CAFFE
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv13/dw/bn"
++  type: "BatchNorm"
++  bottom: "conv13/dw"
++  top: "conv13/dw"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv13/dw/scale"
++  type: "Scale"
++  bottom: "conv13/dw"
++  top: "conv13/dw"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv13/dw/relu"
++  type: "ReLU"
++  bottom: "conv13/dw"
++  top: "conv13/dw"
++}
++layer {
++  name: "conv13"
++  type: "Convolution"
++  bottom: "conv13/dw"
++  top: "conv13"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 1024
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv13/bn"
++  type: "BatchNorm"
++  bottom: "conv13"
++  top: "conv13"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv13/scale"
++  type: "Scale"
++  bottom: "conv13"
++  top: "conv13"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv13/relu"
++  type: "ReLU"
++  bottom: "conv13"
++  top: "conv13"
++}
++layer {
++  name: "conv14_1"
++  type: "Convolution"
++  bottom: "conv13"
++  top: "conv14_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv14_1/bn"
++  type: "BatchNorm"
++  bottom: "conv14_1"
++  top: "conv14_1"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv14_1/scale"
++  type: "Scale"
++  bottom: "conv14_1"
++  top: "conv14_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv14_1/relu"
++  type: "ReLU"
++  bottom: "conv14_1"
++  top: "conv14_1"
++}
++layer {
++  name: "conv14_2"
++  type: "Convolution"
++  bottom: "conv14_1"
++  top: "conv14_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 512
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv14_2/bn"
++  type: "BatchNorm"
++  bottom: "conv14_2"
++  top: "conv14_2"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv14_2/scale"
++  type: "Scale"
++  bottom: "conv14_2"
++  top: "conv14_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv14_2/relu"
++  type: "ReLU"
++  bottom: "conv14_2"
++  top: "conv14_2"
++}
++layer {
++  name: "conv15_1"
++  type: "Convolution"
++  bottom: "conv14_2"
++  top: "conv15_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv15_1/bn"
++  type: "BatchNorm"
++  bottom: "conv15_1"
++  top: "conv15_1"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv15_1/scale"
++  type: "Scale"
++  bottom: "conv15_1"
++  top: "conv15_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv15_1/relu"
++  type: "ReLU"
++  bottom: "conv15_1"
++  top: "conv15_1"
++}
++layer {
++  name: "conv15_2"
++  type: "Convolution"
++  bottom: "conv15_1"
++  top: "conv15_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv15_2/bn"
++  type: "BatchNorm"
++  bottom: "conv15_2"
++  top: "conv15_2"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv15_2/scale"
++  type: "Scale"
++  bottom: "conv15_2"
++  top: "conv15_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv15_2/relu"
++  type: "ReLU"
++  bottom: "conv15_2"
++  top: "conv15_2"
++}
++layer {
++  name: "conv16_1"
++  type: "Convolution"
++  bottom: "conv15_2"
++  top: "conv16_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv16_1/bn"
++  type: "BatchNorm"
++  bottom: "conv16_1"
++  top: "conv16_1"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv16_1/scale"
++  type: "Scale"
++  bottom: "conv16_1"
++  top: "conv16_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv16_1/relu"
++  type: "ReLU"
++  bottom: "conv16_1"
++  top: "conv16_1"
++}
++layer {
++  name: "conv16_2"
++  type: "Convolution"
++  bottom: "conv16_1"
++  top: "conv16_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 256
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv16_2/bn"
++  type: "BatchNorm"
++  bottom: "conv16_2"
++  top: "conv16_2"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv16_2/scale"
++  type: "Scale"
++  bottom: "conv16_2"
++  top: "conv16_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv16_2/relu"
++  type: "ReLU"
++  bottom: "conv16_2"
++  top: "conv16_2"
++}
++layer {
++  name: "conv17_1"
++  type: "Convolution"
++  bottom: "conv16_2"
++  top: "conv17_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 64
++    bias_term: false
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv17_1/bn"
++  type: "BatchNorm"
++  bottom: "conv17_1"
++  top: "conv17_1"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv17_1/scale"
++  type: "Scale"
++  bottom: "conv17_1"
++  top: "conv17_1"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv17_1/relu"
++  type: "ReLU"
++  bottom: "conv17_1"
++  top: "conv17_1"
++}
++layer {
++  name: "conv17_2"
++  type: "Convolution"
++  bottom: "conv17_1"
++  top: "conv17_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  convolution_param {
++    num_output: 128
++    bias_term: false
++    pad: 1
++    kernel_size: 3
++    stride: 2
++    weight_filler {
++      type: "msra"
++    }
++  }
++}
++layer {
++  name: "conv17_2/bn"
++  type: "BatchNorm"
++  bottom: "conv17_2"
++  top: "conv17_2"
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++  param {
++    lr_mult: 0
++    decay_mult: 0
++  }
++}
++layer {
++  name: "conv17_2/scale"
++  type: "Scale"
++  bottom: "conv17_2"
++  top: "conv17_2"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.0
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  scale_param {
++    filler {
++      value: 1
++    }
++    bias_term: true
++    bias_filler {
++      value: 0
++    }
++  }
++}
++layer {
++  name: "conv17_2/relu"
++  type: "ReLU"
++  bottom: "conv17_2"
++  top: "conv17_2"
++}
++layer {
++  name: "conv11_mbox_loc"
++  type: "Convolution"
++  bottom: "conv11"
++  top: "conv11_mbox_loc"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 12
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv11_mbox_loc_perm"
++  type: "Permute"
++  bottom: "conv11_mbox_loc"
++  top: "conv11_mbox_loc_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv11_mbox_loc_flat"
++  type: "Flatten"
++  bottom: "conv11_mbox_loc_perm"
++  top: "conv11_mbox_loc_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv11_mbox_conf"
++  type: "Convolution"
++  bottom: "conv11"
++  top: "conv11_mbox_conf"
++  param {
++    lr_mult: 1.0
++    decay_mult: 1.0
++  }
++  param {
++    lr_mult: 2.0
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 63
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv11_mbox_conf_perm"
++  type: "Permute"
++  bottom: "conv11_mbox_conf"
++  top: "conv11_mbox_conf_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv11_mbox_conf_flat"
++  type: "Flatten"
++  bottom: "conv11_mbox_conf_perm"
++  top: "conv11_mbox_conf_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv11_mbox_priorbox"
++  type: "PriorBox"
++  bottom: "conv11"
++  bottom: "data"
++  top: "conv11_mbox_priorbox"
++  prior_box_param {
++    min_size: 60.0
++    aspect_ratio: 2.0
++    flip: true
++    clip: false
++    variance: 0.1
++    variance: 0.1
++    variance: 0.2
++    variance: 0.2
++    offset: 0.5
++  }
++}
++layer {
++  name: "conv13_mbox_loc"
++  type: "Convolution"
++  bottom: "conv13"
++  top: "conv13_mbox_loc"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 24
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv13_mbox_loc_perm"
++  type: "Permute"
++  bottom: "conv13_mbox_loc"
++  top: "conv13_mbox_loc_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv13_mbox_loc_flat"
++  type: "Flatten"
++  bottom: "conv13_mbox_loc_perm"
++  top: "conv13_mbox_loc_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv13_mbox_conf"
++  type: "Convolution"
++  bottom: "conv13"
++  top: "conv13_mbox_conf"
++  param {
++    lr_mult: 1.0
++    decay_mult: 1.0
++  }
++  param {
++    lr_mult: 2.0
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 126
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv13_mbox_conf_perm"
++  type: "Permute"
++  bottom: "conv13_mbox_conf"
++  top: "conv13_mbox_conf_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv13_mbox_conf_flat"
++  type: "Flatten"
++  bottom: "conv13_mbox_conf_perm"
++  top: "conv13_mbox_conf_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv13_mbox_priorbox"
++  type: "PriorBox"
++  bottom: "conv13"
++  bottom: "data"
++  top: "conv13_mbox_priorbox"
++  prior_box_param {
++    min_size: 105.0
++    max_size: 150.0
++    aspect_ratio: 2.0
++    aspect_ratio: 3.0
++    flip: true
++    clip: false
++    variance: 0.1
++    variance: 0.1
++    variance: 0.2
++    variance: 0.2
++    offset: 0.5
++  }
++}
++layer {
++  name: "conv14_2_mbox_loc"
++  type: "Convolution"
++  bottom: "conv14_2"
++  top: "conv14_2_mbox_loc"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 24
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv14_2_mbox_loc_perm"
++  type: "Permute"
++  bottom: "conv14_2_mbox_loc"
++  top: "conv14_2_mbox_loc_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv14_2_mbox_loc_flat"
++  type: "Flatten"
++  bottom: "conv14_2_mbox_loc_perm"
++  top: "conv14_2_mbox_loc_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv14_2_mbox_conf"
++  type: "Convolution"
++  bottom: "conv14_2"
++  top: "conv14_2_mbox_conf"
++  param {
++    lr_mult: 1.0
++    decay_mult: 1.0
++  }
++  param {
++    lr_mult: 2.0
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 126
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv14_2_mbox_conf_perm"
++  type: "Permute"
++  bottom: "conv14_2_mbox_conf"
++  top: "conv14_2_mbox_conf_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv14_2_mbox_conf_flat"
++  type: "Flatten"
++  bottom: "conv14_2_mbox_conf_perm"
++  top: "conv14_2_mbox_conf_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv14_2_mbox_priorbox"
++  type: "PriorBox"
++  bottom: "conv14_2"
++  bottom: "data"
++  top: "conv14_2_mbox_priorbox"
++  prior_box_param {
++    min_size: 150.0
++    max_size: 195.0
++    aspect_ratio: 2.0
++    aspect_ratio: 3.0
++    flip: true
++    clip: false
++    variance: 0.1
++    variance: 0.1
++    variance: 0.2
++    variance: 0.2
++    offset: 0.5
++  }
++}
++layer {
++  name: "conv15_2_mbox_loc"
++  type: "Convolution"
++  bottom: "conv15_2"
++  top: "conv15_2_mbox_loc"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 24
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv15_2_mbox_loc_perm"
++  type: "Permute"
++  bottom: "conv15_2_mbox_loc"
++  top: "conv15_2_mbox_loc_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv15_2_mbox_loc_flat"
++  type: "Flatten"
++  bottom: "conv15_2_mbox_loc_perm"
++  top: "conv15_2_mbox_loc_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv15_2_mbox_conf"
++  type: "Convolution"
++  bottom: "conv15_2"
++  top: "conv15_2_mbox_conf"
++  param {
++    lr_mult: 1.0
++    decay_mult: 1.0
++  }
++  param {
++    lr_mult: 2.0
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 126
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv15_2_mbox_conf_perm"
++  type: "Permute"
++  bottom: "conv15_2_mbox_conf"
++  top: "conv15_2_mbox_conf_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv15_2_mbox_conf_flat"
++  type: "Flatten"
++  bottom: "conv15_2_mbox_conf_perm"
++  top: "conv15_2_mbox_conf_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv15_2_mbox_priorbox"
++  type: "PriorBox"
++  bottom: "conv15_2"
++  bottom: "data"
++  top: "conv15_2_mbox_priorbox"
++  prior_box_param {
++    min_size: 195.0
++    max_size: 240.0
++    aspect_ratio: 2.0
++    aspect_ratio: 3.0
++    flip: true
++    clip: false
++    variance: 0.1
++    variance: 0.1
++    variance: 0.2
++    variance: 0.2
++    offset: 0.5
++  }
++}
++layer {
++  name: "conv16_2_mbox_loc"
++  type: "Convolution"
++  bottom: "conv16_2"
++  top: "conv16_2_mbox_loc"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 24
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv16_2_mbox_loc_perm"
++  type: "Permute"
++  bottom: "conv16_2_mbox_loc"
++  top: "conv16_2_mbox_loc_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv16_2_mbox_loc_flat"
++  type: "Flatten"
++  bottom: "conv16_2_mbox_loc_perm"
++  top: "conv16_2_mbox_loc_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv16_2_mbox_conf"
++  type: "Convolution"
++  bottom: "conv16_2"
++  top: "conv16_2_mbox_conf"
++  param {
++    lr_mult: 1.0
++    decay_mult: 1.0
++  }
++  param {
++    lr_mult: 2.0
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 126
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv16_2_mbox_conf_perm"
++  type: "Permute"
++  bottom: "conv16_2_mbox_conf"
++  top: "conv16_2_mbox_conf_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv16_2_mbox_conf_flat"
++  type: "Flatten"
++  bottom: "conv16_2_mbox_conf_perm"
++  top: "conv16_2_mbox_conf_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv16_2_mbox_priorbox"
++  type: "PriorBox"
++  bottom: "conv16_2"
++  bottom: "data"
++  top: "conv16_2_mbox_priorbox"
++  prior_box_param {
++    min_size: 240.0
++    max_size: 285.0
++    aspect_ratio: 2.0
++    aspect_ratio: 3.0
++    flip: true
++    clip: false
++    variance: 0.1
++    variance: 0.1
++    variance: 0.2
++    variance: 0.2
++    offset: 0.5
++  }
++}
++layer {
++  name: "conv17_2_mbox_loc"
++  type: "Convolution"
++  bottom: "conv17_2"
++  top: "conv17_2_mbox_loc"
++  param {
++    lr_mult: 0.1
++    decay_mult: 0.1
++  }
++  param {
++    lr_mult: 0.2
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 24
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv17_2_mbox_loc_perm"
++  type: "Permute"
++  bottom: "conv17_2_mbox_loc"
++  top: "conv17_2_mbox_loc_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv17_2_mbox_loc_flat"
++  type: "Flatten"
++  bottom: "conv17_2_mbox_loc_perm"
++  top: "conv17_2_mbox_loc_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv17_2_mbox_conf"
++  type: "Convolution"
++  bottom: "conv17_2"
++  top: "conv17_2_mbox_conf"
++  param {
++    lr_mult: 1.0
++    decay_mult: 1.0
++  }
++  param {
++    lr_mult: 2.0
++    decay_mult: 0.0
++  }
++  convolution_param {
++    num_output: 126
++    kernel_size: 1
++    weight_filler {
++      type: "msra"
++    }
++    bias_filler {
++      type: "constant"
++      value: 0.0
++    }
++  }
++}
++layer {
++  name: "conv17_2_mbox_conf_perm"
++  type: "Permute"
++  bottom: "conv17_2_mbox_conf"
++  top: "conv17_2_mbox_conf_perm"
++  permute_param {
++    order: 0
++    order: 2
++    order: 3
++    order: 1
++  }
++}
++layer {
++  name: "conv17_2_mbox_conf_flat"
++  type: "Flatten"
++  bottom: "conv17_2_mbox_conf_perm"
++  top: "conv17_2_mbox_conf_flat"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "conv17_2_mbox_priorbox"
++  type: "PriorBox"
++  bottom: "conv17_2"
++  bottom: "data"
++  top: "conv17_2_mbox_priorbox"
++  prior_box_param {
++    min_size: 285.0
++    max_size: 300.0
++    aspect_ratio: 2.0
++    aspect_ratio: 3.0
++    flip: true
++    clip: false
++    variance: 0.1
++    variance: 0.1
++    variance: 0.2
++    variance: 0.2
++    offset: 0.5
++  }
++}
++layer {
++  name: "mbox_loc"
++  type: "Concat"
++  bottom: "conv11_mbox_loc_flat"
++  bottom: "conv13_mbox_loc_flat"
++  bottom: "conv14_2_mbox_loc_flat"
++  bottom: "conv15_2_mbox_loc_flat"
++  bottom: "conv16_2_mbox_loc_flat"
++  bottom: "conv17_2_mbox_loc_flat"
++  top: "mbox_loc"
++  concat_param {
++    axis: 1
++  }
++}
++layer {
++  name: "mbox_conf"
++  type: "Concat"
++  bottom: "conv11_mbox_conf_flat"
++  bottom: "conv13_mbox_conf_flat"
++  bottom: "conv14_2_mbox_conf_flat"
++  bottom: "conv15_2_mbox_conf_flat"
++  bottom: "conv16_2_mbox_conf_flat"
++  bottom: "conv17_2_mbox_conf_flat"
++  top: "mbox_conf"
++  concat_param {
++    axis: 1
++  }
++}
++layer {
++  name: "mbox_priorbox"
++  type: "Concat"
++  bottom: "conv11_mbox_priorbox"
++  bottom: "conv13_mbox_priorbox"
++  bottom: "conv14_2_mbox_priorbox"
++  bottom: "conv15_2_mbox_priorbox"
++  bottom: "conv16_2_mbox_priorbox"
++  bottom: "conv17_2_mbox_priorbox"
++  top: "mbox_priorbox"
++  concat_param {
++    axis: 2
++  }
++}
++layer {
++  name: "mbox_conf_reshape"
++  type: "Reshape"
++  bottom: "mbox_conf"
++  top: "mbox_conf_reshape"
++  reshape_param {
++    shape {
++      dim: 0
++      dim: -1
++      dim: 21
++    }
++  }
++}
++layer {
++  name: "mbox_conf_softmax"
++  type: "Softmax"
++  bottom: "mbox_conf_reshape"
++  top: "mbox_conf_softmax"
++  softmax_param {
++    axis: 2
++  }
++}
++layer {
++  name: "mbox_conf_flatten"
++  type: "Flatten"
++  bottom: "mbox_conf_softmax"
++  top: "mbox_conf_flatten"
++  flatten_param {
++    axis: 1
++  }
++}
++layer {
++  name: "detection_out"
++  type: "DetectionOutput"
++  bottom: "mbox_loc"
++  bottom: "mbox_conf_flatten"
++  bottom: "mbox_priorbox"
++  top: "detection_out"
++  include {
++    phase: TEST
++  }
++  detection_output_param {
++    num_classes: 21
++    share_location: true
++    background_label_id: 0
++    nms_param {
++      nms_threshold: 0.45
++      top_k: 100
++    }
++    code_type: CENTER_SIZE
++    keep_top_k: 100
++    confidence_threshold: 0.25
++  }
++}
+diff --git a/examples/ssd/ssd_detect.cpp b/examples/ssd/ssd_detect.cpp
+index 3aadc9c7..9f5cc01b 100644
+--- a/examples/ssd/ssd_detect.cpp
++++ b/examples/ssd/ssd_detect.cpp
+@@ -1,7 +1,7 @@
+ // This is a demo code for using a SSD model to do detection.
+ // The code is modified from examples/cpp_classification/classification.cpp.
+ // Usage:
+-//    ssd_detect [FLAGS] model_file weights_file list_file
++//    ssd_detect [FLAGS] model_file weights_file list_file label_file
+ //
+ // where model_file is the .prototxt file defining the network architecture, and
+ // weights_file is the .caffemodel file containing the network parameters, and
+@@ -11,7 +11,10 @@
+ // list_file can also contain a list of video files with the format as follows:
+ //    folder/video1.mp4
+ //    folder/video2.mp4
+-//
++//	label_file contains text names of objects labels
++//	for exaple:
++//	https://github.com/openvinotoolkit/open_model_zoo/blob/master/demos/whiteboard_inpainting_demo/python/coco_labels.txt
++
+ #include <caffe/caffe.hpp>
+ #ifdef USE_OPENCV
+ #include <opencv2/core/core.hpp>
+@@ -238,13 +241,13 @@ DEFINE_string(file_type, "image",
+     "The file type in the list_file. Currently support image and video.");
+ DEFINE_string(out_file, "",
+     "If provided, store the detection results in the out_file.");
+-DEFINE_double(confidence_threshold, 0.01,
++DEFINE_double(confidence_threshold, 0.5,
+     "Only store detections with score higher than the threshold.");
+ 
+ int main(int argc, char** argv) {
+   ::google::InitGoogleLogging(argv[0]);
+   // Print output to stderr (while still logging)
+-  FLAGS_alsologtostderr = 1;
++  FLAGS_alsologtostderr = 0;
+ 
+ #ifndef GFLAGS_GFLAGS_H_
+   namespace gflags = google;
+@@ -255,7 +258,7 @@ int main(int argc, char** argv) {
+         "    ssd_detect [FLAGS] model_file weights_file list_file\n");
+   gflags::ParseCommandLineFlags(&argc, &argv, true);
+ 
+-  if (argc < 4) {
++  if (argc < 5) {
+     gflags::ShowUsageWithFlagsRestrict(argv[0], "examples/ssd/ssd_detect");
+     return 1;
+   }
+@@ -286,17 +289,30 @@ int main(int argc, char** argv) {
+   std::ifstream infile(argv[3]);
+   std::string file;
+   while (infile >> file) {
++	std::cout << "file = " << file << std::endl; 
+     if (file_type == "image") {
+       cv::Mat img = cv::imread(file, -1);
++		cv::Mat img_orig = img.clone();
+       CHECK(!img.empty()) << "Unable to decode image " << file;
+       std::vector<vector<float> > detections = detector.Detect(img);
+ 
++		std::fstream label_file(argv[4]);
++		std::string label;
++		vector<std::string> labels;
++		while (label_file >> label)
++			labels.push_back (label);
+       /* Print the detection results. */
+       for (int i = 0; i < detections.size(); ++i) {
+         const vector<float>& d = detections[i];
+         // Detection format: [image_id, label, score, xmin, ymin, xmax, ymax].
+         CHECK_EQ(d.size(), 7);
+         const float score = d[2];
++		cv::Point p1;
++		p1.x = d[3] * img.cols;
++		p1.y = d[4] * img.rows;
++		cv::Point p2;
++		p2.x = d[5] * img.cols;
++		p2.y = d[6] * img.rows;
+         if (score >= confidence_threshold) {
+           out << file << " ";
+           out << static_cast<int>(d[1]) << " ";
+@@ -305,6 +321,17 @@ int main(int argc, char** argv) {
+           out << static_cast<int>(d[4] * img.rows) << " ";
+           out << static_cast<int>(d[5] * img.cols) << " ";
+           out << static_cast<int>(d[6] * img.rows) << std::endl;
++			cv::rectangle(img_orig, p1, p2, {255,255,255});
++			char str_text[256];
++			int str_len = sprintf (str_text, (const char*)"%s: %.2g", labels[d[1]].c_str(),
++				score);
++			cv::Point p3 (cv::max(p1.x, 15), cv::max(p1.y, 15));
++			std::string str_string (str_text, str_len);
++			cv::putText(img_orig, str_string, p3, cv::FONT_ITALIC, 0.6, {255, 255, 255}, 1);
++			cv::imshow("SSD",img_orig);
++			int k = cv::waitKey();
++			if (k == 27)	// escape
++				break;
+         }
+       }
+     } else if (file_type == "video") {
+@@ -349,6 +376,7 @@ int main(int argc, char** argv) {
+       LOG(FATAL) << "Unknown file_type: " << file_type;
+     }
+   }
++	printf ("%s#%d: end of func\n",__FILE__,__LINE__);
+   return 0;
+ }
+ #else
+diff --git a/examples/ssd/ssd_detect.py b/examples/ssd/ssd_detect.py
+index 945930be..1378d8de 100644
+--- a/examples/ssd/ssd_detect.py
++++ b/examples/ssd/ssd_detect.py
+@@ -111,12 +111,12 @@ def main(args):
+                                args.model_def, args.model_weights,
+                                args.image_resize, args.labelmap_file)
+     result = detection.detect(args.image_file)
+-    print result
++    print (result)
+ 
+     img = Image.open(args.image_file)
+     draw = ImageDraw.Draw(img)
+     width, height = img.size
+-    print width, height
++    print (width, height)
+     for item in result:
+         xmin = int(round(item[0] * width))
+         ymin = int(round(item[1] * height))
+@@ -124,7 +124,7 @@ def main(args):
+         ymax = int(round(item[3] * height))
+         draw.rectangle([xmin, ymin, xmax, ymax], outline=(255, 0, 0))
+         draw.text([xmin, ymin], item[-1] + str(item[-2]), (0, 0, 255))
+-        print item
++        print (item)
+         print [xmin, ymin, xmax, ymax]
+         print [xmin, ymin], item[-1]
+     img.save('detect_result.jpg')
+-- 
+2.31.1
+

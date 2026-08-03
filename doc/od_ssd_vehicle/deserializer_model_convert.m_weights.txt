@@ -1,0 +1,11 @@
+238	    ov::XmlDeserializer visitor(m_root, m_weights, m_opsets, m_extensions, variables, version);
+(gdb) p m_weights
+$33 = std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 1, weak count 0) = {
+  get() = 0x55555573d7f0}
+(gdb) p *m_weights
+$34 = {
+  _vptr.AlignedBuffer = 0x7ffff15fb9c0 <vtable for ngraph::runtime::SharedBuffer<std::shared_ptr<ngraph::runtime::AlignedBuffer> >+16>, 
+  m_allocated_buffer = 0x7ffff0d85040 "\201\200\200;\257\217\231:\234\r\026;\204\035\002\071\a\324\350:i\300\272:71e\273\227\062\024;E\354v;\237\271\234:\234(\224:\261m\257:\203\003\205\272\367b\304:r4\027:\324@\212\273n\370(;\335\300p;5L\270:\237J\006;\t\356@;\254Us:\372\020\066;\236K\375:&;0\273\004\325j;!e\222;v\f#;\247", 
+  m_aligned_buffer = 0x7ffff0d85040 "\201\200\200;\257\217\231:\234\r\026;\204\035\002\071\a\324\350:i\300\272:71e\273\227\062\024;E\354v;\237\271\234:\234(\224:\261m\257:\203\003\205\272\367b\304:r4\027:\324@\212\273n\370(;\335\300p;5L\270:\237J\006;\t\356@;\254Us:\372\020\066;\236K\375:&;0\273\004\325j;!e\222;v\f#;\247", m_byte_size = 7269196}
+(gdb) bt
+
