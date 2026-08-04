@@ -1,0 +1,49 @@
+Breakpoint 1, ov::XmlDeserializer::on_adapter (this=0x7fffffffb260, name="value", adapter=...)
+    at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:227
+227	    if (m_node.child("port_map") || m_node.child("then_port_map") || m_node.child("else_port_map")) {
+(gdb) bt
+#0  ov::XmlDeserializer::on_adapter (this=0x7fffffffb260, name="value", adapter=...)
+    at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:227
+#1  0x00007ffff312eebd in ov::AttributeVisitor::on_attribute<std::shared_ptr<ngraph::runtime::AlignedBuffer> > (this=0x7fffffffb260, name="value", value=
+    std::shared_ptr<ngraph::runtime::AlignedBuffer> (empty) = {...})
+    at /opt/intel/openvino.git/src/core/include/openvino/core/attribute_visitor.hpp:106
+#2  0x00007ffff312b260 in ov::op::v0::Constant::visit_attributes (this=0x5555559f7a40, 
+    visitor=...) at /opt/intel/openvino.git/src/core/src/op/constant.cpp:549
+#3  0x00007ffff15266ba in ov::XmlDeserializer::createNode (this=0x7fffffffbec0, 
+    inputs=std::vector of length 0, capacity 0, node=..., 
+    weights=std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 3, weak count 0) = {...}, 
+    params=...) at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:695
+#4  0x00007ffff152336e in ov::XmlDeserializer::parse_function (this=0x7fffffffbec0, root=..., 
+    weights=std::shared_ptr<ngraph::runtime::AlignedBuffer> (use count 3, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:496
+#5  0x00007ffff1521ba5 in ov::XmlDeserializer::on_adapter (this=0x7fffffffbec0, name="net", 
+    adapter=...) at /opt/intel/openvino.git/src/frontends/ir/src/ir_deserializer.cpp:395
+#6  0x00007ffff328583d in ov::AttributeVisitor::on_attribute<std::shared_ptr<ov::Model> > (
+    this=0x7fffffffbec0, name="net", value=std::shared_ptr<ov::Model> (empty) = {...})
+    at /opt/intel/openvino.git/src/core/include/openvino/core/attribute_visitor.hpp:106
+#7  0x00007ffff1503ac5 in ov::frontend::ir::InputModel::InputModelIRImpl::convert (
+    this=0x55555573a600) at /opt/intel/openvino.git/src/frontends/ir/src/input_model.cpp:240
+#8  0x00007ffff15037f3 in ov::frontend::ir::InputModel::convert (this=0x55555573d080)
+    at /opt/intel/openvino.git/src/frontends/ir/src/input_model.cpp:230
+#9  0x00007ffff14f3878 in ov::frontend::ir::FrontEnd::convert (this=0x55555573dcb0, model=
+    std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/ir/src/frontend.cpp:230
+#10 0x00007ffff3765285 in ov::frontend::FrontEnd::convert (this=0x555555734fc0, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 1, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:53
+#11 0x00007ffff38b744a in InferenceEngine::details::ReadNetwork (
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="", exts=std::vector of length 0, capacity 0, 
+    ov_exts=std::vector of length 0, capacity 0, newAPI=true)
+    at /opt/intel/openvino.git/src/inference/src/ie_network_reader.cpp:515
+#12 0x00007ffff387864a in ov::CoreImpl::ReadNetwork (this=0x5555557363d0, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:557
+#13 0x00007ffff3886015 in ov::Core::read_model (this=0x7fffffffcc10, 
+    modelPath="/opt/intel/open_model_zoo/models/intel/vehicle-detection-0202/FP32/vehicle-detection-0202.xml", binPath="") at /opt/intel/openvino.git/src/inference/src/ie_core.cpp:1798
+#14 0x000055555565646a in ModelBase::prepareModel (this=0x55555573a2a0, core=...)
+--Type <RET> for more, q to quit, c to continue without paging--c
+    at /opt/intel/open_model_zoo/demos/common/cpp/models/src/model_base.cpp:32
+#15 0x00005555556565c0 in ModelBase::compileModel (this=0x55555573a2a0, config=..., core=...) at /opt/intel/open_model_zoo/demos/common/cpp/models/src/model_base.cpp:45
+#16 0x0000555555663e45 in AsyncPipeline::AsyncPipeline (this=0x7fffffffd030, modelInstance=..., config=..., core=...) at /opt/intel/open_model_zoo/demos/common/cpp/pipelines/src/async_pipeline.cpp:41
+#17 0x00005555555bf300 in main (argc=11, argv=0x7fffffffd608) at /opt/intel/open_model_zoo/demos/object_detection_demo/cpp/main.cpp:392
+(gdb) 
+

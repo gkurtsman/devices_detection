@@ -1,0 +1,13 @@
+notes to long files modification:
+1. aux/ two files
+	faster_rcnn_r50_fpn_1x_coco_20200130-047c8118_N1.pth
+	faster_rcnn_r50_fpn_1x_coco_20200130-047c8118_N2.pth
+
+	are two splits of file
+	faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
+
+	and have to be merged before used.
+2. model/ote_trainingExt_models/ six files:
+	vehicle-detection-0204_N[1-6].pth
+
+	are six splits of file vehicle-detection-0204.pth

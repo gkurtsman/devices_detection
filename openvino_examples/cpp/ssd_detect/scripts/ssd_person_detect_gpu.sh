@@ -1,0 +1,1 @@
+/opt/intel/openvino_2021/deployment_tools/inference_engine/samples/cpp/object_detection_sample_ssd/build/intel64/Debug/object_detection_sample_ssd -m /opt/intel/open_model_zoo/intel/person-detection-retail-0002/FP32/person-detection-retail-0002.xml -i /opt/intel/person_detection.png -d GPU.0

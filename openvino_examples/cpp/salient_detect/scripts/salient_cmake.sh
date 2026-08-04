@@ -1,0 +1,4 @@
+#bin/sh
+
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_VERBOSE_MAKEFILE=ON ..
+
