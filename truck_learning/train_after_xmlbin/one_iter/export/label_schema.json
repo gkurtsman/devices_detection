@@ -1,0 +1,35 @@
+{
+    "label_tree": {
+        "type": "tree",
+        "directed": true,
+        "nodes": [],
+        "edges": []
+    },
+    "label_groups": [
+        {
+            "_id": "6446c70a1ecb045a06eca08a",
+            "name": "from_label_list",
+            "label_ids": [
+                "0"
+            ],
+            "relation_type": "EXCLUSIVE"
+        }
+    ],
+    "all_labels": {
+        "0": {
+            "_id": "0",
+            "name": "truck",
+            "color": {
+                "red": 174,
+                "green": 87,
+                "blue": 152,
+                "alpha": 255
+            },
+            "hotkey": "",
+            "domain": "DETECTION",
+            "creation_date": "2023-04-24T18:14:34.442000",
+            "is_empty": false,
+            "is_anomalous": false
+        }
+    }
+}

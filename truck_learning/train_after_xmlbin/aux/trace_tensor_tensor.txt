@@ -1,0 +1,78 @@
+Breakpoint 1, ngraph_onnx::TensorProto::TensorProto (this=0x7fffffffcaa0, arena=0xe8, 
+    is_message_owned=85)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4559
+4559	TensorProto::TensorProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+(gdb) bt
+--------------------------------
+#0  ngraph_onnx::TensorProto::TensorProto (this=0x7fffffffcaa0, arena=0xe8, is_message_owned=85)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4559
+-------------------------------
+1  0x00007ffff44feedc in google::protobuf::Arena::InternalHelper<ngraph_onnx::TensorProto>::New
+    () at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/arena.h:491
+
+#2  0x00007ffff44fb41e in google::protobuf::Arena::CreateMessageInternal<ngraph_onnx::TensorProto>
+    (arena=0x0)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/arena.h:548
+#3  0x00007ffff44f802e in google::protobuf::Arena::CreateMaybeMessage<ngraph_onnx::TensorProto> (
+    arena=0x0)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8727
+#4  0x00007ffff437ead9 in google::protobuf::MessageLite::CreateMaybeMessage<ngraph_onnx::TensorProto> (arena=0x0)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h:475
+#5  0x00007ffff436d262 in ngraph_onnx::AttributeProto::_internal_mutable_t (this=0x5555558328c0)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h:5737
+#6  0x00007ffff44de2d3 in ngraph_onnx::AttributeProto::_InternalParse (this=0x5555558328c0, 
+    ptr=0x555555a1e2e2 "\016\b\001\020\aJ\b\001", ctx=0x7fffffffce40)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1083
+#7  0x00007ffff45124d6 in google::protobuf::internal::ParseContext::ParseMessage (
+    this=0x7fffffffce40, msg=0x5555558328c0, 
+    ptr=0x555555a1e2da "\n\005value*\016\b\001\020\aJ\b\001")
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc:294
+#8  0x00007ffff44e1b6c in ngraph_onnx::NodeProto::_InternalParse (this=0x5555558326e0, 
+    ptr=0x555555a1e2d9 "\032\n\005value*\016\b\001\020\aJ\b\001", ctx=0x7fffffffce40)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2149
+#9  0x00007ffff45124d6 in google::protobuf::internal::ParseContext::ParseMessage (
+    this=0x7fffffffce40, msg=0x5555558326e0, 
+    ptr=0x555555a1e2a8 "\n\003\066\062\065\022\003\066\062\066\032\023ConstantOfShape_213\"\017ConstantOfShape*\032\n\005value*\016\b\001\020\aJ\b\001")
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc:294
+#10 0x00007ffff44e798e in ngraph_onnx::GraphProto::_InternalParse (this=0x5555558f4e40, 
+    ptr=0x555555a1e2a7 "L\n\003\066\062\065\022\003\066\062\066\032\023ConstantOfShape_213\"\017ConstantOfShape*\032\n\005value*\016\b\001\020\aJ\b\001", ctx=0x7fffffffce40)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3931
+#11 0x00007ffff45124d6 in google::protobuf::internal::ParseContext::ParseMessage (
+    this=0x7fffffffce40, msg=0x5555558f4e40, 
+    ptr=0x555555a1d775 "nv*\022\n\tdilations@\001@\001\240\001\a*\f\n\005group\030\001\240\001\002*\025\n\fkernel_shape@\001@\001\240\001\a*\021\n\004pads@")
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc:294
+--Type <RET> for more, q to quit, c to continue without paging--
+---------------------------------
+#12 0x00007ffff44e46f6 in ngraph_onnx::ModelProto::_InternalParse (this=0x7fffffffd400, 
+    ptr=0x555555a1d771 "\"\004Conv*\022\n\tdilations@\001@\001\240\001\a*\f\n\005group\030\001\240\001\002*\025\n\fkernel_shape@\001@\001\240\001\a*\021\n\004pads@", ctx=0x7fffffffce40)
+    at /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2960
+#13 0x00007ffff450e82c in google::protobuf::internal::MergeFromImpl<false> (input=0x7fffffffcf30, 
+    msg=0x7fffffffd400, parse_flags=google::protobuf::MessageLite::kParse)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:158
+#14 0x00007ffff450f79c in google::protobuf::MessageLite::ParseFrom<(google::protobuf::MessageLite::ParseFlags)1, google::protobuf::io::ZeroCopyInputStream*> (this=0x7fffffffd400, 
+    input=@0x7fffffffcf00: 0x7fffffffcf30)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h:599
+#15 0x00007ffff450e981 in google::protobuf::MessageLite::ParseFromZeroCopyStream (
+    this=0x7fffffffd400, input=0x7fffffffcf30)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:268
+#16 0x00007ffff450e9d3 in google::protobuf::MessageLite::ParseFromIstream (this=0x7fffffffd400, 
+    input=0x7fffffffd030)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:288
+#17 0x00007ffff4363799 in ngraph::onnx_common::parse_from_istream (model_stream=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/onnx_common/src/parser.cpp:55
+#18 0x00007ffff43635d2 in ngraph::onnx_common::parse_from_file (
+    file_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx")
+    at /opt/intel/openvino.git/src/frontends/onnx/onnx_common/src/parser.cpp:24
+#19 0x00007ffff4344712 in reconvert (ov_model=
+    std::shared_ptr<ov::Model> (use count 3, weak count 1) = {...}, 
+    file_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx") at reconvert.cpp:108
+#20 0x00005555555a1f7b in main (argc=5, argv=0x7fffffffd8a8) at convert_xml_onnx.cpp:128
+(gdb) 
+
+
+TENSOR_FROM_BUFFER
+#0 onnx_ngraph_onnx-ml.pb.cc:4559
+
+build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4559
+	#4570 SharedCtor()
+	#4614 void TensorProto::SharedCtor() {

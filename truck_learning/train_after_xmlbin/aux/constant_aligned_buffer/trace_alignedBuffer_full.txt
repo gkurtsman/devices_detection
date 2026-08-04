@@ -1,0 +1,72 @@
+Breakpoint 1, ngraph::runtime::AlignedBuffer::AlignedBuffer (this=0x5555557aa150, byte_size=6144, 
+    alignment=64) at /opt/intel/openvino.git/src/core/src/runtime/aligned_buffer.cpp:19
+19	    m_byte_size = std::max<size_t>(1, byte_size);
+(gdb) bt
+#0  ngraph::runtime::AlignedBuffer::AlignedBuffer (this=0x5555557aa150, byte_size=6144, 
+    alignment=64) at /opt/intel/openvino.git/src/core/src/runtime/aligned_buffer.cpp:19
+#1  0x00007ffff2959c37 in __gnu_cxx::new_allocator<ngraph::runtime::AlignedBuffer>::construct<ngraph::runtime::AlignedBuffer, unsigned long, unsigned long> (this=0x7fffffffc33f, __p=0x5555557aa150)
+    at /usr/include/c++/9/ext/new_allocator.h:146
+#2  0x00007ffff295984e in std::allocator_traits<std::allocator<ngraph::runtime::AlignedBuffer> >::construct<ngraph::runtime::AlignedBuffer, unsigned long, unsigned long> (__a=..., 
+    __p=0x5555557aa150) at /usr/include/c++/9/bits/alloc_traits.h:483
+#3  0x00007ffff29591bf in std::_Sp_counted_ptr_inplace<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<unsigned long, unsigned long> (this=0x5555557aa140, __a=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:548
+#4  0x00007ffff2957beb in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> (this=0x7fffffffc4e8, __p=@0x7fffffffc4e0: 0x0, __a=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:679
+#5  0x00007ffff295644e in std::__shared_ptr<ngraph::runtime::AlignedBuffer, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> (
+    this=0x7fffffffc4e0, __tag=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1344
+#6  0x00007ffff2954013 in std::shared_ptr<ngraph::runtime::AlignedBuffer>::shared_ptr<std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> (this=0x7fffffffc4e0, __tag=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:359
+#7  0x00007ffff294f9d3 in std::allocate_shared<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> (__a=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:702
+#8  0x00007ffff294c41e in std::make_shared<ngraph::runtime::AlignedBuffer, unsigned long, unsigned long> () at /usr/include/c++/9/bits/shared_ptr.h:718
+#9  0x00007ffff2946bd5 in ov::op::v0::Constant::allocate_buffer (this=0x55555559ed20, 
+    memset_allocation=false) at /opt/intel/openvino.git/src/core/src/op/constant.cpp:199
+#10 0x00007ffff2946b1f in ov::op::v0::Constant::Constant (this=0x55555559ed20, 
+    memset_allocation=false, type=..., shape=...)
+    at /opt/intel/openvino.git/src/core/src/op/constant.cpp:194
+#11 0x00007ffff2946c9a in ov::op::v0::Constant::Constant (this=0x55555559ed20, type=..., 
+    shape=..., data=0x555555630c90) at /opt/intel/openvino.git/src/core/src/op/constant.cpp:206
+#12 0x00007ffff414d133 in __gnu_cxx::new_allocator<ov::op::v0::Constant>::construct<ov::op::v0::Constant, ov::element::Type const&, ov::Shape const&, void const*> (this=0x7fffffffc72f, 
+    __p=0x55555559ed20) at /usr/include/c++/9/ext/new_allocator.h:146
+#13 0x00007ffff414b23d in std::allocator_traits<std::allocator<ov::op::v0::Constant> >::construct<ov::op::v0::Constant, ov::element::Type const&, ov::Shape const&, void const*> (__a=..., 
+    __p=0x55555559ed20) at /usr/include/c++/9/bits/alloc_traits.h:483
+#14 0x00007ffff4147f03 in std::_Sp_counted_ptr_inplace<ov::op::v0::Constant, std::allocator<ov::op::v0::Constant>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<ov::element::Type const&, ov::--Type <RET> for more, q to quit, c to continue without paging--
+Shape const&, void const*> (this=0x55555559ed10, __a=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:548
+#15 0x00007ffff41434d0 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ov::op::v0::Constant, std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> (this=0x7fffffffc958, __p=@0x7fffffffc950: 0x0, __a=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:679
+#16 0x00007ffff413e864 in std::__shared_ptr<ov::op::v0::Constant, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> (this=0x7fffffffc950, __tag=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1344
+#17 0x00007ffff4138d51 in std::shared_ptr<ov::op::v0::Constant>::shared_ptr<std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> (this=0x7fffffffc950, 
+    __tag=...) at /usr/include/c++/9/bits/shared_ptr.h:359
+#18 0x00007ffff4131260 in std::allocate_shared<ov::op::v0::Constant, std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> (__a=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:702
+#19 0x00007ffff41295af in std::make_shared<ov::op::v0::Constant, ov::element::Type const&, ov::Shape const&, void const*> () at /usr/include/c++/9/bits/shared_ptr.h:718
+#20 0x00007ffff4121705 in ngraph::onnx_import::Tensor::make_ng_constant<float, true> (
+    this=0x7fffffffcb00, type=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/core/tensor.hpp:491
+#21 0x00007ffff411882e in ngraph::onnx_import::Tensor::get_ng_constant (this=0x7fffffffcb00)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/core/tensor.hpp:450
+#22 0x00007ffff411b0a7 in ngraph::onnx_import::Graph::Graph (this=0x7fffffffcea0, model_proto=
+    std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, cache=..., 
+    extensions=...) at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/core/graph.cpp:153
+#23 0x00007ffff411ab18 in ngraph::onnx_import::Graph::Graph (this=0x7fffffffcea0, 
+    model_proto=std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, 
+    extensions=...) at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/core/graph.cpp:132
+#24 0x00007ffff437a10f in ngraph::onnx_import::detail::import_onnx_model (
+    model_proto=std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:93
+#25 0x00007ffff41b0cb3 in ov::onnx_editor::ONNXModelEditor::get_function (this=0x5555555b1cd0)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/editor.cpp:447
+#26 0x00007ffff41c27aa in ov::frontend::onnx::InputModel::convert (this=0x5555555b1c10)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/input_model.cpp:201
+#27 0x00007ffff41b6bfe in ov::frontend::onnx::FrontEnd::convert (this=0x5555555b1b10, model=
+    std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/frontend.cpp:90
+#28 0x00007ffff2f84285 in ov::frontend::FrontEnd::convert (this=0x5555555a1770, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 1, weak count 0) = {...})
+--Type <RET> for more, q to quit, c to continue without paging--
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:53
+#29 0x00007ffff43953a1 in IM_load () at utils.cpp:82
+#30 0x0000555555565584 in main (argc=5, argv=0x7fffffffd938) at convert_xml_onnx.cpp:111
+

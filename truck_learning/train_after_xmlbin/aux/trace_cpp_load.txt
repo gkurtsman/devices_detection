@@ -1,0 +1,105 @@
+python:
+file:$OPENVINO/openvino_env/lib/python3.8/site-packages/openvino/tools/mo/moc_frontend/pipeline.py
+#29
+def moc_pipeline(argv: argparse.Namespace, moc_front_end: FrontEnd):
+    """
+    Load input model and convert it to nGraph function
+    :param: argv: parsed command line arguments
+    :param: moc_front_end: Loaded Frontend for converting input model
+    :return: converted nGraph function ready for serialization
+    """
+    input_model = moc_front_end.load(argv.input_model)
+
+c++ library
+Thread 1 "python" hit Breakpoint 2, ov::frontend::FrontEnd::load_impl (this=0x2361f58, 
+    variants=<error reading variable: Cannot access memory at address 0x100000008>)
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:43
+43	InputModel::Ptr FrontEnd::load_impl(const std::vector<ov::Any>& variants) const {
+(gdb) p variants
+$10 = std::vector of length 1, capacity 1 = {{_so = std::vector of length 0, capacity 0, _temp = 
+    std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+    _impl = std::shared_ptr<ov::Any::Base> (use count 2, weak count 1) = {get() = 0x2361f60}}}
+(gdb) p variants[0]
+$11 = {_so = std::vector of length 0, capacity 0, 
+  _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+  _impl = std::shared_ptr<ov::Any::Base> (use count 2, weak count 1) = {get() = 0x2361f60}}
+(gdb) bt
+#0  ov::frontend::FrontEnd::load_impl (this=0x23e8e50, 
+    variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:44
+#1  0x00007ffb9006533f in ov::frontend::FrontEnd::load<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (this=0x23e8e50)
+    at /opt/intel/openvino.git/src/frontends/common/include/openvino/frontend/frontend.hpp:65
+#2  0x00007ffb90064c08 in <lambda(ov::frontend::FrontEnd&, const string&)>::operator()(ov::frontend::FrontEnd &, const std::string &) const (__closure=0x2325108, self=..., 
+    s="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx")
+    at /opt/intel/openvino.git/src/bindings/python/src/pyopenvino/frontend/frontend.cpp:26
+#3  0x00007ffb9006c04b in pybind11::detail::argument_loader<ov::frontend::FrontEnd&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>::call_impl<std::shared_ptr<ov::frontend::InputModel>, regclass_frontend_FrontEnd(pybind11::module)::<lambda(ov::frontend::FrontEnd&, const string&)>&, 0, 1, pybind11::detail::void_type>(<lambda(ov::frontend::FrontEnd&, const string&)> &, pybind11::detail::index_sequence<0, 1>, pybind11::detail::void_type &&) (
+    this=0x7fff3b772370, f=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1208
+#4  0x00007ffb9006a3bb in pybind11::detail::argument_loader<ov::frontend::FrontEnd&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>::call<std::shared_ptr<ov::frontend::InputModel>, pybind11::detail::void_type, regclass_frontend_FrontEnd(pybind11::module)::<lambda(ov::frontend::FrontEnd&, const string&)>&>(<lambda(ov::frontend::FrontEnd&, const string&)> &) (this=0x7fff3b772370, f=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1180
+#5  0x00007ffb90067bb1 in pybind11::cpp_function::<lambda(pybind11::detail::function_call&)>::operator()(pybind11::detail::function_call &) const (this=0x0, call=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:224
+#6  0x00007ffb90067c7b in pybind11::cpp_function::<lambda(pybind11::detail::function_call&)>::_FUN(pybind11::detail::function_call &) ()
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:202
+#7  0x00007ffb8fed38e2 in pybind11::cpp_function::dispatcher (self=0x7ffb8d05ab40, 
+    args_in=0x7ffb8ced0040, kwargs_in=0x0)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:805
+#8  0x00000000005f6939 in PyCFunction_Call ()
+#9  0x00000000005f7506 in _PyObject_MakeTpCall ()
+#10 0x000000000050b8d3 in ?? ()
+#11 0x0000000000574d08 in ?? ()
+--Type <RET> for more, q to quit, c to continue without paging--
+#12 0x000000000057348f in _PyEval_EvalFrameDefault ()
+#13 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#14 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#15 0x0000000000574d08 in ?? ()
+#16 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#17 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#18 0x0000000000574d08 in ?? ()
+#19 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#20 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#21 0x0000000000574d08 in ?? ()
+#22 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#23 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#24 0x0000000000574d08 in ?? ()
+#25 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#26 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#27 0x000000000068e547 in PyEval_EvalCode ()
+#28 0x0000000000601624 in ?? ()
+#29 0x00000000005c4ef0 in ?? ()
+#30 0x0000000000574d08 in ?? ()
+#31 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#32 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#33 0x000000000068e547 in PyEval_EvalCode ()
+#34 0x0000000000601624 in ?? ()
+#35 0x00000000005c4ef0 in ?? ()
+#36 0x0000000000574d08 in ?? ()
+#37 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#38 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#39 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#40 0x000000000056b619 in _PyEval_EvalFrameDefault ()
+#41 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#42 0x000000000056b619 in _PyEval_EvalFrameDefault ()
+#43 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#44 0x0000000000570556 in _PyEval_EvalFrameDefault ()
+#45 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#46 0x000000000068e547 in PyEval_EvalCode ()
+#47 0x0000000000601624 in ?? ()
+#48 0x00000000005c4ef0 in ?? ()
+#49 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#50 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#51 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#52 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#53 0x00000000005697da in _PyEval_EvalCodeWithName ()
+--Type <RET> for more, q to quit, c to continue without paging--
+#54 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#55 0x00000000005f60b2 in PyObject_Call ()
+#56 0x00000000006b79e2 in ?? ()
+#57 0x00000000006b7de9 in Py_RunMain ()
+#58 0x00000000006b800d in Py_BytesMain ()
+#59 0x00007ffbd2cf6083 in __libc_start_main (main=0x4ef140 <main>, argc=11, argv=0x7fff3b774608, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7fff3b7745f8) at ../csu/libc-start.c:308
+#60 0x00000000005fb85e in _start ()
+(gdb) 
+

@@ -1,0 +1,559 @@
+(gdb) set breakpoint pending on
+(gdb) source /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/breakpoints_case_switch.source.txt
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 1 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2902,"line 2902: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 2 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1043,"line 1043: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 3 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1781,"line 1781: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 4 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2096,"line 2096: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 5 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2519,"line 2519: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 6 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2414,"line 3414: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 7 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3655,"line 3655: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 8 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3924,"line 3924: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 9 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4377,"line 4377: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 10 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4694,"line 4694: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 11 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5343,"line 5343: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 12 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5562,"line 5562: = val %x\n",from.value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 13 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5648,"line 5648: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 14 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5705,"line 5705: = val %x\n",value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 15 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5749,"line 5749: = val %x\n",value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 16 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5789,"line 5789: = val %x\n",from.value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 17 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5898,"line 5898: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 18 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6109,"line 6109: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 19 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6347,"line 6347: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 20 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6559,"line 6559: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 21 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6797,"line 6797: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+--Type <RET> for more, q to quit, c to continue without paging--c
+Dprintf 22 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6808,"line 6808: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 23 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7009,"line 7009: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 24 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7265,"line 7265: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 25 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5566,"line 7566: = val %x\n",from.value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 26 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7630,"line 7630: = val %x\n",value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 27 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7696,"line 7696: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 28 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7784,"line 7784: = val %x\n",value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 29 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7815,"line 7815: = val %x\n",value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 30 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7863,"line 7863: = val %x\n",value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 31 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7933,"line 7933: = val %x\n",from.value_case()) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 32 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8079,"line 8079: tags= %x\n",tag>>3) pending.
+No source file named /opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc.
+Dprintf 33 (/opt/intel/openvino.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8355,"line 8355: tags= %x\n",tag>>3) pending.
+(gdb) show bre  pend
+Debugger's behavior regarding pending breakpoints is on.
+(gdb) c
+Continuing.
+[Detaching after fork from child process 16184]
+
+*********** ModelProto, GraphProto, NodeProto creation from .onnx file **************
+
+#2902 - ModelProto::_InternalParse()
+line 2902: tags= 1	ir-version: "6"
+line 2902: tags= 2	producer_name: "pytorch"
+line 2902: tags= 3	producer_version: "1.8"
+line 2902: tags= 7	ptr = ctx->ParseMessage(_internal_mutable_graph(), ptr);	#once
+
+#3924 - GraphProto::_InternalParse()
+line 3924: tags= 1	ptr = ctx->ParseMessage(_internal_add_node(), ptr);			#once
+						variable in class ModelProto - GraphProto* graph_;
+						GraphProto::_internal_add_node()
+
+#2096 - NodeProto::_InternalParse()
+line 2096: tags= 1	NodeProto:_internal_add_input()
+line 2096: tags= 2	NodeProto:_internal_add_output()
+line 2096: tags= 3	NodeProto:_internal_mutable_name()
+line 2096: tags= 4	NodeProto:_internal_mutable_op_type
+line 2096: tags= 1
+line 2096: tags= 2
+line 2096: tags= 3
+line 2096: tags= 4
+line 2096: tags= 1
+line 2096: tags= 2
+line 2096: tags= 3
+line 2096: tags= 4
+line 2096: tags= 5	NodeProto:_internal_add_attribute
+
+1043 - AttributeProto::_InternalParse
+line 1043: tags= 1	AttributeProto::_internal_mutable_name()
+line 1043: tags= 8	_internal_add_ints(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr))
+line 1043: tags= 14	_internal_mutable_tp()
+line 1043: tags= 1
+line 1043: tags= 3	_Internal::set_has_i(&has_bits);
+line 1043: tags= 14
+line 1043: tags= 1
+line 1043: tags= 8
+line 1043: tags= 14
+line 1043: tags= 1
+line 1043: tags= 8
+line 1043: tags= 14
+line 1043: tags= 1
+line 1043: tags= 8
+line 1043: tags= 14
+
+NodeProto
+line 2096: tags= 1
+line 2096: tags= 2
+line 2096: tags= 3
+line 2096: tags= 4
+line 2096: tags= 1
+line 2096: tags= 2
+line 2096: tags= 3
+line 2096: tags= 4
+--Type <RET> for more, q to quit, c to continue without paging--c
+line 2096: tags= 5
+
+...
+1043: tags= 1
+...
+2096: tags= 1
+1043: tags= 1
+...
+
+4694 - TensorProto::_InternalParse
+line 4694: tags= 1	TensorProto::_internal_add_dims
+line 4694: tags= 2	TensorProto::data_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+line 4694: tags= 9	TensorProto::_internal_mutable_raw_data()
+
+1043 - AttributeProto::_InternalParse
+line 1043: tags= 14 (casr 20:)
+	val = ReadVarint64(&ptr)
+	
+
+...
+line 2096: tags= 1
+...
+line 1043: tags= 1
+line 1043: tags= 8
+line 1043: tags= 14
+...
+
+2096...1043...4694
+
+#3924 - GraphProto::_InternalParse()
+line 3924: tags= 2	GraphProto::_internal_mutable_name()		#once
+line 3924: tags= 5	GraphProto::_internal_add_initializer()		#twice
+
+#4694 - TensorProto:
+line 4694: tags= 1	TensorProto::_internal_add_dims
+line 4694: tags= 2	TensorProto::data_type_ = ...
+line 4694: tags= 8	_internal_mutable_name()
+line 4694: tags= 9	TensorProto::_internal_mutable_raw_data()
+...
+
+#3924 - GraphProto::_InternalParse()
+line 3924: tags= 5	GraphProto::_internal_add_initializer()		#twice
+
+#4694 - TensorProto:
+line 4694: tags= 2
+line 4694: tags= 8
+line 4694: tags= 9
+...
+
+line 4694: tags= 1
+line 4694: tags= 2
+line 4694: tags= 8
+line 4694: tags= 9
+
+#3924 - GraphProto::_InternalParse()
+line 3924: tags= b	_internal_add_input()						#once
+
+#1781 - ValueInfoProto::_InternalParse
+line 1781: tags= 1	ValueInfoProto::_internal_mutable_name()
+line 1781: tags= 2	_internal_mutable_type()
+
+#7696 - TypeProto::_InternalParse
+line 7696: tags= 1	TypeProto::_internal_mutable_tensor_type()
+
+#7630 - TypeProto::clear_value()
+line 7630: = val 0	VALUE_NOT_SET
+
+#6109 - TypeProto_Tensor::_InternalParse
+line 6109: tags= 1	_Internal::set_has_elem_type(&has_bits);
+					elem_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+line 6109: tags= 2	_internal_mutable_shape()
+
+#5898 - TensorShapeProto::_InternalParse
+line 5898: tags= 1	_internal_add_dim()
+
+#5648 - TensorShapeProto_Dimension::_InternalParse
+line 5648: tags= 1	_internal_set_dim_value()
+line 5648: tags= 1	_internal_set_dim_value()
+line 5648: tags= 2	_internal_mutable_dim_param()
+line 5648: tags= 2	_internal_mutable_dim_param()
+
+#3924 - GraphProto::_InternalParse()
+line 3924: tags= c	_internal_add_output()						#once
+
+#1781 - ValueInfoProto::_InternalParse
+line 1781: tags= 1	ValueInfoProto::_internal_mutable_name()
+line 1781: tags= 2	_internal_mutable_type()
+
+#7696 - TypeProto::_InternalParse
+line 7696: tags= 1	TypeProto::_internal_mutable_tensor_type()
+
+#7630 - TypeProto::clear_value()
+line 7630: = val 0	VALUE_NOT_SET
+
+#6109 - TypeProto_Tensor::_InternalParse
+line 6109: tags= 1	_Internal::set_has_elem_type(&has_bits);
+					elem_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+line 6109: tags= 2	_internal_mutable_shape()
+
+#5898 - TensorShapeProto::_InternalParse
+line 5898: tags= 1	_internal_add_dim()
+
+#5648 - TensorShapeProto_Dimension::_InternalParse
+line 5648: tags= 2	_internal_mutable_dim_param()
+line 5648: tags= 1	_internal_mutable_dim_param()
+
+#1781 - ValueInfoProto::_InternalParse
+line 1781: tags= 1	ValueInfoProto::_internal_mutable_name()
+line 1781: tags= 2	_internal_mutable_type()
+
+#7696 - TypeProto::_InternalParse
+line 7696: tags= 1	TypeProto::_internal_mutable_tensor_type()
+
+#7630 - TypeProto::clear_value()
+line 7630: = val 0	VALUE_NOT_SET
+
+#6109 - TypeProto_Tensor::_InternalParse
+line 6109: tags= 1	_Internal::set_has_elem_type(&has_bits);
+					elem_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+line 6109: tags= 2	_internal_mutable_shape()
+
+#5898 - TensorShapeProto::_InternalParse
+line 5898: tags= 1	_internal_add_dim()
+
+#5648 - TensorShapeProto_Dimension::_InternalParse
+line 5648: tags= 2	_internal_mutable_dim_param()
+
+#1781 - ValueInfoProto::_InternalParse
+line 1781: tags= 1	ValueInfoProto::_internal_mutable_name()
+line 1781: tags= 2	_internal_mutable_type()
+
+#7696 - TypeProto::_InternalParse
+line 7696: tags= 1	TypeProto::_internal_mutable_tensor_type()
+
+#7630 - TypeProto::clear_value()
+line 7630: = val 0	VALUE_NOT_SET
+
+#6109 - TypeProto_Tensor::_InternalParse
+line 6109: tags= 1	_Internal::set_has_elem_type(&has_bits);
+					elem_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+line 6109: tags= 2	_internal_mutable_shape()
+
+#5898 TensorShapeProto::_InternalParse
+line 5898: tags= 1	_internal_add_dim()
+
+#5648 - TensorShapeProto_Dimension::_InternalParse
+line 5648: tags= 1	_internal_set_dim_value()
+line 5648: tags= 1
+line 5648: tags= 1
+line 5648: tags= 1
+
+#1781 - ValueInfoProto::_InternalParse
+line 1781: tags= 1	ValueInfoProto::_internal_mutable_name()
+line 1781: tags= 2	_internal_mutable_type()
+
+#7696 - TypeProto::_InternalParse
+line 7696: tags= 1	TypeProto::_internal_mutable_tensor_type()
+
+#7630 - TypeProto::clear_value()
+line 7630: = val 0	VALUE_NOT_SET
+
+#6109 - TypeProto_Tensor::_InternalParse
+line 6109: tags= 1	_Internal::set_has_elem_type(&has_bits);
+					elem_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+line 6109: tags= 2	_internal_mutable_shape()
+
+#5898 - TensorShapeProto::_InternalParse
+line 5898: tags= 1	_internal_add_dim()
+
+#5648 - TensorShapeProto_Dimension::_InternalParse
+line 5648: tags= 1	_internal_set_dim_value()
+line 5648: tags= 2	_internal_mutable_dim_param()
+line 5648: tags= 2
+
+#2902 - ModelProto::_InternalParse()
+line 2902: tags= 8	_internal_add_opset_import()
+
+#8079 - OperatorSetIdProto::_InternalParse
+line 8079: tags= 1	_internal_mutable_domain()
+line 8079: tags= 2	_Internal::set_has_version(&has_bits)
+					version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+
+TensorShapeProto_Dimension::MergeFrom
+line 5789: = val 1	kDimValue
+line 5789: = val 1
+line 5789: = val 2	kDimParam
+line 5789: = val 2
+
+TypeProto::clear_value()
+line 7630: = val 1	kTensorType
+line 7630: = val 1
+line 7630: = val 1
+line 7630: = val 1
+line 7630: = val 1
+
+************* sequence of objects *************
+ModelProto (2902)
+	Header
+GraphProto
+	add_node
+NodeProto
+	add_input
+	add_output
+	mutable_name
+	mutable_op_type
+	add_attribute
+AttributeProto
+	mutable_name
+	add_ints i.e. integers
+	mutable_tp
+	set_has_i
+TensorProto
+	add_dims
+	ReadVarInt64
+	mutable_raw_data
+GraphProto 				#was earlier with other subobjects
+	mutable_name
+	add_initializer
+TensorProto				#was earlier with other subobjects
+	add_dims
+	data_type
+	mutable_name
+	mutable_raw_data
+ValueInfoProto
+	internal_mutable_name
+	internal_mutable_type
+TypeProto
+	internal_mutable_tensor_type
+	clear_value
+TypeProto_Tensor
+	set_has_elem_type
+	internal_mutable_shape
+TensorShapeProto
+	internal_add_dim
+TensorShapeProto_Dimension
+	_internal_set_dim_value
+	_internal_mutable_dim_param
+GraphProto
+	_internal_add_output
+TypeProto
+	clear_value
+NEXT work: #223: TypeProto_Tensor 
+************* explanation of cases: *************
+
+2902: 7	_internal_mutable_graph()
+	_internal_mutable_graph() {						#onnx_ngraph_onnx-ml.pb.h:7655, once
+...
+	GraphProto::GraphProto(::PROTOBUF_NAMESPACE_ID::Arena* arena,		#onnx_ngraph_onnx-ml.pb.cc:3824
+...
+	graph_ = p;										#onnx_ngraph_onnx-ml.pb.h:7659
+	(gdb) p graph_
+	$2 = (ngraph_onnx::GraphProto *) 0x5555555b0b90
+	(gdb) p *graph_
+	$3 = {<google::protobuf::MessageLite> = {
+    	_vptr.MessageLite = 0x7ffff47a1b08 <vtable for ngraph_onnx::GraphProto+16>, 
+	    _internal_metadata_ = {ptr_ = 0, static kUnknownFieldsTagMask = 1, 
+    	  static kMessageOwnedArenaTagMask = 2, static kPtrTagMask = 3, static kPtrValueMask = -4}}, 
+  static kIndexInFileMessages = 7, _has_bits_ = {has_bits_ = {0}}, _cached_size_ = {
+    size_ = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = 0}, <No data fields>}}, 
+  node_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  initializer_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  input_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  output_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  value_info_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  quantization_annotation_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {
+      static kInitialSize = 0, arena_ = 0x0, current_size_ = 0, total_size_ = 0, 
+      static kRepHeaderSize = 8, rep_ = 0x0}, <No data fields>}, 
+  sparse_initializer_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {
+      static kInitialSize = 0, arena_ = 0x0, current_size_ = 0, total_size_ = 0, 
+      static kRepHeaderSize = 8, rep_ = 0x0}, <No data fields>}, name_ = {tagged_ptr_ = {
+      ptr_ = 0x7ffff47c5440 <google::protobuf::internal::fixed_address_empty_string[abi:cxx11]>}}, doc_string_ = {tagged_ptr_ = {
+      ptr_ = 0x7ffff47c5440 <google::protobuf::internal::fixed_address_empty_string[abi:cxx11]>}}}
+	(gdb) 
+
+3931
+	build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc	#_internal_add_node()
+
+	(gdb) p this->node_.rep_
+	$3 = (google::protobuf::internal::RepeatedPtrFieldBase::Rep *) 0x5555555b0d00
+	(gdb) p (NodeProto)(this->node_.rep_)
+	$4 = {<google::protobuf::MessageLite> = {_vptr.MessageLite = 0x5555555b0d00, 
+    _internal_metadata_ = {ptr_ = 0, static kUnknownFieldsTagMask = 1, 
+      static kMessageOwnedArenaTagMask = 2, static kPtrTagMask = 3, static kPtrValueMask = -4}}, 
+  static kIndexInFileMessages = 2, _has_bits_ = {has_bits_ = {0}}, _cached_size_ = {
+    size_ = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = 0}, <No data fields>}}, 
+  input_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  output_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  attribute_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, name_ = {tagged_ptr_ = {ptr_ = 0x0}}, op_type_ = {
+    tagged_ptr_ = {ptr_ = 0x0}}, doc_string_ = {tagged_ptr_ = {ptr_ = 0x0}}, domain_ = {
+    tagged_ptr_ = {ptr_ = 0x0}}}
+	(gdb) 
+...
+	(gdb) p (NodeProto)(this->node_.rep_)
+  $4 = {<google::protobuf::MessageLite> = {_vptr.MessageLite = 0x5555555b0d00, 
+    _internal_metadata_ = {ptr_ = 0, static kUnknownFieldsTagMask = 1, 
+      static kMessageOwnedArenaTagMask = 2, static kPtrTagMask = 3, static kPtrValueMask = -4}}, 
+  static kIndexInFileMessages = 2, _has_bits_ = {has_bits_ = {0}}, _cached_size_ = {
+    size_ = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = 0}, <No data fields>}}, 
+  input_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  output_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, 
+  attribute_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+      rep_ = 0x0}, <No data fields>}, name_ = {tagged_ptr_ = {ptr_ = 0x0}}, op_type_ = {
+    tagged_ptr_ = {ptr_ = 0x0}}, doc_string_ = {tagged_ptr_ = {ptr_ = 0x0}}, domain_ = {
+    tagged_ptr_ = {ptr_ = 0x0}}}
+	(gdb) 
+
+********************************************************
+Breakpoint 1, ngraph_onnx::TensorProto::_InternalParse (this=0x5555558fe5e0, 
+    ptr=0x555555a1e2e8 "\b\001", ctx=0x7fffffffce40)
+    at /opt/intel/openvino_for_build.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4787
+4787	          auto str = _internal_mutable_raw_data();
+(gdb) s
+ngraph_onnx::TensorProto::_internal_mutable_raw_data[abi:cxx11]() (this=0x555555a1e2e7)
+    at /opt/intel/openvino_for_build.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h:9026
+9026	inline std::string* TensorProto::_internal_mutable_raw_data() {
+(gdb) p raw_data_
+$1 = {tagged_ptr_ = {ptr_ = 0x3336030a310a0201}}
+(gdb) s
+9027	  _has_bits_[0] |= 0x00000002u;
+(gdb) n
+9028	  return raw_data_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+(gdb) s
+google::protobuf::MessageLite::GetArenaForAllocation (this=0x5555558fe5f0)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h:490
+490	  Arena* GetArenaForAllocation() const { return _internal_metadata_.arena(); }
+(gdb) s
+google::protobuf::internal::InternalMetadata::arena (this=
+    0x7ffff4515fa9 <google::protobuf::RepeatedField<long>::Add(long const&)+121>)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:90
+90	  PROTOBUF_NDEBUG_INLINE Arena* arena() const {
+(gdb)  
+91	    if (PROTOBUF_PREDICT_FALSE(have_unknown_fields())) {
+(gdb) s
+google::protobuf::internal::InternalMetadata::have_unknown_fields (this=0x7fffffffce40)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:98
+98	  PROTOBUF_NDEBUG_INLINE bool have_unknown_fields() const {
+(gdb) s
+99	    return HasUnknownFieldsTag();
+(gdb) s
+google::protobuf::internal::InternalMetadata::HasUnknownFieldsTag (this=0x5555558fe5e8)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:168
+168	    return ptr_ & kUnknownFieldsTagMask;
+(gdb) s
+google::protobuf::internal::InternalMetadata::have_unknown_fields (this=0x5555558fe5e8)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:100
+100	  }
+(gdb) s
+google::protobuf::internal::InternalMetadata::arena (this=0x5555558fe5e8)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:94
+94	      return PtrValue<Arena>();
+(gdb) s
+google::protobuf::internal::InternalMetadata::PtrValue<google::protobuf::Arena> (
+    this=0x5555558fe5e8)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:175
+175	  U* PtrValue() const {
+(gdb) s
+176	    return reinterpret_cast<U*>(ptr_ & kPtrValueMask);
+(gdb) s
+177	  }
+(gdb) s
+google::protobuf::internal::InternalMetadata::arena (this=0x5555558fe5e8)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/metadata_lite.h:94
+94	      return PtrValue<Arena>();
+(gdb) s
+96	  }
+(gdb) s
+google::protobuf::MessageLite::GetArenaForAllocation (this=0x5555558fe5e0)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h:490
+490	  Arena* GetArenaForAllocation() const { return _internal_metadata_.arena(); }
+(gdb) s
+google::protobuf::internal::ArenaStringPtr::Mutable[abi:cxx11](google::protobuf::internal::ArenaStringPtr::EmptyDefault, google::protobuf::Arena*) (this=0x5555558fe5e0, arena=0xffffca60)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/arenastring.cc:120
+120	std::string* ArenaStringPtr::Mutable(EmptyDefault, ::google::protobuf::Arena* arena) {
+(gdb) s
+121	  if (!IsDonatedString() && !IsDefault(&GetEmptyStringAlreadyInited())) {
+(gdb) s
+google::protobuf::internal::ArenaStringPtr::IsDonatedString (this=0x5555558fe5e8)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/arenastring.h:325
+325	  bool IsDonatedString() const { return false; }
+(gdb) s
+google::protobuf::internal::ArenaStringPtr::Mutable[abi:cxx11](google::protobuf::internal::ArenaStringPtr::EmptyDefault, google::protobuf::Arena*) (this=0x5555558fe6a8, arena=0x0)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/arenastring.cc:121
+121	  if (!IsDonatedString() && !IsDefault(&GetEmptyStringAlreadyInited())) {
+(gdb) s
+google::protobuf::internal::GetEmptyStringAlreadyInited[abi:cxx11]() ()
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h:172
+172	PROTOBUF_EXPORT constexpr const std::string& GetEmptyStringAlreadyInited() {
+(gdb) n
+173	  return fixed_address_empty_string.get();
+(gdb) n
+174	}
+(gdb) n
+google::protobuf::internal::ArenaStringPtr::Mutable[abi:cxx11](google::protobuf::internal::ArenaStringPtr::EmptyDefault, google::protobuf::Arena*) (this=0x5555558fe6a8, arena=0x0)
+    at /opt/intel/openvino_for_build.git/thirdparty/protobuf/protobuf/src/google/protobuf/arenastring.cc:124
+124	    return MutableSlow(arena);
+(gdb) n
+126	}
+(gdb) n
+ngraph_onnx::TensorProto::_internal_mutable_raw_data[abi:cxx11]() (this=0x5555558fe5e0)
+    at /opt/intel/openvino_for_build.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h:9029
+9029	}
+(gdb) n
+ngraph_onnx::TensorProto::_InternalParse (this=0x5555558fe5e0, ptr=0x555555a1e2e8 "\b\001", 
+    ctx=0x7fffffffce40)
+    at /opt/intel/openvino_for_build.git/build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4788
+4788	          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+(gdb) 
+

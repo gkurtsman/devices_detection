@@ -1,0 +1,60 @@
+Breakpoint 1, ngraph::onnx_import::GraphCache::emplace_node (this=0x5555555aed00, 
+    name="bbox_head.reg_convs.0.3.weight", node=...)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph_cache.cpp:11
+11	    m_graph_cache_map[name] = std::move(node);
+(gdb) bt
+#0  ngraph::onnx_import::GraphCache::emplace_node (this=0x5555555aed00, 
+    name="bbox_head.reg_convs.0.3.weight", node=...)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph_cache.cpp:11
+#1  0x00007ffff411a042 in ngraph::onnx_import::Graph::Graph (this=0x7fffffffcf20, model_proto=
+    std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, cache=..., 
+    extensions=...)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph.cpp:163
+#2  0x00007ffff41198f8 in ngraph::onnx_import::Graph::Graph (this=0x7fffffffcf20, 
+    model_proto=std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, 
+    extensions=...)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph.cpp:132
+#3  0x00007ffff4378eef in ngraph::onnx_import::detail::import_onnx_model (
+    model_proto=std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:93
+#4  0x00007ffff41afa93 in ov::onnx_editor::ONNXModelEditor::get_function (this=0x5555555acaa0)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/editor.cpp:447
+#5  0x00007ffff41c158a in ov::frontend::onnx::InputModel::convert (this=0x5555555ac9e0)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/input_model.cpp:201
+#6  0x00007ffff41b59de in ov::frontend::onnx::FrontEnd::convert (this=0x5555555ac8e0, model=
+    std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/frontend.cpp:90
+#7  0x00007ffff2f7b285 in ov::frontend::FrontEnd::convert (this=0x55555559c120, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 1, weak count 0) = {...})
+    at /opt/intel/openvino_for_build.git/src/frontends/common/src/frontend.cpp:53
+#8  0x00007ffff4395829 in IM_load () at utils.cpp:82
+#9  0x0000555555563525 in main (argc=5, argv=0x7fffffffd8b8) at convert_xml_onnx.cpp:114
+
+
+
+Breakpoint 2, ngraph::onnx_import::Graph::convert_to_ngraph_nodes (this=0x7fffffffcf60)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph.cpp:227
+227	        OutputVector ng_nodes{make_ng_nodes(node)};
+(gdb) bt
+#0  ngraph::onnx_import::Graph::convert_to_ngraph_nodes (this=0x7fffffffcf60)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph.cpp:227
+#1  0x00007ffff411b1a7 in ngraph::onnx_import::Graph::convert (this=0x7fffffffcf60)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/core/graph.cpp:262
+#2  0x00007ffff4378f17 in ngraph::onnx_import::detail::import_onnx_model (model_proto=
+    std::shared_ptr<ngraph_onnx::ModelProto> (use count 3, weak count 0) = {...}, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:94
+#3  0x00007ffff41afa93 in ov::onnx_editor::ONNXModelEditor::get_function (this=0x5555555acaa0)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/editor.cpp:447
+#4  0x00007ffff41c158a in ov::frontend::onnx::InputModel::convert (this=0x5555555ac9e0)
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/input_model.cpp:201
+#5  0x00007ffff41b59de in ov::frontend::onnx::FrontEnd::convert (this=0x5555555ac8e0, model=
+    std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino_for_build.git/src/frontends/onnx/frontend/src/frontend.cpp:90
+#6  0x00007ffff2f7b285 in ov::frontend::FrontEnd::convert (this=0x55555559c120, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 1, weak count 0) = {...})
+    at /opt/intel/openvino_for_build.git/src/frontends/common/src/frontend.cpp:53
+#7  0x00007ffff4395829 in IM_load () at utils.cpp:82
+#8  0x0000555555563525 in main (argc=5, argv=0x7fffffffd8f8) at convert_xml_onnx.cpp:114
+

@@ -1,0 +1,124 @@
+bp 10(2901), const char* ModelProto::_InternalParse()
+tags/ptr:
+8(1) ir_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+ptr=0x203e750 \b\006
+12(2) auto str = _internal_mutable_producer_name();
+ptr=0x203e752 \apytorch
+1a(3) auto str = _internal_mutable_producer_version();
+ptr=0x203e75b  \032\003\061.8
+3a(7) ptr = ctx->ParseMessage(_internal_mutable_graph(), ptr);
+ptr=0x203e760  :ɉ\276\003\n
+
+	bp16(3923)const char* GraphProto::_InternalParse()
+	tags/ptr
+	0a(1)  ptr = ctx->ParseMessage(_internal_add_node(), ptr);
+	ptr=0x203e765  \n\034
+
+NOTE: details in file $OTE_XMLBIN/../aux/pth_parsed_tree_tags_dig.txt
+********** NodeProto sequence ****************
+
+NOTE: 'ParseContext ctx'. class ParseContext is defined in
+    thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.h and
+	thirdparty/protobuf/protobuf/src/google/protobuf/parse_context.cc files.
+
+		bp6(2095), const char* NodeProto::_InternalPars()
+		tags/ptr
+		0a(1) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+			str = _internal_add_input();
+			file: build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.h
+			#6624
+			inline std::string* NodeProto::_internal_add_input() {
+				return input_.Add();
+
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+				#2245
+				inline Element* RepeatedPtrField<Element>::Add() {
+					return RepeatedPtrFieldBase::Add<TypeHandler>();
+
+				file: thirdparty/protobuf/protobuf/src/google/protobuf/repeated_field.h
+				#1795
+					inline typename TypeHandler::Type* RepeatedPtrFieldBase::Add(
+
+		ptr=0x203e767 \n\005image
+		12(2) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser()
+				 auto str = _internal_add_output();
+		ptr=0x203e76e \022\003\063\064\071\032
+		1a(3) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser()
+				auto str = _internal_mutable_name();
+		ptr=0x203e773, "\032\aShape_0
+		22(4) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser()
+			auto str = _internal_mutable_op_type();
+		ptr=0x203e77c \"\005Shape
+		note: add_node() is declared in
+			build/src/frontends/tensorflow/cost_graph.pb.h:1854 file:line
+
+
+		0a(1) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser()
+			str = _internal_add_input();
+		ptr=0x203e785\n\003\063\064\071\n\003\063\065\061\n\003\063\065\062\n\003\063\065\060\n\003\063\065\063
+		12(2) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+			auto str = _internal_add_output();
+		ptr=0x203e79e \022\003\063\065\064\032
+		1a(3) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+			str = _internal_mutable_name();
+		ptr=0x203e7a3 "\032\aSlice_5\"
+		22(4) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+			auto str = _internal_mutable_op_type();
+		ptr=0x203e7ac "\"\005Slice\205\001
+			...
+		2a(5) ptr = ctx->ParseMessage(_internal_add_attribute(), ptr);
+		ptr=0x203e7dd  *\022
+
+			bp2(1042) const char* AttributeProto::_InternalParse
+			tags/ptr
+			0a(1) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser
+				auto str = _internal_mutable_name();
+			ptr=0x203e7df  \ntdilations
+			40(8) _internal_add_ints(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));	
+			ptr=0x203e7ea  @\001@\001
+			a0(14) ptr = ctx->ParseMessage(_internal_mutable_tp(), ptr);
+			ptr=0x203e7ee  \240\001\a*\f
+			0a(1) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser();
+				auto str = _internal_mutable_name()
+			ptr=0x203e7f3  \005group
+etc. nodes alternate with attributes
+
+		bp20 ngraph_onnx::TensorProto::_InternalParse()
+		tags/ptr
+		08(1) _internal_add_dims(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
+		ptr=0x203f2d3  \b\001
+		10(2)
+		ptr=0x203f2d5  \020\a  
+		4a(9) ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+			str = _internal_mutable_raw_data();
+		ptr=0x203f2d7  \b\001  
+
+			bp2 ngraph_onnx::AttributeProto::_InternalParse()
+			a0(14) ptr = ctx->ParseMessage(_internal_mutable_tp(), ptr);
+			ptr=0x203f2e1  \240\001\004\n#
+************** end of NodeProto seq ******************
+
+		bp6 ngraph_onnx::NodeProto::_InternalParse()
+			0а(1) PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser()
+				str = _internal_add_input()
+			ptr=0x203f2e6 \n\003\066\060\071\n\003\066\062\066
+
+			... (look previous bp6,bp2,bp20 series
+
+
+breakpoints ## 2..42
+
+STOP at line 15479 of gdb_breakpoints.log.txt
+
+bps appearances
+2-189, a lot of, AttributeProto
+4-57449, a lot of, ValueInfoProto
+6-59,  a lot of, NodeProto
+10-4,18,29,39,57899, ModelProto
+16-49,43689,43699,55739,55779,57439, GraphProto
+20-15449, a lot of, TensorProto
+24-57509,57519,57529,57539,57619,57629,57699,57769,..., 57889  TensorShapeProto_Dimension
+26-57499,...,57859  TensorShapeProto
+28-57479,...,57849  TypeProto_Tensor
+40-57469,...,57829  TypeProto
+42-57909,57919  OperatorSetIdProto

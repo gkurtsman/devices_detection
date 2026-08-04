@@ -1,0 +1,444 @@
+1. ov_model->get_ops()
+
+Breakpoint 1, main (argc=5, argv=0x7fffffffd8c8) at convert_xml_onnx.cpp:110
+110		std::vector<std::shared_ptr<ov::Node>> node_orig = ov_model->get_ops();
+(gdb) s
+
+std::__shared_ptr_access<ov::Model, (__gnu_cxx::_Lock_policy)2, false, false>::operator-> (
+    this=0x55555559fe60 <_start>) at /usr/include/c++/9/bits/shared_ptr_base.h:1012
+1012	      operator->() const noexcept
+(gdb) fin
+Run till exit from #0  std::__shared_ptr_access<ov::Model, (__gnu_cxx::_Lock_policy)2, false, false>::operator-> (this=0x55555559fe60 <_start>) at /usr/include/c++/9/bits/shared_ptr_base.h:1012
+0x00005555555a0e3c in main (argc=5, argv=0x7fffffffd8c8) at convert_xml_onnx.cpp:110
+110		std::vector<std::shared_ptr<ov::Node>> node_orig = ov_model->get_ops();
+Value returned is $1 = 
+    (std::__shared_ptr_access<ov::Model, (__gnu_cxx::_Lock_policy)2, false, false>::element_type *) 0x5555558d2cb0
+(gdb) s
+ov::Model::get_ops (this=0x555555610100)
+    at /opt/intel/openvino_for_build.git/src/core/src/model.cpp:383
+383	std::vector<shared_ptr<ov::Node>> ov::Model::get_ops() const {
+
+(gdb) n
+384	    std::vector<std::shared_ptr<Node>> ops;
+(gdb) n
+385	    ngraph::traverse_nodes(this, [&](shared_ptr<Node> node) {
+(gdb) p this
+$2 = (const ov::Model * const) 0x5555558d2cb0
+(gdb) s
+
+std::function<void(const std::shared_ptr<ov::Node>&)>::function<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >(ov::Model::<lambda(std::shared_ptr<ov::Node>)>) (
+    this=0x7ffff27db618 <std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::vector()+28>, __f=...) at /usr/include/c++/9/bits/std_function.h:667
+667	      function<_Res(_ArgTypes...)>::
+(gdb) fin
+Run till exit from #0  std::function<void(const std::shared_ptr<ov::Node>&)>::function<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >(ov::Model::<lambda(std::shared_ptr<ov::Node>)>) (
+    this=0x7ffff27db618 <std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::vector()+28>, __f=...) at /usr/include/c++/9/bits/std_function.h:667
+0x00007ffff282d38f in ov::Model::get_ops (this=0x5555558d2cb0)
+    at /opt/intel/openvino_for_build.git/src/core/src/model.cpp:385
+385	    ngraph::traverse_nodes(this, [&](shared_ptr<Node> node) {
+(gdb) s
+
+traverse_nodes(ov::Model const*, std::function<void (std::shared_ptr<ov::Node> const&)> const&) (p=0x8, f=...) at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:40
+40	void ov::traverse_nodes(const Model* p, const std::function<void(const std::shared_ptr<Node>&)>& f) {
+(gdb) s
+41	    NodeVector nodes;
+(gdb) s
+std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::vector (
+    this=0x555500000000) at /usr/include/c++/9/bits/stl_vector.h:484
+484	      vector() = default;
+(gdb) fin
+Run till exit from #0  std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::vector (this=0x555500000000) at /usr/include/c++/9/bits/stl_vector.h:484
+ov::traverse_nodes(ov::Model const*, std::function<void (std::shared_ptr<ov::Node> const&)> const&) (p=0x5555558d2cb0, f=...) at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:43
+43	    for (const auto& r : p->get_results()) {
+(gdb) s
+ov::Model::get_results (this=0x7fffffffd480)
+    at /opt/intel/openvino_for_build.git/src/core/include/openvino/core/model.hpp:209
+209	    const ov::ResultVector& get_results() const {
+(gdb) s
+210	        return m_results;
+(gdb) s
+211	    };
+(gdb) s
+std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > >::begin (this=0x7fffffffd480) at /usr/include/c++/9/bits/stl_vector.h:817
+817	      begin() const _GLIBCXX_NOEXCEPT
+(gdb) s
+818	      { return const_iterator(this->_M_impl._M_start); }
+(gdb) s
+__gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::__normal_iterator
+    (this=0x7fffffffd480, __i=<error reading variable>)
+    at /usr/include/c++/9/bits/stl_iterator.h:803
+803	      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+(gdb) s
+804	      : _M_current(__i) { }
+(gdb) s
+std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > >::end (this=0x5555558d2d40) at /usr/include/c++/9/bits/stl_vector.h:835
+835	      end() const _GLIBCXX_NOEXCEPT
+(gdb) s
+836	      { return const_iterator(this->_M_impl._M_finish); }
+(gdb) s
+__gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::__normal_iterator
+    (this=0x7fffffffd410, __i=@0x7fffffffd408: 0x555555a188b0)
+    at /usr/include/c++/9/bits/stl_iterator.h:803
+803	      __normal_iterator(const _Iterator& __i) _GLIBCXX_NOEXCEPT
+(gdb) fin
+Run till exit from #0  __gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::__normal_iterator (this=0x7fffffffd410, __i=@0x7fffffffd408: 0x555555a188b0)
+    at /usr/include/c++/9/bits/stl_iterator.h:803
+0x00007ffff27e4064 in std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > >::end (this=0x5555558d2d40) at /usr/include/c++/9/bits/stl_vector.h:836
+836	      { return const_iterator(this->_M_impl._M_finish); }
+(gdb) s
+__gnu_cxx::operator!=<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > > (
+    __lhs=non-dereferenceable iterator for std::vector, __rhs=
+  std::shared_ptr<ov::op::v0::Result> (use count -331106, weak count 1166755983) = {get() = 0x7fffffffd530}) at /usr/include/c++/9/bits/stl_iterator.h:904
+904	    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+(gdb) s
+907	    { return __lhs.base() != __rhs.base(); }
+(gdb) s
+__gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::base (
+    this=0x7ffff27e4064 <std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > >::end() const+62>) at /usr/include/c++/9/bits/stl_iterator.h:868
+868	      base() const _GLIBCXX_NOEXCEPT
+(gdb) fin
+Run till exit from #0  __gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::base (
+    this=0x7ffff27e4064 <std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > >::end() const+62>) at /usr/include/c++/9/bits/stl_iterator.h:868
+0x00007ffff27e409f in __gnu_cxx::operator!=<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > > (
+    __lhs=
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a15870}, 
+    __rhs=<error reading variable: Cannot access memory at address 0x29>)
+    at /usr/include/c++/9/bits/stl_iterator.h:907
+907	    { return __lhs.base() != __rhs.base(); }
+Value returned is $3 = 
+    (const std::shared_ptr<ov::op::v0::Result> * const&) @0x7fffffffd448: 0x555555a188a0
+(gdb) s
+__gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::base (
+    this=0x7fffffffd448) at /usr/include/c++/9/bits/stl_iterator.h:868
+868	      base() const _GLIBCXX_NOEXCEPT
+(gdb) fin
+Run till exit from #0  __gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::base (this=0x7fffffffd448) at /usr/include/c++/9/bits/stl_iterator.h:868
+0x00007ffff27e40ae in __gnu_cxx::operator!=<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > > (
+    __lhs=
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a15870}, 
+    __rhs=<error reading variable: Cannot access memory at address 0x29>)
+    at /usr/include/c++/9/bits/stl_iterator.h:907
+907	    { return __lhs.base() != __rhs.base(); }
+Value returned is $4 = (const std::shared_ptr<ov::op::v0::Result> * const&) @0x7fffffffd450: 0x555555a188b0
+(gdb) fin
+Run till exit from #0  0x00007ffff27e40ae in __gnu_cxx::operator!=<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > > (__lhs=
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a15870}, 
+    __rhs=<error reading variable: Cannot access memory at address 0x29>)
+    at /usr/include/c++/9/bits/stl_iterator.h:907
+0x00007ffff27dbd24 in ov::traverse_nodes(ov::Model const*, std::function<void (std::shared_ptr<ov::Node> const&)> const&) (p=0x5555558d2cb0, f=...)
+    at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:43
+43	    for (const auto& r : p->get_results()) {
+Value returned is $5 = true
+(gdb) s
+__gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::operator* (
+    this=0x5555555ec2c0 <__libc_csu_init>) at /usr/include/c++/9/bits/stl_iterator.h:816
+816	      operator*() const _GLIBCXX_NOEXCEPT
+(gdb) fin
+Run till exit from #0  __gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Result> const*, std::vector<std::shared_ptr<ov::op::v0::Result>, std::allocator<std::shared_ptr<ov::op::v0::Result> > > >::operator* (this=0x5555555ec2c0 <__libc_csu_init>)
+    at /usr/include/c++/9/bits/stl_iterator.h:816
+0x00007ffff27dbd37 in ov::traverse_nodes(ov::Model const*, std::function<void (std::shared_ptr<ov::Node> const&)> const&) (p=0x5555558d2cb0, f=...)
+    at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:43
+43	    for (const auto& r : p->get_results()) {
+Value returned is $6 = 
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a15870}
+(gdb) s
+44	        nodes.push_back(r);
+(gdb) p r
+$7 = std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a15870}
+
+54	    traverse_nodes(nodes, f);
+
+(gdb) s
+std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::vector (
+    this=0x0) at /usr/include/c++/9/bits/stl_vector.h:484
+484	      vector() = default;
+(gdb) s
+std::_Vector_base<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::_Vector_base (this=
+    0x7ffff4262f32 <__gnu_cxx::operator!=<std::shared_ptr<ov::op::v0::Parameter> const*, std::vector<std::shared_ptr<ov::op::v0::Parameter>, std::allocator<std::shared_ptr<ov::op::v0::Parameter> > > >(__gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Parameter> const*, std::vector<std::shared_ptr<ov::op::v0::Parameter>, std::allocator<std::shared_ptr<ov::op::v0::Parameter> > > > const&, __gnu_cxx::__normal_iterator<std::shared_ptr<ov::op::v0::Parameter> const*, std::vector<std::shared_ptr<ov::op::v0::Parameter>, std::allocator<std::shared_ptr<ov::op::v0::Parameter> > > > const&)+48>) at /usr/include/c++/9/bits/stl_vector.h:285
+285	      _Vector_base() = default;
+(gdb) s
+std::_Vector_base<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::_Vector_impl::_Vector_impl (this=0x7fffffffc0b8) at /usr/include/c++/9/bits/stl_vector.h:128
+128		_Vector_impl() _GLIBCXX_NOEXCEPT_IF(
+(gdb) s
+130		: _Tp_alloc_type()
+(gdb) s
+std::allocator<std::shared_ptr<ov::Node> >::allocator (this=0x1d358bc098d1f00)
+    at /usr/include/c++/9/bits/allocator.h:137
+137	      allocator() _GLIBCXX_NOTHROW { }
+(gdb) s
+__gnu_cxx::new_allocator<std::shared_ptr<ov::Node> >::new_allocator (this=0x55555599eb40)
+    at /usr/include/c++/9/ext/new_allocator.h:80
+80	      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+(gdb) s
+std::allocator<std::shared_ptr<ov::Node> >::allocator (this=0x7fffffffc0b0)
+    at /usr/include/c++/9/bits/allocator.h:137
+137	      allocator() _GLIBCXX_NOTHROW { }
+(gdb) s
+std::_Vector_base<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::_Vector_impl_data::_Vector_impl_data (this=0x7fffffffc0b0) at /usr/include/c++/9/bits/stl_vector.h:94
+94		_Vector_impl_data() _GLIBCXX_NOEXCEPT
+(gdb) s
+95		: _M_start(), _M_finish(), _M_end_of_storage()
+(gdb) s
+96		{ }
+(gdb) s
+std::_Vector_base<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >::_Vector_impl::_Vector_impl (this=0x7fffffffc0b0) at /usr/include/c++/9/bits/stl_vector.h:131
+131		{ }
+
+(gdb) s
+ov::traverse_nodes(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&, std::function<void (std::shared_ptr<ov::Node> const&)> const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&) (
+    subgraph_results=<error reading variable: Cannot access memory at address 0x9>, f=..., 
+    subgraph_params=std::vector of length -7327603617933331, capacity 98335057151269915 = {...})
+    at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:59
+59	                        const NodeVector& subgraph_params) {
+note: declaration in src/core/include/openvino/core/graph_util.hpp:
+		void traverse_nodes(const NodeVector& subgraph_results,
+                    const std::function<void(const std::shared_ptr<Node>&)>& f,
+                    const NodeVector& subgraph_params = {});
+
+(gdb) s
+60	    std::unordered_set<Node*> instances_seen;
+(gdb) p subgraph_params
+$1 = std::vector of length 0, capacity 0
+(gdb) p subgraph_results
+$2 = std::vector of length 2, capacity 2 = {
+    std::shared_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x555555a14870}, 
+    std::shared_ptr<ov::Node> (use count 3, weak count 2) = {get() = 0x55555564bd20}}
+(gdb) 
+ p subgraph_results[0]
+$3 = std::shared_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x555555a14870}
+(gdb) p subgraph_results[0]->get_name()
+$4 = "Result_932"
+(gdb) p subgraph_results[0]->get_friendly_name()
+$5 = "detection_out/sink_port_0"
+(gdb) p subgraph_results[1]->get_name()
+$6 = "Parameter_1"
+(gdb) p subgraph_results[1]->get_friendly_name()
+$7 = "image"
+(gdb) bt 1
+#0  ov::traverse_nodes(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&, std::function<void (std::shared_ptr<ov::Node> const&)> const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&) (
+    subgraph_results=std::vector of length 2, capacity 2 = {...}, f=..., 
+    subgraph_params=std::vector of length 0, capacity 0)
+    at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:60
+(More stack frames follow...)
+(gdb) tb 73
+Temporary breakpoint 3 at 0x7ffff27e92f7: file /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp, line 73.
+(gdb) c
+Continuing.
+
+Temporary breakpoint 3, ov::traverse_nodes(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&, std::function<void (std::shared_ptr<ov::Node> const&)> const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&) (
+    subgraph_results=std::vector of length 2, capacity 2 = {...}, f=..., 
+    subgraph_params=std::vector of length 0, capacity 0)
+    at /opt/intel/openvino_for_build.git/src/core/src/graph_util.cpp:73
+73	            f(n->shared_from_this());
+note:
+(gdb) p f
+$9 = (const std::function<void(const std::shared_ptr<ov::Node>&)> &) @0x7fffffffc100: {<std::_Maybe_unary_or_binary_function<void, std::shared_ptr<ov::Node> const&>> = {<std::unary_function<std::shared_ptr<ov::Node> const&, void>> = {<No data fields>}, <No data fields>}, <std::_Function_base> = {static _M_max_size = 16, static _M_max_align = 8, _M_functor = {_M_unused = {
+        _M_object = 0x7fffffffc1a0, _M_const_object = 0x7fffffffc1a0, 
+        _M_function_pointer = 0x7fffffffc1a0, 
+        _M_member_pointer = (void (std::_Undefined_class::*)(std::_Undefined_class * const)) 0x7fffffffc1a0, this adjustment 93824992556058}, 
+      _M_pod_data = "\240\301\377\377\377\177\000\000\032\064ZUUU\000"}, 
+    _M_manager = 0x7ffff284b871 <std::_Function_base::_Base_manager<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_manager(std::_Any_data &, const std::_Any_data &, std::_Manager_operation)>}, 
+  _M_invoker = 0x7ffff284b7c9 <std::_Function_handler<void(const std::shared_ptr<ov::Node>&), ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_invoke(const std::_Any_data &, const std::shared_ptr<ov::Node> &)>}
+(gdb) 
+
+(gdb) s
+std::enable_shared_from_this<ov::Node>::shared_from_this (this=0x7fffffffbf50)
+    at /usr/include/c++/9/bits/shared_ptr.h:650
+650	      shared_from_this()
+(gdb) s
+651	      { return shared_ptr<_Tp>(this->_M_weak_this); }
+(gdb) s
+std::shared_ptr<ov::Node>::shared_ptr<ov::Node, void> (this=0x1d358bc098d1f00, 
+    __r=<error reading variable: Cannot access memory at address 0x15>)
+    at /usr/include/c++/9/bits/shared_ptr.h:275
+275		explicit shared_ptr(const weak_ptr<_Yp>& __r)
+(gdb) s
+276		: __shared_ptr<_Tp>(__r) { }
+(gdb) s
+std::__shared_ptr<ov::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<ov::Node, void> (
+    this=0x7fffffffbfe0, __r=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1192
+1192		explicit __shared_ptr(const __weak_ptr<_Yp, _Lp>& __r)
+(gdb) s
+1193		: _M_refcount(__r._M_refcount) // may throw
+(gdb) s
+std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count (this=0x1d358bc098d1f00, __r=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:894
+894	    __shared_count<_Lp>::__shared_count(const __weak_count<_Lp>& __r)
+(gdb) s
+895	    : _M_pi(__r._M_pi)
+(gdb) s
+897	      if (_M_pi != nullptr)
+(gdb) s
+898		_M_pi->_M_add_ref_lock();
+(gdb) s
+std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_add_ref_lock (this=0x55555564bd20)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:241
+241	    {
+(gdb) s
+243	      _Atomic_word __count = _M_get_use_count();
+(gdb) s
+std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_get_use_count (this=0x7fffffffbfe0)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:199
+199	      _M_get_use_count() const noexcept
+(gdb) s
+203	        return __atomic_load_n(&_M_use_count, __ATOMIC_RELAXED);
+(gdb) s
+204	      }
+(gdb) s
+std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_add_ref_lock (this=0x55555564bd10)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:243
+243	      _Atomic_word __count = _M_get_use_count();
+(gdb) s
+246		  if (__count == 0)
+(gdb) s
+251	      while (!__atomic_compare_exchange_n(&_M_use_count, &__count, __count + 1,
+(gdb) s
+254	    }
+(gdb) s
+std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count (this=0x7fffffffbfc8, __r=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:901
+901	    }
+(gdb) s
+std::__shared_ptr<ov::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<ov::Node, void> (
+    this=0x7fffffffbfc0, __r=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1197
+1197		  _M_ptr = __r._M_ptr;
+(gdb) s
+1198		}
+(gdb) s
+std::shared_ptr<ov::Node>::shared_ptr<ov::Node, void> (this=0x7fffffffbfc0, 
+    __r=std::weak_ptr<ov::Node> (use count 4, weak count 2) = {...})
+    at /usr/include/c++/9/bits/shared_ptr.h:276
+276		: __shared_ptr<_Tp>(__r) { }
+(gdb) s
+std::enable_shared_from_this<ov::Node>::shared_from_this (this=0x55555564bd28)
+    at /usr/include/c++/9/bits/shared_ptr.h:651
+651	      { return shared_ptr<_Tp>(this->_M_weak_this); }
+(gdb) s
+std::function<void (std::shared_ptr<ov::Node> const&)>::operator()(std::shared_ptr<ov::Node> const&) const (this=0x7ffff27d7b27 <std::enable_shared_from_this<ov::Node>::shared_from_this()+39>, 
+    __args#0=std::shared_ptr<ov::Node> (use count -133369, weak count 948291399) = {...})
+    at /usr/include/c++/9/bits/std_function.h:683
+683	    function<_Res(_ArgTypes...)>::
+(gdb) s
+686	      if (_M_empty())
+(gdb) s
+std::_Function_base::_M_empty (
+    this=0x7ffff27d7eeb <std::shared_ptr<ov::Node>::shared_ptr<ov::Node, void>(std::weak_ptr<ov::Node> const&)+39>) at /usr/include/c++/9/bits/std_function.h:263
+263	    bool _M_empty() const { return !_M_manager; }
+(gdb) s
+std::function<void (std::shared_ptr<ov::Node> const&)>::operator()(std::shared_ptr<ov::Node> const&) const (this=0x7fffffffc100, 
+    __args#0=std::shared_ptr<ov::Node> (use count 4, weak count 2) = {...})
+    at /usr/include/c++/9/bits/std_function.h:686
+686	      if (_M_empty())
+(gdb) s
+688	      return _M_invoker(_M_functor, std::forward<_ArgTypes>(__args)...);
+(gdb) s
+std::forward<std::shared_ptr<ov::Node> const&> (
+    __t=std::shared_ptr<ov::Node> (use count -2092374647, weak count -1991765781) = {...})
+    at /usr/include/c++/9/bits/move.h:74
+74	    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+(gdb) s
+75	    { return static_cast<_Tp&&>(__t); }
+(gdb) s
+std::_Function_handler<void(const std::shared_ptr<ov::Node>&), ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_invoke(const std::_Any_data &, const std::shared_ptr<ov::Node> &) (__functor=..., __args#0=std::shared_ptr<ov::Node> (empty) = {...})
+    at /usr/include/c++/9/bits/std_function.h:298
+298	      _M_invoke(const _Any_data& __functor, _ArgTypes&&... __args)
+(gdb) s
+300		(*_Base::_M_get_pointer(__functor))(
+(gdb) s
+std::_Function_base::_Base_manager<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_get_pointer(const std::_Any_data &) (__source=...)
+    at /usr/include/c++/9/bits/std_function.h:155
+155		      const _Functor& __f = __source._M_access<_Functor>();
+(gdb) s
+std::_Any_data::_M_access<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >(void) const (this=0x7fffffffc100) at /usr/include/c++/9/bits/std_function.h:98
+98	      { return *static_cast<const _Tp*>(_M_access()); }
+(gdb) s
+std::_Any_data::_M_access (
+    this=0x7ffff27fd0a6 <std::_Hashtable<ov::Node*, ov::Node*, std::allocator<ov::Node*>, std::__detail::_Identity, std::equal_to<ov::Node*>, std::hash<ov::Node*>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, true, true> >::_M_insert<ov::Node* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<ov::Node*, false> > > >(ov::Node* const&, std::__detail::_AllocNode<std::allocator<std::__detail::_Hash_node<ov::Node*, false> > > const&, std::integral_constant<bool, true>, unsigned long)+302>) at /usr/include/c++/9/bits/std_function.h:88
+88	    const void* _M_access() const { return &_M_pod_data[0]; }
+(gdb) s
+std::_Any_data::_M_access<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >(void) const (this=0x7fffffffc100) at /usr/include/c++/9/bits/std_function.h:98
+98	      { return *static_cast<const _Tp*>(_M_access()); }
+(gdb) s
+std::_Function_base::_Base_manager<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_get_pointer(const std::_Any_data &) (__source=...)
+    at /usr/include/c++/9/bits/std_function.h:156
+156		      return const_cast<_Functor*>(std::__addressof(__f));
+(gdb) s
+std::__addressof<const ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >(const ov::Model::<lambda(std::shared_ptr<ov::Node>)> &) (__r=...) at /usr/include/c++/9/bits/move.h:48
+48	    { return __builtin_addressof(__r); }
+(gdb) s
+std::_Function_base::_Base_manager<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_get_pointer(const std::_Any_data &) (__source=...)
+    at /usr/include/c++/9/bits/std_function.h:156
+156		      return const_cast<_Functor*>(std::__addressof(__f));
+(gdb) s
+160		}
+(gdb) s
+std::forward<std::shared_ptr<ov::Node> const&> (
+    __t=std::shared_ptr<ov::Node> (use count -2092374647, weak count -1991765781) = {...})
+    at /usr/include/c++/9/bits/move.h:74
+74	    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+(gdb) s
+75	    { return static_cast<_Tp&&>(__t); }
+(gdb) s
+std::shared_ptr<ov::Node>::shared_ptr (this=0x7fffffffbfc0)
+    at /usr/include/c++/9/bits/shared_ptr.h:129
+129	      shared_ptr(const shared_ptr&) noexcept = default;
+(gdb) s
+std::__shared_ptr<ov::Node, (__gnu_cxx::_Lock_policy)2>::__shared_ptr (
+    this=0x7ffff2853c69 <std::_Function_base::_Base_manager<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >::_M_get_pointer(const std::_Any_data &)+40>)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:1167
+1167	      __shared_ptr(const __shared_ptr&) noexcept = default;
+(gdb) s
+std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count (
+    this=0x7ffff285c650 <std::_Any_data::_M_access<ov::Model::get_ops() const::<lambda(std::shared_ptr<ov::Node>)> >(void) const+24>, __r=...) at /usr/include/c++/9/bits/shared_ptr_base.h:733
+733	      __shared_count(const __shared_count& __r) noexcept
+(gdb) s
+734	      : _M_pi(__r._M_pi)
+(gdb) s
+736		if (_M_pi != 0)
+(gdb) s
+737		  _M_pi->_M_add_ref_copy();
+(gdb) s
+std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_add_ref_copy (this=0x7fffffffbea0)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:138
+138	      _M_add_ref_copy()
+(gdb) s
+139	      { __gnu_cxx::__atomic_add_dispatch(&_M_use_count, 1); }
+(gdb) s
+__gnu_cxx::__atomic_add_dispatch (__mem=0x55555564bd18, __val=1)
+    at /usr/include/c++/9/ext/atomicity.h:95
+95	    if (__gthread_active_p())
+(gdb) s
+__gthread_active_p () at /usr/include/x86_64-linux-gnu/c++/9/bits/gthr-default.h:252
+252	  return __gthread_active_ptr != 0;
+(gdb) s
+253	}
+(gdb) s
+__gnu_cxx::__atomic_add_dispatch (__mem=0x55555564bd18, __val=1)
+    at /usr/include/c++/9/ext/atomicity.h:95
+95	    if (__gthread_active_p())
+(gdb) s
+96	      __atomic_add(__mem, __val);
+(gdb) s
+__gnu_cxx::__atomic_add (__mem=0x55555564bd18, __val=1) at /usr/include/c++/9/ext/atomicity.h:53
+53	  { __atomic_fetch_add(__mem, __val, __ATOMIC_ACQ_REL); }
+(gdb) s
+__gnu_cxx::__atomic_add_dispatch (__mem=0x55555564bd18, __val=1)
+    at /usr/include/c++/9/ext/atomicity.h:102
+102	  }
+(gdb) s
+std::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2>::_M_add_ref_copy (this=0x55555564bd10)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:139
+139	      { __gnu_cxx::__atomic_add_dispatch(&_M_use_count, 1); }
+(gdb) s
+std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count (this=0x7fffffffbec8, __r=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:738
+738	      }
+(gdb) s
+ov::Model::<lambda(std::shared_ptr<ov::Node>)>::operator()(std::shared_ptr<ov::Node>) const (
+    __closure=0x7fffffffc100, node=std::shared_ptr<ov::Node> (use count 5, weak count 2) = {...})
+    at /opt/intel/openvino_for_build.git/src/core/src/model.cpp:386
+386	        ops.push_back(node);
+(gdb) 
+
+2. ov_model->get_ordered_ops()
+
+note: nodes are got directly from ov_model->m_cached_ordered_ops

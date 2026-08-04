@@ -1,0 +1,886 @@
+#842  key 119133648
+#842  key 119361760
+#842  key 119006400
+#842  key 118982288
+#842  key 119367408
+#842  key 640527280
+#842  key 119413280
+#842  key 119421632
+#842  key 119422160
+#842  key 119422896
+#842  key 119423248
+#842  key 612550848
+#842  key 119427168
+#842  key 119428512
+#842  key 119429040
+#842  key 119429776
+#842  key 119430128
+#842  key 1506270016
+#842  key 119431056
+#842  key 119442800
+#842  key 119443264
+#842  key 119443936
+#842  key 119444224
+#842  key 1725372304
+#842  key 119451472
+#842  key 119453280
+#842  key 119454064
+#842  key 119455056
+#842  key 119455664
+#842  key 1293075632
+#842  key 119460176
+#842  key 119461984
+#842  key 119462768
+#842  key 119463760
+#842  key 119464368
+#842  key 1601657312
+#842  key 119474640
+#842  key 119476160
+#842  key 119476656
+#842  key 119477360
+#842  key 119477680
+#842  key 417917072
+#842  key 119492560
+#842  key 119494560
+#842  key 119495536
+#842  key 119496720
+#842  key 119497520
+#842  key 1285839936
+#842  key 119503760
+#842  key 119505760
+#842  key 119506736
+#842  key 119507920
+#842  key 119508720
+#842  key 427218160
+#842  key 119523600
+#842  key 119525120
+#842  key 119525616
+#842  key 119526320
+#842  key 119526640
+#842  key 1511787280
+#842  key 119541520
+#842  key 119543520
+#842  key 119544496
+#842  key 119545680
+#842  key 119546480
+#842  key 1439133824
+#842  key 119552720
+#842  key 119554720
+#842  key 119555696
+#842  key 119556880
+#842  key 119557680
+#842  key 1350668672
+#842  key 119577168
+#842  key 119578720
+#842  key 119579248
+#842  key 119579984
+#842  key 119580336
+#842  key 720839616
+#842  key 119605968
+#842  key 119608160
+#842  key 119609328
+#842  key 119610704
+#842  key 119611696
+#842  key 2716030448
+#842  key 119619664
+#842  key 119621856
+#842  key 119623024
+#842  key 119624400
+#842  key 119625392
+#842  key 724548560
+#842  key 119651024
+#842  key 119652576
+#842  key 119653104
+#842  key 119653840
+#842  key 119654192
+#842  key 1410345008
+#842  key 119679824
+#842  key 119682016
+#842  key 119683184
+#842  key 119684560
+#842  key 119685552
+#842  key 395375824
+#842  key 119693520
+#842  key 119695712
+#842  key 119696880
+#842  key 119698256
+#842  key 119699248
+#842  key 580808960
+#842  key 119724880
+#842  key 119726432
+#842  key 119726960
+#842  key 119727696
+#842  key 119728048
+#842  key 614882864
+#842  key 119753680
+#842  key 119755872
+#842  key 119757040
+#842  key 119758416
+#842  key 119759408
+#842  key 1421319200
+#842  key 119767376
+#842  key 119769568
+#842  key 119770736
+#842  key 119772112
+#842  key 119773104
+#842  key 584552512
+#842  key 119823312
+#842  key 119824992
+#842  key 119825648
+#842  key 119826512
+#842  key 119826992
+#842  key 259116848
+#842  key 119926352
+#842  key 119929312
+#842  key 119931248
+#842  key 119933392
+#842  key 119935152
+#842  key 2549021376
+#842  key 119950032
+#842  key 119952992
+#842  key 119954928
+#842  key 119957072
+#842  key 119958832
+#842  key 1031141344
+#842  key 120058192
+#842  key 120059872
+#842  key 120060528
+#842  key 120061392
+#842  key 120061872
+#842  key 431113536
+#842  key 120161232
+#842  key 120164192
+#842  key 120166128
+#842  key 120168272
+#842  key 120170032
+#842  key 232234064
+#842  key 120184912
+#842  key 120187872
+#842  key 120189808
+#842  key 120191952
+#842  key 120193712
+#842  key 949503344
+#842  key 120293072
+#842  key 120294752
+#842  key 120295408
+#842  key 120296272
+#842  key 120296752
+#842  key 752573936
+#842  key 120396112
+#842  key 120399072
+#842  key 120401008
+#842  key 120403152
+#842  key 120404912
+#842  key 262669184
+#842  key 120419792
+#842  key 120422752
+#842  key 120424688
+#842  key 120426832
+#842  key 120428592
+#842  key 584583072
+#842  key 120527952
+#842  key 120529632
+#842  key 120530288
+#842  key 120531152
+#842  key 120531632
+#842  key 1490152672
+#842  key 120630992
+#842  key 120633952
+#842  key 120635888
+#842  key 120638032
+#842  key 120639792
+#842  key 1323588064
+#842  key 120654672
+#842  key 120657632
+#842  key 120659568
+#842  key 120661712
+#842  key 120663472
+#842  key 1533586688
+#842  key 120811984
+#842  key 120813792
+#842  key 120814576
+#842  key 120815568
+#842  key 120816176
+#842  key 1503931040
+#842  key 121038416
+#842  key 121042144
+#842  key 121044848
+#842  key 121047760
+#842  key 121050288
+#842  key 549068272
+#842  key 121072080
+#842  key 121075808
+#842  key 121078512
+#842  key 121081424
+#842  key 121083952
+#842  key 1510932528
+#842  key 121306192
+#842  key 121308000
+#842  key 121308784
+#842  key 121309776
+#842  key 121310384
+#842  key 1324757856
+#842  key 121532624
+#842  key 121536352
+#842  key 121539056
+#842  key 121541968
+#842  key 121544496
+#842  key 715200736
+#842  key 121566288
+#842  key 121570016
+#842  key 121572720
+#842  key 121575632
+#842  key 121578160
+#842  key 123755856
+#842  key 121800400
+#842  key 121802208
+#842  key 121802992
+#842  key 121803984
+#842  key 121804592
+#842  key 397286176
+#842  key 122026832
+#842  key 122030560
+#842  key 122033264
+#842  key 122036176
+#842  key 122038704
+#842  key 1529378976
+#842  key 122060496
+#842  key 122064224
+#842  key 122066928
+#842  key 122069840
+#842  key 122072368
+#842  key 1737375552
+#842  key 122442064
+#842  key 122444128
+#842  key 122445168
+#842  key 122446416
+#842  key 122447280
+#842  key 554674768
+#842  key 123062736
+#842  key 123068000
+#842  key 123072240
+#842  key 123076688
+#842  key 123080752
+#842  key 1622127520
+#842  key 123116368
+#842  key 123121632
+#842  key 123125872
+#842  key 123130320
+#842  key 123134384
+#842  key 401505824
+#842  key 123749840
+#842  key 123751904
+#842  key 123752944
+#842  key 123754192
+#842  key 123755056
+#842  key 580854944
+#842  key 124370512
+#842  key 124375776
+#842  key 124380016
+#842  key 124384464
+#842  key 124388528
+#842  key 1504636992
+#842  key 124424144
+#842  key 124429408
+#842  key 124433648
+#842  key 124438096
+#842  key 124442160
+#842  key 1044694336
+#842  key 125057616
+#842  key 125059680
+#842  key 125060720
+#842  key 125061968
+#842  key 125062832
+#842  key 1446527216
+#842  key 125678288
+#842  key 125683552
+#842  key 125687792
+#842  key 125692240
+#842  key 125696304
+#842  key 1333054272
+#842  key 125731920
+#842  key 125737184
+#842  key 125741424
+#842  key 125745872
+#842  key 125749936
+#842  key 401067872
+#842  key 126979792
+#842  key 126982496
+#842  key 126984176
+#842  key 126986064
+#842  key 126987568
+#842  key 369377120
+#842  key 128672112
+#842  key 128671376
+#842  key 128669648
+#842  key 128665696
+#842  key 128811904
+#842  key 129088144
+#842  key 1582519296
+#842  key 128752080
+#842  key 128753024
+#842  key 128669040
+#842  key 128668880
+#842  key 128673056
+#842  key 129088032
+#842  key 128679312
+#842  key 128713024
+#842  key 610732160
+#842  key 130315920
+#842  key 128678528
+#842  key 131719232
+#842  key 130317248
+#842  key 128662208
+#842  key 129916272
+#842  key 129917088
+#842  key 130089008
+#842  key 1331524448
+#842  key 128662096
+#842  key 128669152
+#842  key 133029920
+#842  key 129917184
+#842  key 128664080
+#842  key 128728336
+#842  key 128751360
+#842  key 129088240
+#842  key 1611455296
+#842  key 128957472
+#842  key 137963680
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+[ INFO ] Loading OTEDetectionTask
+[ INFO ]  Loading OTEDetectionTask
+Package                 Version     Editable project location
+----------------------- ----------- -----------------------------------------------------------------------
+absl-py                 0.15.0
+addict                  2.4.0
+albumentations          0.4.6
+antlr4-python3-runtime  4.9.3
+attr                    0.3.2
+attrs                   21.4.0
+backcall                0.2.0
+bayesian-optimization   1.4.0
+bson                    0.5.10
+cachetools              4.2.4
+certifi                 2022.6.15
+charset-normalizer      2.1.0
+click                   8.1.3
+comm                    0.1.3
+cycler                  0.10.0
+Cython                  0.29.24
+debugpy                 1.6.7
+decorator               4.4.2
+defusedxml              0.7.1
+editdistance            0.6.0
+entrypoints             0.4
+fast_ctc_decode         0.3.2
+fastjsonschema          2.15.3
+filelock                3.7.1
+flatbuffers             1.12
+google-auth             1.35.0
+google-auth-oauthlib    0.4.6
+grpcio                  1.32.0
+hpopt                   0.1.0
+huggingface-hub         0.8.1
+idna                    3.3
+imagecodecs             2022.2.22
+imagecorruptions        1.1.2
+imageio                 2.19.5
+imagesize               1.2.0
+imgaug                  0.4.0
+iniconfig               1.1.1
+invoke                  1.7.3
+ipykernel               6.22.0
+ipython                 7.31.1
+jedi                    0.18.2
+joblib                  1.1.0
+jsonschema              3.2.0
+jstyleson               0.0.2
+jupyter-client          7.2.0
+jupyter_core            5.3.0
+kiwisolver              1.3.2
+lmdb                    1.3.0
+Markdown                3.3.4
+matplotlib              3.4.3
+matplotlib-inline       0.1.6
+mmcv-full               1.3.14
+mmpycocotools           12.0.3
+nbclient                0.6.8
+nbformat                5.8.0
+nbmake                  1.4.1
+nest-asyncio            1.5.6
+networkx                2.8
+nibabel                 4.0.1
+ninja                   1.10.2.2
+nltk                    3.7
+numpy                   1.19.5
+oauthlib                3.1.1
+omegaconf               2.2.2
+onnx                    1.10.1
+onnxoptimizer           0.2.6
+onnxruntime             1.9.0
+opencv-python           4.5.5.64
+openvino                2022.2.0
+openvino-dev            2022.2.0
+openvino-telemetry      2022.1.1
+ote-cli                 0.2         /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/ote_cli
+packaging               21.3
+pandas                  1.1.5
+parasail                1.2.4
+parso                   0.8.3
+pexpect                 4.8.0
+pickleshare             0.7.5
+Pillow                  9.2.0
+pip                     22.2.2
+pkg_resources           0.0.0
+platformdirs            3.2.0
+pluggy                  1.0.0
+POT                     0.9.0
+progress                1.6
+prompt-toolkit          3.0.38
+protobuf                3.20.1
+psutil                  5.9.5
+ptyprocess              0.7.0
+py                      1.10.0
+py-cpuinfo              8.0.0
+pyasn1                  0.4.8
+pyasn1-modules          0.2.8
+pyclipper               1.3.0.post3
+pydantic                1.9.2
+pydicom                 2.3.0
+Pygments                2.15.1
+pyparsing               3.0.9
+pyrsistent              0.18.0
+pytest                  6.2.5
+pytest-ordering         0.6
+python-dateutil         2.8.2
+pytorchcv               0.0.55
+pytz                    2022.1
+PyWavelets              1.3.0
+PyYAML                  6.0
+pyzmq                   25.0.2
+rawpy                   0.17.1
+regex                   2022.7.25
+requests                2.28.1
+requests-oauthlib       1.3.0
+rsa                     4.7.2
+scikit-image            0.19.3
+scikit-learn            0.24.2
+scipy                   1.5.4
+sentencepiece           0.1.96
+setuptools              44.0.0
+Shapely                 1.8.2
+six                     1.16.0
+sklearn                 0.0
+sty                     1.0.0b12
+tensorboard             2.7.0
+tensorboard-data-server 0.6.1
+tensorboard-plugin-wit  1.8.0
+terminaltables          3.1.0
+texttable               1.6.4
+threadpoolctl           3.1.0
+tifffile                2022.5.4
+tokenizers              0.12.1
+toml                    0.10.2
+torch                   1.8.2+cu111
+torchvision             0.9.2+cu111
+tornado                 6.3.1
+tqdm                    4.64.0
+traitlets               5.9.0
+transformers            4.20.1
+typing_extensions       4.3.0
+urllib3                 1.26.11
+wcwidth                 0.2.6
+Werkzeug                2.0.2
+wheel                   0.40.0
+yapf                    0.31.0
+
+[notice] A new release of pip available: 22.2.2 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+2023-06-12 21:36:27,623 - mmdet - INFO - Scratch space created at /tmp/ote-det-scratch-kknyckvu
+ENVIRONMENT:
+sys.platform: linux
+Python: 3.8.10 (default, Mar 13 2023, 10:26:41) [GCC 9.4.0]
+CUDA available: False
+GCC: gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0
+PyTorch: 1.8.2+cu111
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v1.7.0 (Git Hash 7aed236906b1f7a05c0917e5257a1af05e9ff683)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.8.2, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+TorchVision: 0.9.2+cu111
+OpenCV: 4.5.5
+MMCV: 1.3.14
+MMCV Compiler: GCC 9.4
+MMCV CUDA Compiler: not available
+MMDetection: 2.9.0+8a57a43
+MMDetection Compiler: GCC 9.4
+MMDetection CUDA Compiler: not available
+NNCF: None
+ONNX: 1.10.1
+ONNXRuntime: 1.9.0
+OpenVINO MO: None
+OpenVINO IE: custom_master_3eafa653f3816f2806c4f7344d4a82b67a6de036
+pip list:
+[ INFO ] Scratch space created at /tmp/ote-det-scratch-kknyckvu
+[ INFO ]  Scratch space created at /tmp/ote-det-scratch-kknyckvu
+2023-06-12 21:36:27,635 - mmdet - INFO - Replacing runner from EpochRunnerWithCancel to EpochRunnerWithCancel.
+[ INFO ] Replacing runner from EpochRunnerWithCancel to EpochRunnerWithCancel.
+[ INFO ]  Replacing runner from EpochRunnerWithCancel to EpochRunnerWithCancel.
+2023-06-12 21:36:27,638 - mmdet - INFO - Loading the model
+[ INFO ] Loading the model
+[ INFO ]  Loading the model
+2023-06-12 21:36:27,647 - mmdet - WARNING - None
+#842  key 119133648
+#842  key 119361760
+#842  key 119006400
+#842  key 118982288
+#842  key 119367408
+#842  key 640527280
+#842  key 119413280
+#842  key 119421632
+#842  key 119422160
+#842  key 119422896
+#842  key 119423248
+#842  key 612550848
+#842  key 119427168
+#842  key 119428512
+#842  key 119429040
+#842  key 119429776
+#842  key 119430128
+#842  key 1506270016
+#842  key 119431056
+#842  key 119442800
+#842  key 119443264
+#842  key 119443936
+#842  key 119444224
+#842  key 1725372304
+#842  key 119451472
+#842  key 119453280
+#842  key 119454064
+#842  key 119455056
+#842  key 119455664
+#842  key 1293075632
+#842  key 119460176
+#842  key 119461984
+#842  key 119462768
+#842  key 119463760
+#842  key 119464368
+#842  key 1601657312
+#842  key 119474640
+#842  key 119476160
+#842  key 119476656
+#842  key 119477360
+#842  key 119477680
+#842  key 417917072
+#842  key 119492560
+#842  key 119494560
+#842  key 119495536
+#842  key 119496720
+#842  key 119497520
+#842  key 1285839936
+#842  key 119503760
+#842  key 119505760
+#842  key 119506736
+#842  key 119507920
+#842  key 119508720
+#842  key 427218160
+#842  key 119523600
+#842  key 119525120
+#842  key 119525616
+#842  key 119526320
+#842  key 119526640
+#842  key 1511787280
+#842  key 119541520
+#842  key 119543520
+#842  key 119544496
+#842  key 119545680
+#842  key 119546480
+#842  key 1439133824
+#842  key 119552720
+#842  key 119554720
+#842  key 119555696
+#842  key 119556880
+#842  key 119557680
+#842  key 1350668672
+#842  key 119577168
+#842  key 119578720
+#842  key 119579248
+#842  key 119579984
+#842  key 119580336
+#842  key 720839616
+#842  key 119605968
+#842  key 119608160
+#842  key 119609328
+#842  key 119610704
+#842  key 119611696
+#842  key 2716030448
+#842  key 119619664
+#842  key 119621856
+#842  key 119623024
+#842  key 119624400
+#842  key 119625392
+#842  key 724548560
+#842  key 119651024
+#842  key 119652576
+#842  key 119653104
+#842  key 119653840
+#842  key 119654192
+#842  key 1410345008
+#842  key 119679824
+#842  key 119682016
+#842  key 119683184
+#842  key 119684560
+#842  key 119685552
+#842  key 395375824
+#842  key 119693520
+#842  key 119695712
+#842  key 119696880
+#842  key 119698256
+#842  key 119699248
+#842  key 580808960
+#842  key 119724880
+#842  key 119726432
+#842  key 119726960
+#842  key 119727696
+#842  key 119728048
+#842  key 614882864
+#842  key 119753680
+#842  key 119755872
+#842  key 119757040
+#842  key 119758416
+#842  key 119759408
+#842  key 1421319200
+#842  key 119767376
+#842  key 119769568
+#842  key 119770736
+#842  key 119772112
+#842  key 119773104
+#842  key 584552512
+#842  key 119823312
+#842  key 119824992
+#842  key 119825648
+#842  key 119826512
+#842  key 119826992
+#842  key 259116848
+#842  key 119926352
+#842  key 119929312
+#842  key 119931248
+#842  key 119933392
+#842  key 119935152
+#842  key 2549021376
+#842  key 119950032
+#842  key 119952992
+#842  key 119954928
+#842  key 119957072
+#842  key 119958832
+#842  key 1031141344
+#842  key 120058192
+#842  key 120059872
+#842  key 120060528
+#842  key 120061392
+#842  key 120061872
+#842  key 431113536
+#842  key 120161232
+#842  key 120164192
+#842  key 120166128
+#842  key 120168272
+#842  key 120170032
+#842  key 232234064
+#842  key 120184912
+#842  key 120187872
+#842  key 120189808
+#842  key 120191952
+#842  key 120193712
+#842  key 949503344
+#842  key 120293072
+#842  key 120294752
+#842  key 120295408
+#842  key 120296272
+#842  key 120296752
+#842  key 752573936
+#842  key 120396112
+#842  key 120399072
+#842  key 120401008
+#842  key 120403152
+#842  key 120404912
+#842  key 262669184
+#842  key 120419792
+#842  key 120422752
+#842  key 120424688
+#842  key 120426832
+#842  key 120428592
+#842  key 584583072
+#842  key 120527952
+#842  key 120529632
+#842  key 120530288
+#842  key 120531152
+#842  key 120531632
+#842  key 1490152672
+#842  key 120630992
+#842  key 120633952
+#842  key 120635888
+#842  key 120638032
+#842  key 120639792
+#842  key 1323588064
+#842  key 120654672
+#842  key 120657632
+#842  key 120659568
+#842  key 120661712
+#842  key 120663472
+#842  key 1533586688
+#842  key 120811984
+#842  key 120813792
+#842  key 120814576
+#842  key 120815568
+#842  key 120816176
+#842  key 1503931040
+#842  key 121038416
+#842  key 121042144
+#842  key 121044848
+#842  key 121047760
+#842  key 121050288
+#842  key 549068272
+#842  key 121072080
+#842  key 121075808
+#842  key 121078512
+#842  key 121081424
+#842  key 121083952
+#842  key 1510932528
+#842  key 121306192
+#842  key 121308000
+#842  key 121308784
+#842  key 121309776
+#842  key 121310384
+#842  key 1324757856
+#842  key 121532624
+#842  key 121536352
+#842  key 121539056
+#842  key 121541968
+#842  key 121544496
+#842  key 715200736
+#842  key 121566288
+#842  key 121570016
+#842  key 121572720
+#842  key 121575632
+#842  key 121578160
+#842  key 123755856
+#842  key 121800400
+#842  key 121802208
+#842  key 121802992
+#842  key 121803984
+#842  key 121804592
+#842  key 397286176
+#842  key 122026832
+#842  key 122030560
+#842  key 122033264
+#842  key 122036176
+#842  key 122038704
+#842  key 1529378976
+#842  key 122060496
+#842  key 122064224
+#842  key 122066928
+#842  key 122069840
+#842  key 122072368
+#842  key 1737375552
+#842  key 122442064
+#842  key 122444128
+#842  key 122445168
+#842  key 122446416
+#842  key 122447280
+#842  key 554674768
+#842  key 123062736
+#842  key 123068000
+#842  key 123072240
+#842  key 123076688
+#842  key 123080752
+#842  key 1622127520
+#842  key 123116368
+#842  key 123121632
+#842  key 123125872
+#842  key 123130320
+#842  key 123134384
+#842  key 401505824
+#842  key 123749840
+#842  key 123751904
+#842  key 123752944
+#842  key 123754192
+#842  key 123755056
+#842  key 580854944
+#842  key 124370512
+#842  key 124375776
+#842  key 124380016
+#842  key 124384464
+#842  key 124388528
+#842  key 1504636992
+#842  key 124424144
+#842  key 124429408
+#842  key 124433648
+#842  key 124438096
+#842  key 124442160
+#842  key 1044694336
+#842  key 125057616
+#842  key 125059680
+#842  key 125060720
+#842  key 125061968
+#842  key 125062832
+#842  key 1446527216
+#842  key 125678288
+#842  key 125683552
+#842  key 125687792
+#842  key 125692240
+#842  key 125696304
+#842  key 1333054272
+#842  key 125731920
+#842  key 125737184
+#842  key 125741424
+#842  key 125745872
+#842  key 125749936
+#842  key 401067872
+#842  key 126979792
+#842  key 126982496
+#842  key 126984176
+#842  key 126986064
+#842  key 126987568
+#842  key 369377120
+#842  key 128672112
+#842  key 128671376
+#842  key 128669648
+#842  key 128665696
+#842  key 128811904
+#842  key 129088144
+#842  key 1582519296
+#842  key 128752080
+#842  key 128753024
+#842  key 128669040
+#842  key 128668880
+#842  key 128673056
+#842  key 129088032
+#842  key 128679312
+#842  key 128713024
+#842  key 610732160
+#842  key 130315920
+#842  key 128678528
+#842  key 131719232
+#842  key 130317248
+#842  key 128662208
+#842  key 129916272
+#842  key 129917088
+#842  key 130089008
+#842  key 1331524448
+#842  key 128662096
+#842  key 128669152
+#842  key 133029920
+#842  key 129917184
+#842  key 128664080
+#842  key 128728336
+#842  key 128751360
+#842  key 129088240
+#842  key 1611455296
+#842  key 128957472
+#842  key 137963680

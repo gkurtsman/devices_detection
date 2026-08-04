@@ -1,0 +1,38 @@
+30: convert_xml_onnx.cpp:111
+29: utils.cpp:82
+28: ov::frontend::FrontEnd::convert ()
+27: ov::frontend::onnx::FrontEnd::convert ()
+26: ov::frontend::onnx::InputModel::convert ()
+25: ov::onnx_editor::ONNXModelEditor::get_function ()
+24: ngraph::onnx_import::detail::import_onnx_model ()
+23: ngraph::onnx_import::Graph::Graph()
+22: ngraph::onnx_import::Graph::Graph()
+21: ngraph::onnx_import::Tensor::get_ng_constant()
+20: ngraph::onnx_import::Tensor::make_ng_constant<float, true> (()
+19: std::make_shared<ov::op::v0::Constant, ov::element::Type const&, ov::Shape const&, void const*> ()
+18: std::allocate_shared<ov::op::v0::Constant, std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> ()
+17: std::shared_ptr<ov::op::v0::Constant>::shared_ptr<std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> (this=0x7fffffffc930,
+    __tag=...)
+16: std::__shared_ptr<ov::op::v0::Constant, ()
+15: std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ov::op::v0::Constant, std::allocator<ov::op::v0::Constant>, ov::element::Type const&, ov::Shape const&, void const*> ()
+14: std::_Sp_counted_ptr_inplace<ov::op::v0::Constant, std::allocator<ov::op::v0::Constant>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<ov::element::Type const&, ov::Shape const&, void const*> ()
+13: std::allocator_traits<std::allocator<ov::op::v0::Constant> >::construct<ov::op::v0::Constant, ov::element::Type const&, ov::Shape const&, void const*> (__a=...,
+    __p=0x55555559ed20)
+12: __gnu_cxx::new_allocator<ov::op::v0::Constant>::construct<ov::op::v0::Constant, ov::element::Type const&, ov::Shape const&, void const*> ()
+11: ov::op::v0::Constant::Constant ()
+10: ov::op::v0::Constant::Constant ()
+09: ov::op::v0::Constant::allocate_buffer ()
+08: std::make_shared<ngraph::runtime::AlignedBuffer, unsigned long, unsigned long> ()
+07: std::allocate_shared<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> ()
+06: std::shared_ptr<ngraph::runtime::AlignedBuffer>::shared_ptr<std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> ()
+05: std::__shared_ptr<ngraph::runtime::AlignedBuffer, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> ()
+04: std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, unsigned long, unsigned long> ()
+03: std::_Sp_counted_ptr_inplace<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, (std::_Sp_counted_ptr_inplace<ngraph::runtime::AlignedBuffer, std::allocator<ngraph::runtime::AlignedBuffer>, ()
+02: std::allocator_traits<std::allocator<ngraph::runtime::AlignedBuffer> >::construct<ngraph::runtime::AlignedBuffer, unsigned long, unsigned long> ()
+01: __gnu_cxx::new_allocator<ngraph::runtime::AlignedBuffer>::construct<ngraph::runtime::AlignedBuffer, unsigned long, unsigned long> ()
+ngraph::runtime::AlignedBuffer::AlignedBuffer ()
+
+
+
+
+

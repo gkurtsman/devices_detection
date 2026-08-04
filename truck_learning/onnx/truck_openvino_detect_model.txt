@@ -1,0 +1,1 @@
+$OPENVINO/openvino_env/lib/python3.8/site-packages/openvino/model_zoo/models/intel/vehicle-detection-0202/model.yml

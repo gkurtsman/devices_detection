@@ -1,0 +1,135 @@
+google::protobuf::internal::MergeFromImpl<false> (input=0x7ffc5dcd1d40, msg=0x7ffc5dcd2080, 
+    parse_flags=google::protobuf::MessageLite::kParse)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:158
+158	  ptr = msg->_InternalParse(ptr, &ctx);
+(gdb) bt
+#0  google::protobuf::internal::MergeFromImpl<false> (input=0x7ffc5dcd1d40, msg=0x7ffc5dcd2080, 
+    parse_flags=google::protobuf::MessageLite::kParse)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:158
+#1  0x00007f2b1889089c in google::protobuf::MessageLite::ParseFrom<(google::protobuf::MessageLite::ParseFlags)1, google::protobuf::io::ZeroCopyInputStream*> (this=0x7ffc5dcd2080, 
+    input=@0x7ffc5dcd1d10: 0x7ffc5dcd1d40)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.h:598
+#2  0x00007f2b1888fa81 in google::protobuf::MessageLite::ParseFromZeroCopyStream (
+    this=0x7ffc5dcd2080, input=0x7ffc5dcd1d40)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:268
+#3  0x00007f2b1888fad3 in google::protobuf::MessageLite::ParseFromIstream (this=0x7ffc5dcd2080, 
+    input=0x7ffc5dcd1e40)
+    at /opt/intel/openvino.git/thirdparty/protobuf/protobuf/src/google/protobuf/message_lite.cc:288
+#4  0x00007f2b186e4885 in ngraph::onnx_common::parse_from_istream (model_stream=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/onnx_common/src/parser.cpp:55
+#5  0x00007f2b186e46be in ngraph::onnx_common::parse_from_file (
+    file_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx")
+    at /opt/intel/openvino.git/src/frontends/onnx/onnx_common/src/parser.cpp:24
+#6  0x00007f2b184f30c4 in ov::onnx_editor::ONNXModelEditor::Impl::Impl (this=0x21c7ab0, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx")
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/editor.cpp:222
+#7  0x00007f2b184f3339 in ov::onnx_editor::ONNXModelEditor::ONNXModelEditor (this=0x228c380, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/editor.cpp:238
+#8  0x00007f2b1851c26d in __gnu_cxx::new_allocator<ov::onnx_editor::ONNXModelEditor>::construct<ov::onnx_editor::ONNXModelEditor, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (this=0x7ffc5dcd231f, __p=0x228c380)
+    at /usr/include/c++/9/ext/new_allocator.h:146
+#9  0x00007f2b1851b6c6 in std::allocator_traits<std::allocator<ov::onnx_editor::ONNXModelEditor> >::construct<ov::onnx_editor::ONNXModelEditor, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (__a=..., __p=0x228c380)
+    at /usr/include/c++/9/bits/alloc_traits.h:483
+#10 0x00007f2b1851a381 in std::_Sp_counted_ptr_inplace<ov::onnx_editor::ONNXModelEditor, std::allocator<ov::onnx_editor::ONNXModelEditor>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (this=0x228c370, __a=...) at /usr/include/c++/9/bits/shared_ptr_base.h:548
+#11 0x00007f2b18518545 in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ov::onnx_editor::ONNXModelEditor, std::allocator<ov::onnx_editor::ONNXModelEditor>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (
+    this=0x228c2f0, __p=@0x228c2e8: 0x0, __a=...) at /usr/include/c++/9/bits/shared_ptr_base.h:679
+#12 0x00007f2b185152d0 in std::__shared_ptr<ov::onnx_editor::ONNXModelEditor, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ov::onnx_editor::ONNXModelEditor>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (
+    this=0x228c2e8, __tag=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1344
+#13 0x00007f2b18510edd in std::shared_ptr<ov::onnx_editor::ONNXModelEditor>::shared_ptr<std::allocator<ov::onnx_editor::ONNXModelEditor>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (this=0x228c2e8, __tag=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:359
+#14 0x00007f2b1850d903 in std::allocate_shared<ov::onnx_editor::ONNXModelEditor, std::allocator<ov::onnx_editor::ONNXModelEditor>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder> (__a=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:702
+#15 0x00007f2b1850ab53 in std::make_shared<ov::onnx_editor::ONNXModelEditor, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder>
+    () at /usr/include/c++/9/bits/shared_ptr.h:718
+#16 0x00007f2b18503ba6 in ov::frontend::onnx::InputModel::InputModel (this=0x228c2c0, 
+    path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/input_model.cpp:19
+#17 0x00007f2b185027cf in __gnu_cxx::new_allocator<ov::frontend::onnx::InputModel>::construct<ov::frontend::onnx::InputModel, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> (this=0x7ffc5dcd264f, __p=0x228c2c0)
+    at /usr/include/c++/9/ext/new_allocator.h:146
+#18 0x00007f2b18501ff6 in std::allocator_traits<std::allocator<ov::frontend::onnx::InputModel> >::construct<ov::frontend::onnx::InputModel, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> (__a=..., __p=0x228c2c0)
+    at /usr/include/c++/9/bits/alloc_traits.h:483
+#19 0x00007f2b1850158f in std::_Sp_counted_ptr_inplace<ov::frontend::onnx::InputModel, std::allocator<ov::frontend::onnx::InputModel>, (__gnu_cxx::_Lock_policy)2>::_Sp_counted_ptr_inplace<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> (this=0x228c2b0, __a=...) at /usr/include/c++/9/bits/shared_ptr_base.h:548
+#20 0x00007f2b185007bf in std::__shared_count<(__gnu_cxx::_Lock_policy)2>::__shared_count<ov::frontend::onnx::InputModel, std::allocator<ov::frontend::onnx::InputModel>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&>
+    (this=0x7ffc5dcd2808, __p=@0x7ffc5dcd2800: 0x0, __a=...)
+    at /usr/include/c++/9/bits/shared_ptr_base.h:679
+#21 0x00007f2b184ffd10 in std::__shared_ptr<ov::frontend::onnx::InputModel, (__gnu_cxx::_Lock_policy)2>::__shared_ptr<std::allocator<ov::frontend::onnx::InputModel>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> (
+    this=0x7ffc5dcd2800, __tag=...) at /usr/include/c++/9/bits/shared_ptr_base.h:1344
+#22 0x00007f2b184fea29 in std::shared_ptr<ov::frontend::onnx::InputModel>::shared_ptr<std::allocator<ov::frontend::onnx::InputModel>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> (this=0x7ffc5dcd2800, __tag=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:359
+#23 0x00007f2b184fd365 in std::allocate_shared<ov::frontend::onnx::InputModel, std::allocator<ov::frontend::onnx::InputModel>, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> (__a=...)
+    at /usr/include/c++/9/bits/shared_ptr.h:702
+#24 0x00007f2b184fbf80 in std::make_shared<ov::frontend::onnx::InputModel, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, ov::frontend::ExtensionHolder const&> () at /usr/include/c++/9/bits/shared_ptr.h:718
+#25 0x00007f2b184fa8f1 in ov::frontend::onnx::FrontEnd::load_impl (this=0x222f6c0, 
+    variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/frontend.cpp:45
+#26 0x00007f2b1b058bcb in ov::frontend::FrontEnd::load_impl (this=0x2287eb0, 
+    variants=std::vector of length 1, capacity 1 = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:47
+#27 0x00007f2b1c2bc33f in ov::frontend::FrontEnd::load<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > (this=0x2287eb0)
+    at /opt/intel/openvino.git/src/frontends/common/include/openvino/frontend/frontend.hpp:65
+#28 0x00007f2b1c2bbc08 in <lambda(ov::frontend::FrontEnd&, const string&)>::operator()(ov::frontend::FrontEnd &, const std::string &) const (__closure=0x21c8488, self=..., 
+    s="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx")
+    at /opt/intel/openvino.git/src/bindings/python/src/pyopenvino/frontend/frontend.cpp:26
+#29 0x00007f2b1c2c304b in pybind11::detail::argument_loader<ov::frontend::FrontEnd&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>::call_impl<std::shared_ptr<ov::frontend::InputModel>, regclass_frontend_FrontEnd(pybind11::module)::<lambda(ov::frontend::FrontEnd&, const string&)>&, 0, 1, pybind11::detail::void_type>(<lambda(ov::frontend::FrontEnd&, const string&)> &, pybind11::detail::index_sequence<0, 1>, pybind11::detail::void_type &&) (
+    this=0x7ffc5dcd2cc0, f=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1208
+#30 0x00007f2b1c2c13bb in pybind11::detail::argument_loader<ov::frontend::FrontEnd&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>::call<std::shared_ptr<ov::frontend::InputModel>, pybind11::detail::void_type, regclass_frontend_FrontEnd(pybind11::module)::<lambda(ov::frontend::FrontEnd&, const string&)>&>(<lambda(ov::frontend::FrontEnd&, const string&)> &) (this=0x7ffc5dcd2cc0, f=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1180
+#31 0x00007f2b1c2bebb1 in pybind11::cpp_function::<lambda(pybind11::detail::function_call&)>::operator()(pybind11::detail::function_call &) const (this=0x0, call=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:224
+#32 0x00007f2b1c2bec7b in pybind11::cpp_function::<lambda(pybind11::detail::function_call&)>::_FUN(pybind11::detail::function_call &) ()
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:202
+#33 0x00007f2b1c12a8e2 in pybind11::cpp_function::dispatcher (self=0x7f2b1ca18ab0, 
+    args_in=0x7f2b1807aac0, kwargs_in=0x0)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:805
+#34 0x00000000005f6939 in PyCFunction_Call ()
+#35 0x00000000005f7506 in _PyObject_MakeTpCall ()
+#36 0x000000000050b8d3 in ?? ()
+#37 0x0000000000570556 in _PyEval_EvalFrameDefault ()
+#38 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#39 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#40 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#41 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#42 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#43 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#44 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#45 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#46 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#47 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#48 0x000000000068e547 in PyEval_EvalCode ()
+#49 0x0000000000601624 in ?? ()
+#50 0x00000000005c4ef0 in ?? ()
+#51 0x0000000000574d08 in ?? ()
+#52 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#53 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#54 0x000000000068e547 in PyEval_EvalCode ()
+#55 0x0000000000601624 in ?? ()
+#56 0x00000000005c4ef0 in ?? ()
+#57 0x0000000000574d08 in ?? ()
+#58 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#59 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#60 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#61 0x000000000056b619 in _PyEval_EvalFrameDefault ()
+#62 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#63 0x000000000056b619 in _PyEval_EvalFrameDefault ()
+#64 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#65 0x0000000000570556 in _PyEval_EvalFrameDefault ()
+#66 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#67 0x000000000068e547 in PyEval_EvalCode ()
+#68 0x0000000000601624 in ?? ()
+#69 0x00000000005c4ef0 in ?? ()
+#70 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#71 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#72 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#73 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#74 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#75 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#76 0x00000000005f60b2 in PyObject_Call ()
+#77 0x00000000006b79e2 in ?? ()
+#78 0x00000000006b7de9 in Py_RunMain ()
+#79 0x00000000006b800d in Py_BytesMain ()
+#80 0x00007f2b5ef54083 in __libc_start_main (main=0x4ef140 <main>, argc=11, argv=0x7ffc5dcd4f08, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7ffc5dcd4ef8) at ../csu/libc-start.c:308
+#81 0x00000000005fb85e in _start ()
+

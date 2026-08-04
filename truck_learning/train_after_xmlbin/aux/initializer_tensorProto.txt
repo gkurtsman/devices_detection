@@ -1,0 +1,66 @@
+Breakpoint 1, reconvert (ov_model=
+    std::shared_ptr<ov::Model> (use count 3, weak count 1) = {...}, 
+    file_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx") at reconvert.cpp:115
+115			ngraph::onnx_import::Tensor tensor{initializer};
+(gdb) p initializer
+$1 = {<google::protobuf::MessageLite> = {
+    _vptr.MessageLite = 0x7ffff475b9d8 <vtable for ngraph_onnx::TensorProto+16>, 
+    _internal_metadata_ = {ptr_ = 0, static kUnknownFieldsTagMask = 1, 
+      static kMessageOwnedArenaTagMask = 2, static kPtrTagMask = 3, static kPtrValueMask = -4}}, 
+  static kIndexInFileMessages = 9, 
+  static UNDEFINED = ngraph_onnx::TensorProto_DataType_UNDEFINED, 
+  static FLOAT = ngraph_onnx::TensorProto_DataType_FLOAT, 
+  static UINT8 = ngraph_onnx::TensorProto_DataType_UINT8, 
+  static INT8 = ngraph_onnx::TensorProto_DataType_INT8, 
+  static UINT16 = ngraph_onnx::TensorProto_DataType_UINT16, 
+  static INT16 = ngraph_onnx::TensorProto_DataType_INT16, 
+  static INT32 = ngraph_onnx::TensorProto_DataType_INT32, 
+  static INT64 = ngraph_onnx::TensorProto_DataType_INT64, 
+  static STRING = ngraph_onnx::TensorProto_DataType_STRING, 
+  static BOOL = ngraph_onnx::TensorProto_DataType_BOOL, 
+  static FLOAT16 = ngraph_onnx::TensorProto_DataType_FLOAT16, 
+  static DOUBLE = ngraph_onnx::TensorProto_DataType_DOUBLE, 
+  static UINT32 = ngraph_onnx::TensorProto_DataType_UINT32, 
+  static UINT64 = ngraph_onnx::TensorProto_DataType_UINT64, 
+  static COMPLEX64 = ngraph_onnx::TensorProto_DataType_COMPLEX64, 
+  static COMPLEX128 = ngraph_onnx::TensorProto_DataType_COMPLEX128, 
+  static BFLOAT16 = ngraph_onnx::TensorProto_DataType_BFLOAT16, 
+  static DataType_MIN = ngraph_onnx::TensorProto_DataType_UNDEFINED, 
+  static DataType_MAX = ngraph_onnx::TensorProto_DataType_BFLOAT16, 
+  static DataType_ARRAYSIZE = 17, 
+  static DEFAULT = ngraph_onnx::TensorProto_DataLocation_DEFAULT, 
+  static EXTERNAL = ngraph_onnx::TensorProto_DataLocation_EXTERNAL, 
+  static DataLocation_MIN = ngraph_onnx::TensorProto_DataLocation_DEFAULT, 
+  static DataLocation_MAX = ngraph_onnx::TensorProto_DataLocation_EXTERNAL, 
+  static DataLocation_ARRAYSIZE = 2, _has_bits_ = {has_bits_ = {19}}, _cached_size_ = {
+    size_ = {<std::__atomic_base<int>> = {static _S_alignment = 4, 
+        _M_i = 0}, <No data fields>}}, dims_ = {static kInitialSize = <optimized out>, 
+    current_size_ = 4, total_size_ = 4, static kRepHeaderSize = <optimized out>, 
+    arena_or_elements_ = 0x555555b9db08}, float_data_ = {static kInitialSize = <optimized out>, 
+    current_size_ = 0, total_size_ = 0, static kRepHeaderSize = <optimized out>, 
+    arena_or_elements_ = 0x0}, int32_data_ = {static kInitialSize = <optimized out>, 
+    current_size_ = 0, total_size_ = 0, static kRepHeaderSize = <optimized out>, 
+    arena_or_elements_ = 0x0}, _int32_data_cached_byte_size_ = {<std::__atomic_base<int>> = {
+      static _S_alignment = 4, _M_i = 0}, <No data fields>}, 
+  string_data_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, 
+      arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, 
+--Type <RET> for more, q to quit, c to continue without paging--
+      rep_ = 0x0}, <No data fields>}, int64_data_ = {static kInitialSize = <optimized out>, 
+    current_size_ = 0, total_size_ = 0, static kRepHeaderSize = <optimized out>, 
+    arena_or_elements_ = 0x0}, _int64_data_cached_byte_size_ = {<std::__atomic_base<int>> = {
+      static _S_alignment = 4, _M_i = -193464416}, <No data fields>}, double_data_ = {
+    static kInitialSize = <optimized out>, current_size_ = 0, total_size_ = 0, 
+    static kRepHeaderSize = <optimized out>, arena_or_elements_ = 0x0}, uint64_data_ = {
+    static kInitialSize = <optimized out>, current_size_ = 0, total_size_ = 0, 
+    static kRepHeaderSize = <optimized out>, arena_or_elements_ = 0x0}, 
+  _uint64_data_cached_byte_size_ = {<std::__atomic_base<int>> = {static _S_alignment = 4, 
+      _M_i = 0}, <No data fields>}, 
+  external_data_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {
+      static kInitialSize = 0, arena_ = 0x0, current_size_ = 0, total_size_ = 0, 
+      static kRepHeaderSize = 8, rep_ = 0x0}, <No data fields>}, name_ = {tagged_ptr_ = {
+      ptr_ = 0x555555b97580}}, raw_data_ = {tagged_ptr_ = {ptr_ = 0x555555ba2ec0}}, 
+  doc_string_ = {tagged_ptr_ = {
+      ptr_ = 0x7ffff477f7a0 <google::protobuf::internal::fixed_address_empty_string[abi:cxx11]>}}, segment_ = 0x0, data_type_ = 1, data_location_ = 0}
+(gdb) 
+
+

@@ -1,0 +1,17 @@
+#! /bin/sh
+
+/home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/truck_detect_venv/bin/ote train \
+/home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/external/mmdetection/configs/custom-object-detection/gen3_mobilenetV2_SSD/template_experimental.yaml \
+--train-ann-files /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/data/vehicle_detection/annotation_train.json \
+--train-data-roots /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/data/vehicle_detection/train/ \
+--val-ann-files /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/data/vehicle_detection/annotation_val.json \
+--val-data-roots /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions/data/vehicle_detection/val \
+--load-weights /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/model/ote_trainingExt_models/vehicle-detection-0204_weights/storage_vehicle-detection-0204.pth \
+--save-model-to /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/training/export \
+params --learning_parameters.batch_size 1 \
+--learning_parameters.num_iters 1
+
+# ... external/model-preparation-algorithm/configs/detection/mobilenetv2_ssd_cls_incr/truck_template.yaml
+#--load-weights /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/weights_otetrain_in.pth \
+# --save-model-to /home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/ote_output_model/ \
+# --learning_parameters.num_iters 10

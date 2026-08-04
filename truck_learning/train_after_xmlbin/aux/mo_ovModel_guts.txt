@@ -1,0 +1,141 @@
+MO data
+
+Breakpoint 1, ov::Model::Model (this=0x555555daf050, 
+    results=std::vector of length 4, capacity 4 = {...}, 
+    parameters=std::vector of length 1, capacity 1 = {...}, name="torch-jit-export")
+    at /opt/intel/openvino_for_build.git/src/core/src/model.cpp:110
+110	    prerequirements(true, false);
+(gdb) p m_topological_sorter
+$1 = {<std::_Maybe_unary_or_binary_function<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&>> = {<std::unary_function<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >> = {<No data fields>}, <No data fields>}, <std::_Function_base> = {
+    static _M_max_size = 16, static _M_max_align = 8, _M_functor = {_M_unused = {
+        _M_object = 0x7ffff283d291
+     <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_const_object = 0x7ffff283d291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_function_pointer = 0x7ffff283d291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_member_pointer = &virtual table offset 140737262113424}, 
+      _M_pod_data = "\221҃\362\377\177\000\000\000\000\000\000\000\000\000"}, 
+    _M_manager = 0x7ffff2894a78 <std::_Function_base::_Base_manager<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (*)(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>::_M_manager(std::_Any_data&, std::_Any_data const&, std::_Manager_operation)>}, 
+  _M_invoker = 0x7ffff28949c8 <std::_Function_handler<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&), std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (*)(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>::_M_invoke(std::_Any_data const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&)>}
+(gdb) n
+111	}
+(gdb) p m_topological_sorter
+$2 = {<std::_Maybe_unary_or_binary_function<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&>> = {<std::unary_function<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >> = {<No data fields>}, <No data fields>}, <std::_Function_base> = {
+    static _M_max_size = 16, static _M_max_align = 8, _M_functor = {_M_unused = {
+        _M_object = 0x7ffff283d291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_const_object = 0x7ffff283d291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_function_pointer = 0x7ffff283d291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_member_pointer = &virtual table offset 140737262113424}, 
+      _M_pod_data = "\221҃\362\377\177\000\000\000\000\000\000\000\000\000"}, 
+    _M_manager = 0x7ffff2894a78 <std::_Function_base::_Base_manager<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (*)(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>::_M_manager(std::_Any_data&, std::_Any_data const&, std::_Manager_operation)>}, 
+  _M_invoker = 0x7ffff28949c8 <std::_Function_handler<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&), std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (*)(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>::_M_invoke(std::_Any_data const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&)>}
+(gdb) p results
+$3 = std::vector of length 4, capacity 4 = {{m_node = 
+    std::shared_ptr<ov::Node> (use count 3, weak count 2) = {get() = 0x555555d9cbb0}, 
+    m_index = 0}, {m_node = std::shared_ptr<ov::Node> (use count 3, weak count 2) = {
+      get() = 0x555555d9be10}, m_index = 0}, {
+    m_node = std::shared_ptr<ov::Node> (use count 3, weak count 2) = {get() = 0x555555d9d470}, 
+    m_index = 0}, {m_node = std::shared_ptr<ov::Node> (use count 3, weak count 2) = {
+      get() = 0x555555dae780}, m_index = 0}}
+(gdb) p m_results
+$4 = std::vector of length 4, capacity 4 = {
+    std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555daf250}, 
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555dafa20}, 
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555db00a0}, 
+  std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555db0770}}
+(gdb) p m_results[0]
+$5 = std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555daf250}
+(gdb) p *m_results[0]
+$6 = {<ov::op::Op> = {<ov::Node> = {<std::enable_shared_from_this<ov::Node>> = {
+        _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {
+          get() = 0x555555daf250}}, 
+      _vptr.Node = 0x7ffff3c94eb8 <vtable for ov::op::v0::Result+16>, 
+      m_control_dependents = std::vector of length 0, capacity 0, 
+      m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 7530, 
+      m_friendly_name = "", m_unique_name = "", m_name_changing = {_M_base = {
+          static _S_alignment = 1, _M_i = false}}, 
+      static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {
+          static _S_alignment = 8, _M_i = 7534}, <No data fields>}, 
+      m_inputs = std::deque with 1 element = {{
+          m_src_node = std::shared_ptr<ov::Node> (use count 3, weak count 2) = {
+            get() = 0x555555d9cbb0}, m_node = 0x555555daf250, m_index = 0, 
+          m_output = 0x555555d9cde0, m_rt_info = std::map with 0 elements, 
+          m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+      m_outputs = std::deque with 1 element = {{m_node = 0x555555daf250, m_index = 0, 
+          m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 2, weak count 0) = {
+            get() = 0x555555d9c970}, m_inputs = std::vector of length 0, capacity 0}}, 
+      m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {
+        get() = 0x0}, m_rt_info = std::map with 0 elements, 
+      m_shared_rt_info = std::set with 1 element = {
+        [0] = std::shared_ptr<ov::SharedRTInfo> (use count 1970, weak count 0) = {
+          get() = 0x555555db0e10}}, m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {
+            __data = {__lock = 0, __count = 0, __owner = 0, __nusers = 0, __kind = 0, 
+              __spins = 0, __elision = 0, __list = {__prev = 0x0, __next = 0x0}}, 
+            __size = '\000' <repeats 39 times>, 
+            __align = 0}}, <No data fields>}}, <No data fields>}, static type_info = {
+    name = 0x7ffff36c095e "Result", version = 0, version_id = 0x7ffff36c0957 "opset1", 
+    parent = 0x7ffff3d330e0 <ov::op::Op::get_type_info_static()::info>, 
+    hash_value = 18338151078191858541}}
+
+********************************************************
+
+my convert_xml_onnx.cpp data
+
+Breakpoint 1, main (argc=5, argv=0x7fffffffd8b8) at convert_xml_onnx.cpp:104
+104		model->prepare(ov_model);
+(gdb) p ov_model->m_topological_sorter
+$1 = {<std::_Maybe_unary_or_binary_function<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&>> = {<std::unary_function<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >> = {<No data fields>}, <No data fields>}, <std::_Function_base> = {
+    static _M_max_size = 16, static _M_max_align = 8, _M_functor = {_M_unused = {
+        _M_object = 0x7ffff27f6291
+     <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_const_object = 0x7ffff27f6291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_function_pointer = 0x7ffff27f6291 <ov::topological_sort<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > >(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>, 
+        _M_member_pointer = &virtual table offset 140737261822608, this adjustment 28552536314307922}, _M_pod_data = "\221b\177\362\377\177\000\000Reshape"}, 
+    _M_manager = 0x7ffff284da78 <std::_Function_base::_Base_manager<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (*)(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>::_M_manager(std::_Any_data&, std::_Any_data const&, std::_Manager_operation)>}, 
+  _M_invoker = 0x7ffff284d9c8 <std::_Function_handler<std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&), std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > (*)(std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > >)>::_M_invoke(std::_Any_data const&, std::vector<std::shared_ptr<ov::Node>, std::allocator<std::shared_ptr<ov::Node> > > const&)>}
+(gdb) p ov_model->results
+There is no member or method named results.
+(gdb) p ov_model->results
+There is no member or method named results.
+(gdb) p ov_model->m_results
+$2 = std::vector of length 1, capacity 1 = {
+    std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a14410}}
+(gdb) p ov_model->m_results[0]
+$3 = std::shared_ptr<ov::op::v0::Result> (use count 1, weak count 2) = {get() = 0x555555a14410}
+(gdb) p *(ov_model->m_results[0])
+$4 = {<ov::op::Op> = {<ov::Node> = {<std::enable_shared_from_this<ov::Node>> = {
+        _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {
+          get() = 0x555555a14410}}, 
+      _vptr.Node = 0x7ffff3c4deb8 <vtable for ov::op::v0::Result+16>, 
+      m_control_dependents = std::vector of length 0, capacity 0, 
+      m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 932, 
+      m_friendly_name = "detection_out/sink_port_0", m_unique_name = "", m_name_changing = {
+        _M_base = {static _S_alignment = 1, _M_i = false}}, 
+      static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {
+          static _S_alignment = 8, _M_i = 936}, <No data fields>}, 
+      m_inputs = std::deque with 1 element = {{m_src_node = 
+    std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x555555a13db0}, 
+          m_node = 0x555555a14410, m_index = 0, m_output = 0x555555a14000, 
+          m_rt_info = std::map with 0 elements, m_is_relevant_to_shape = false, 
+          m_is_relevant_to_value = true}}, m_outputs = std::deque with 1 element = {{
+          m_node = 0x555555a14410, m_index = 0, 
+          m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 2, weak count 0) = {
+            get() = 0x555555a14210}, m_inputs = std::vector of length 0, capacity 0}}, 
+      m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {
+        get() = 0x0}, m_rt_info = std::map with 1 element = {["fused_names_0"] = {
+          _so = std::vector of length 0, capacity 0, _temp = 
+    std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, _impl = 
+    std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x555555a149f0}}}, 
+      m_shared_rt_info = std::set with 2 elements = {
+        [0] = std::shared_ptr<ov::SharedRTInfo> (use count 374, weak count 0) = {
+          get() = 0x555555a118e0}, 
+        [1] = std::shared_ptr<ov::SharedRTInfo> (use count 375, weak count 0) = {
+          get() = 0x555555a174b0}}, m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {
+            __data = {__lock = 0, __count = 0, __owner = 0, __nusers = 0, __kind = 0, 
+              __spins = 0, __elision = 0, __list = {__prev = 0x0, __next = 0x0}}, 
+            __size = '\000' <repeats 39 times>, 
+            __align = 0}}, <No data fields>}}, <No data fields>}, static type_info = {
+    name = 0x7ffff367995e "Result", version = 0, version_id = 0x7ffff3679957 "opset1", 
+    parent = 0x7ffff3cec0e0 <ov::op::Op::get_type_info_static()::info>, 
+    hash_value = 18338151078191858541}}
+(gdb) 
+

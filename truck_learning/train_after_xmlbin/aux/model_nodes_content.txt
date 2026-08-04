@@ -1,0 +1,1178 @@
+    std::weak_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x21a8d70}, 
+
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[0]))
+$20 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x21a8d70}}, 
+  _vptr.Node = 0x7f6211716508 <vtable for ov::op::v0::Parameter+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 6701, 
+  m_friendly_name = "image", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21a8d70, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x219c1e0}, m_inputs = std::vector of length 1, capacity 1 = {0x1d6f8f0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x233c070}}, 
+    ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x23a92a0}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {
+            __prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, 
+        __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x219c510}, 
+
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[1]))
+$21 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x219c510}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 6702, 
+  m_friendly_name = "", m_unique_name = "Constant_6702", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x219c510, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x219cc10}, m_inputs = std::vector of length 1, capacity 1 = {0x1d6f950}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1ddb720}}, 
+    ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bef010}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {
+            __prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, 
+        __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1a19050}, 
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2156de0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[2]))
+$22 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1a19050}}, 
+  _vptr.Node = 0x7f621171c048 <vtable for ov::op::v1::Subtract+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 6703, 
+  m_friendly_name = "", m_unique_name = "Subtract_6703", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x21a8d70}, 
+      m_node = 0x1a19050, m_index = 0, m_output = 0x257fb10, 
+      m_rt_info = std::map with 0 elements, m_is_relevant_to_shape = false, 
+      m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x219c510}, 
+      m_node = 0x1a19050, m_index = 1, m_output = 0x219c9b0, 
+      m_rt_info = std::map with 0 elements, m_is_relevant_to_shape = false, 
+      m_is_relevant_to_value = true}}, m_outputs = std::deque with 1 element = {{
+      m_node = 0x1a19050, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x25803a0}, m_inputs = std::vector of length 1, capacity 2 = {0x214f730}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 3 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x231eef0}}, 
+    ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1beeed0}}, 
+    ["preprocessing_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1a19250}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {
+            __prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, 
+        __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x24d9900}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[3]))
+$23 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2156de0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18874, 
+  m_friendly_name = "", m_unique_name = "", m_name_changing = {_M_base = {static _S_alignment = 1, 
+      _M_i = false}}, static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {
+      static _S_alignment = 8, _M_i = 20191}, <No data fields>}, 
+  m_inputs = std::deque with 0 elements, m_outputs = std::deque with 1 element = {{
+      m_node = 0x2156de0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1dd09d0}, m_inputs = std::vector of length 1, capacity 1 = {0x214f790}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2597d10}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1deea60}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[4]))
+$24 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x24d9900}}, 
+  _vptr.Node = 0x7f6211714a48 <vtable for ov::op::v1::Multiply+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18875, 
+  m_friendly_name = "Divide_6705", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1a19050}, 
+      m_node = 0x24d9900, m_index = 0, m_output = 0x1d6fae0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2156de0}, 
+      m_node = 0x24d9900, m_index = 1, m_output = 0x21a0600, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x24d9900, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21737a0}, m_inputs = std::vector of length 2, capacity 2 = {0x21a5900, 
+        0x1dd64b0}}}, m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {
+    get() = 0x0}, m_rt_info = std::map with 3 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d310c0}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1ccc830}}, 
+    ["preprocessing_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1d6a490}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x19efe50}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[5]))
+$25 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1deea60}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 8, 
+  m_friendly_name = "1270", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1deea60, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1deff10}, m_inputs = std::vector of length 1, capacity 1 = {0x21a5960}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd6800}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1beeb10}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b4f20}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[6]))
+$26 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x19efe50}}, 
+  _vptr.Node = 0x7f621170c308 <vtable for ov::op::v1::Convolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 386, 
+  m_friendly_name = "Conv_6/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x24d9900}, 
+      m_node = 0x19efe50, m_index = 0, m_output = 0x21a2490, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1deea60}, 
+      m_node = 0x19efe50, m_index = 1, m_output = 0x1deef00, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x19efe50, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21a5d00}, m_inputs = std::vector of length 1, capacity 2 = {0x21ab3f0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d34840}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bee9d0}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21ab5f0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[7]))
+$27 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b4f20}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13206, 
+  m_friendly_name = "Reshape_406", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21b4f20, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x23c7550}, m_inputs = std::vector of length 1, capacity 1 = {0x21ab450}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x217d170}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a1040}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[8]))
+$28 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21ab5f0}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 433, 
+  m_friendly_name = "Conv_6", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x19efe50}, 
+      m_node = 0x21ab5f0, m_index = 0, m_output = 0x21a5af0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b4f20}, 
+      m_node = 0x21ab5f0, m_index = 1, m_output = 0x256ef80, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21ab5f0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21abf80}, m_inputs = std::vector of length 1, capacity 2 = {0x215ad60}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd69c0}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1ccfa30}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df0d60}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[9]))
+$29 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a1040}}, 
+  _vptr.Node = 0x7f621170b8f8 <vtable for ov::op::v0::Clamp+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18824, 
+  m_friendly_name = "Clip_9", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 1 element = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21ab5f0}, 
+      m_node = 0x21a1040, m_index = 0, m_output = 0x21abb20, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21a1040, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x256d440}, m_inputs = std::vector of length 1, capacity 1 = {0x21ad220}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd6980}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1c2ea90}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21acfd0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[10]))
+$30 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df0d60}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 10, 
+  m_friendly_name = "1273", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1df0d60, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1df2490}, m_inputs = std::vector of length 1, capacity 1 = {0x21ad280}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd6b00}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bedc10}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dd79a0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[11]))
+$31 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21acfd0}}, 
+  _vptr.Node = 0x7f621170c308 <vtable for ov::op::v1::Convolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 436, 
+  m_friendly_name = "Conv_10/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a1040}, 
+      m_node = 0x21acfd0, m_index = 0, m_output = 0x21a1a60, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df0d60}, 
+      m_node = 0x21acfd0, m_index = 1, m_output = 0x1df1200, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21acfd0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21ad620}, m_inputs = std::vector of length 1, capacity 2 = {0x21b2750}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd6b40}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bedad0}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b2950}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[12]))
+$32 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dd79a0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13212, 
+  m_friendly_name = "Reshape_456", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1dd79a0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x23c7d70}, m_inputs = std::vector of length 1, capacity 1 = {0x21b27b0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2592a10}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21155f0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[13]))
+$33 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b2950}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 483, 
+  m_friendly_name = "Conv_10", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21acfd0}, 
+      m_node = 0x21b2950, m_index = 0, m_output = 0x21ad410, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dd79a0}, 
+      m_node = 0x21b2950, m_index = 1, m_output = 0x23c6a20, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21b2950, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21b32e0}, m_inputs = std::vector of length 1, capacity 2 = {0x21ab930}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d31240}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1c30390}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dcefd0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[14]))
+$34 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21155f0}}, 
+  _vptr.Node = 0x7f621170b8f8 <vtable for ov::op::v0::Clamp+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18825, 
+  m_friendly_name = "Clip_13", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 1 element = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b2950}, 
+      m_node = 0x21155f0, m_index = 0, m_output = 0x21b2e80, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21155f0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21ac190}, m_inputs = std::vector of length 1, capacity 1 = {0x1dd0280}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd6cc0}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bef650}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b53e0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[15]))
+$35 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dcefd0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13215, 
+  m_friendly_name = "Reshape_493", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1dcefd0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x23c8c30}, m_inputs = std::vector of length 1, capacity 1 = {0x1dd02e0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd74a0}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21aedd0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[16]))
+$36 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b53e0}}, 
+  _vptr.Node = 0x7f6211710aa8 <vtable for ov::op::v1::GroupConvolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 559, 
+  m_friendly_name = "Conv_14/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21155f0}, 
+      m_node = 0x21b53e0, m_index = 0, m_output = 0x21ac790, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dcefd0}, 
+      m_node = 0x21b53e0, m_index = 1, m_output = 0x23c5c10, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21b53e0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1dcee80}, m_inputs = std::vector of length 1, capacity 2 = {0x21b7f80}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd7720}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1c22530}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b8180}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[17]))
+$37 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21aedd0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13221, 
+  m_friendly_name = "Reshape_579", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21aedd0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x2317620}, m_inputs = std::vector of length 1, capacity 1 = {0x21b7fe0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d33c40}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2116950}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[18]))
+$38 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b8180}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 606, 
+  m_friendly_name = "Conv_14", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b53e0}, 
+      m_node = 0x21b8180, m_index = 0, m_output = 0x1dd0470, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21aedd0}, 
+      m_node = 0x21b8180, m_index = 1, m_output = 0x23c6400, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21b8180, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21b8a10}, m_inputs = std::vector of length 1, capacity 2 = {0x21b2c90}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2593390}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1c273f0}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df4ce0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[19]))
+$39 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2116950}}, 
+  _vptr.Node = 0x7f621170b8f8 <vtable for ov::op::v0::Clamp+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18826, 
+  m_friendly_name = "Clip_17", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 1 element = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b8180}, 
+      m_node = 0x2116950, m_index = 0, m_output = 0x21b86b0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x2116950, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21b34f0}, m_inputs = std::vector of length 1, capacity 1 = {0x21b9af0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd78a0}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1befc90}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b98a0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[20]))
+$40 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df4ce0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 14, 
+  m_friendly_name = "1279", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1df4ce0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1df5c10}, m_inputs = std::vector of length 1, capacity 1 = {0x21b9b50}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd8260}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1beb410}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21aa490}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[21]))
+$41 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b98a0}}, 
+  _vptr.Node = 0x7f621170c308 <vtable for ov::op::v1::Convolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 609, 
+  m_friendly_name = "Conv_18/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2116950}, 
+      m_node = 0x21b98a0, m_index = 0, m_output = 0x21b3af0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df4ce0}, 
+      m_node = 0x21b98a0, m_index = 1, m_output = 0x1df5180, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21b98a0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21b9ef0}, m_inputs = std::vector of length 1, capacity 2 = {0x21beac0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d33e80}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1beb2d0}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21becc0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[22]))
+$42 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21aa490}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13227, 
+  m_friendly_name = "Reshape_629", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21aa490, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x2378560}, m_inputs = std::vector of length 1, capacity 1 = {0x21beb20}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x217d1d0}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df6a20}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[23]))
+$43 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21becc0}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 656, 
+  m_friendly_name = "Conv_18", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21b98a0}, 
+      m_node = 0x21becc0, m_index = 0, m_output = 0x21b9ce0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21aa490}, 
+      m_node = 0x21becc0, m_index = 1, m_output = 0x23c7290, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21becc0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21bf550}, m_inputs = std::vector of length 1, capacity 1 = {0x21bf000}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2522e30}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1c27170}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21bf9f0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[24]))
+$44 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df6a20}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 16, 
+  m_friendly_name = "1282", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1df6a20, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1df8950}, m_inputs = std::vector of length 1, capacity 1 = {0x21bf060}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd93a0}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bea790}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a76d0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[25]))
+$45 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21bf9f0}}, 
+  _vptr.Node = 0x7f621170c308 <vtable for ov::op::v1::Convolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 657, 
+  m_friendly_name = "Conv_19/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21becc0}, 
+      m_node = 0x21bf9f0, m_index = 0, m_output = 0x21bf1f0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1df6a20}, 
+      m_node = 0x21bf9f0, m_index = 1, m_output = 0x1df6ec0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21bf9f0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21bf6a0}, m_inputs = std::vector of length 1, capacity 2 = {0x21c4620}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x25a8b90}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bea650}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21c4820}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[26]))
+$46 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a76d0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13233, 
+  m_friendly_name = "Reshape_677", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21a76d0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x238e780}, m_inputs = std::vector of length 1, capacity 1 = {0x21c4680}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd9120}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2117cd0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[27]))
+$47 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21c4820}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 704, 
+  m_friendly_name = "Conv_19", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21bf9f0}, 
+      m_node = 0x21c4820, m_index = 0, m_output = 0x21bfc40, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a76d0}, 
+      m_node = 0x21c4820, m_index = 1, m_output = 0x23c7b60, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21c4820, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21c50b0}, m_inputs = std::vector of length 1, capacity 2 = {0x21b84c0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2594090}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bd4980}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a6f70}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[28]))
+$48 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2117cd0}}, 
+  _vptr.Node = 0x7f621170b8f8 <vtable for ov::op::v0::Clamp+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18827, 
+  m_friendly_name = "Clip_22", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 1 element = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21c4820}, 
+      m_node = 0x2117cd0, m_index = 0, m_output = 0x21c4d50, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x2117cd0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21b8b60}, m_inputs = std::vector of length 1, capacity 1 = {0x21c9b30}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd9520}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bf0190}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cca60}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[29]))
+$49 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a6f70}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13236, 
+  m_friendly_name = "Reshape_714", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21a6f70, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x23c2530}, m_inputs = std::vector of length 1, capacity 1 = {0x21c9b90}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd9c60}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2546e80}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[30]))
+$50 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cca60}}, 
+  _vptr.Node = 0x7f6211710aa8 <vtable for ov::op::v1::GroupConvolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 780, 
+  m_friendly_name = "Conv_23/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2117cd0}, 
+      m_node = 0x21cca60, m_index = 0, m_output = 0x21b8ff0, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21a6f70}, 
+      m_node = 0x21cca60, m_index = 1, m_output = 0x23c8370, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21cca60, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21caf00}, m_inputs = std::vector of length 1, capacity 2 = {0x21cf750}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1bd9d60}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1bed0d0}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cf950}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[31]))
+$51 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2546e80}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13242, 
+  m_friendly_name = "Reshape_800", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x2546e80, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x22576c0}, m_inputs = std::vector of length 1, capacity 1 = {0x21cf7b0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x25b1cd0}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2119050}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[32]))
+$52 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cf950}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 827, 
+  m_friendly_name = "Conv_23", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cca60}, 
+      m_node = 0x21cf950, m_index = 0, m_output = 0x21c9d20, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2546e80}, 
+      m_node = 0x21cf950, m_index = 1, m_output = 0x2586f70, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21cf950, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21d01e0}, m_inputs = std::vector of length 1, capacity 2 = {0x21c4b60}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d0e200}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x223f350}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dfbca0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[32]))
+$52 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cf950}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 827, 
+  m_friendly_name = "Conv_23", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cca60}, 
+      m_node = 0x21cf950, m_index = 0, m_output = 0x21c9d20, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2546e80}, 
+      m_node = 0x21cf950, m_index = 1, m_output = 0x2586f70, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21cf950, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21d01e0}, m_inputs = std::vector of length 1, capacity 2 = {0x21c4b60}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1d0e200}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x223f350}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21d11d0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[33]))
+$53 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2119050}}, 
+  _vptr.Node = 0x7f621170b8f8 <vtable for ov::op::v0::Clamp+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 18828, 
+  m_friendly_name = "Clip_26", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 1 element = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21cf950}, 
+      m_node = 0x2119050, m_index = 0, m_output = 0x21cfe80, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x2119050, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21c5200}, m_inputs = std::vector of length 1, capacity 1 = {0x21d1420}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1ce3020}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1be9b10}}}, 
+  m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x23602a0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[34]))
+$54 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dfbca0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 20, 
+  m_friendly_name = "1288", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x1dfbca0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x1dfe7d0}, m_inputs = std::vector of length 1, capacity 1 = {0x21d1480}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1ce31a0}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1be7f90}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x21d65f0}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[35]))
+$55 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21d11d0}}, 
+  _vptr.Node = 0x7f621170c308 <vtable for ov::op::v1::Convolution+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 830, 
+  m_friendly_name = "Conv_27/WithoutBiases", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x2119050}, 
+      m_node = 0x21d11d0, m_index = 0, m_output = 0x21c5740, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dfbca0}, 
+      m_node = 0x21d11d0, m_index = 1, m_output = 0x1dfc140, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21d11d0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21d1820}, m_inputs = std::vector of length 1, capacity 2 = {0x21d63f0}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2160610}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x1be7e50}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x1dff550}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[36]))
+$56 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x23602a0}}, 
+  _vptr.Node = 0x7f621170bc58 <vtable for ov::op::v0::Constant+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 13248, 
+  m_friendly_name = "Reshape_850", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x23602a0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x22c6920}, m_inputs = std::vector of length 1, capacity 1 = {0x21d6450}}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 1 element = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x1dddea0}}}, m_shared_rt_info = std::set with 1 element = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+
+    std::weak_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21d7320}, 
+(gdb) p *((ov::Node*)(m->m_cached_ordered_ops[37]))
+$57 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 2, weak count 2) = {get() = 0x21d65f0}}, 
+  _vptr.Node = 0x7f62117097a0 <vtable for ov::op::v1::Add+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 877, 
+  m_friendly_name = "Conv_27", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 20191}, <No data fields>}, m_inputs = std::deque with 2 elements = {{
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x21d11d0}, 
+      m_node = 0x21d65f0, m_index = 0, m_output = 0x21d1610, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}, {
+      m_src_node = std::shared_ptr<ov::Node> (use count 1, weak count 2) = {get() = 0x23602a0}, 
+      m_node = 0x21d65f0, m_index = 1, m_output = 0x25b1e40, m_rt_info = std::map with 0 elements, 
+      m_is_relevant_to_shape = false, m_is_relevant_to_value = true}}, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x21d65f0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x21d6e80}, m_inputs = std::vector of length 2, capacity 2 = {0x21d6930, 
+        0x21f07b0}}}, m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {
+    get() = 0x0}, m_rt_info = std::map with 2 elements = {["can_be_folded"] = {
+      _so = std::vector of length 0, capacity 0, _temp = std::shared_ptr<ov::Any::Base> (empty) = {
+        get() = 0x0}, _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {
+        get() = 0x2248f80}}, ["fused_names_0"] = {_so = std::vector of length 0, capacity 0, 
+      _temp = std::shared_ptr<ov::Any::Base> (empty) = {get() = 0x0}, 
+      _impl = std::shared_ptr<ov::Any::Base> (use count 1, weak count 1) = {get() = 0x2291d70}}}, 
+  m_shared_rt_info = std::set with 2 elements = {
+    [0] = std::shared_ptr<ov::SharedRTInfo> (use count 783, weak count 0) = {get() = 0x25818e0}, 
+    [1] = std::shared_ptr<ov::SharedRTInfo> (use count 984, weak count 0) = {get() = 0x259e720}}, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, 
+            __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}}, <No data fields>}}
+

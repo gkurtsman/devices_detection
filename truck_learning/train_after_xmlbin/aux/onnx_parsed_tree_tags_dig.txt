@@ -1,0 +1,22 @@
+tags breakpoints:
+2-189, a lot of, AttributeProto
+4-57449, a lot of, ValueInfoProto
+6-59,  a lot of, node_proto, node_proto
+10-4,18,29,39,57899, model_proto
+16-49,43689,43699,55739,55779,57439, graph_proto
+20-15449, a lot of, TensorProto
+24-57509,57519,57529,57539,57619,57629,57699,57769,..., 57889  TensorShapeProto_Dimension
+26-57499,...,57859  TensorShapeProto
+28-57479,...,57849  TypeProto_Tensor
+40-57469,...,57829  TypeProto
+42-57909,57919  OperatorSetIdProto
+
+
+bp6: NodeProto::_InternalParse
+
+after tag 22(4)
+onnx_ngraph_onnx-ml.pb.cc:3931
+ptr = ctx->ParseMessage(_internal_add_node(), ptr);
+
+
+

@@ -1,0 +1,66 @@
+(gdb) p ng_node
+$1 = std::shared_ptr<ov::Node> (use count 3, weak count 1) = {get() = 0x5555558f07d0}
+(gdb) p *ng_node
+$2 = {<std::enable_shared_from_this<ov::Node>> = {
+    _M_weak_this = std::weak_ptr<ov::Node> (use count 3, weak count 1) = {
+      get() = 0x5555558f07d0}}, 
+  _vptr.Node = 0x7ffff3c44508 <vtable for ov::op::v0::Parameter+16>, 
+  m_control_dependents = std::vector of length 0, capacity 0, 
+  m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 1326, 
+  m_friendly_name = "", m_unique_name = "", m_name_changing = {_M_base = {
+      static _S_alignment = 1, _M_i = false}}, 
+  static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {static _S_alignment = 8, 
+      _M_i = 1327}, <No data fields>}, m_inputs = std::deque with 0 elements, 
+  m_outputs = std::deque with 1 element = {{m_node = 0x5555558f07d0, m_index = 0, 
+      m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+        get() = 0x555555b93c80}, m_inputs = std::vector of length 0, capacity 0}}, 
+  m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {get() = 0x0}, 
+  m_rt_info = std::map with 0 elements, m_shared_rt_info = std::set with 0 elements, 
+  m_insert_mutex = {<std::__mutex_base> = {_M_mutex = {__data = {__lock = 0, __count = 0, 
+          __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {
+            __prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, 
+        __align = 0}}, <No data fields>}}
+(gdb) p parameter
+$3 = std::shared_ptr<ov::op::v0::Parameter> (use count 3, weak count 1) = {get() = 0x5555558f07d0}
+(gdb) p *parameter
+$4 = {<ov::op::Op> = {<ov::Node> = {<std::enable_shared_from_this<ov::Node>> = {
+        _M_weak_this = std::weak_ptr<ov::Node> (use count 3, weak count 1) = {
+          get() = 0x5555558f07d0}}, 
+      _vptr.Node = 0x7ffff3c44508 <vtable for ov::op::v0::Parameter+16>, 
+      m_control_dependents = std::vector of length 0, capacity 0, 
+      m_control_dependencies = std::vector of length 0, capacity 0, m_instance_id = 1326, 
+      m_friendly_name = "", m_unique_name = "", m_name_changing = {_M_base = {
+          static _S_alignment = 1, _M_i = false}}, 
+      static m_next_instance_id = {<std::__atomic_base<unsigned long>> = {
+          static _S_alignment = 8, _M_i = 1327}, <No data fields>}, 
+      m_inputs = std::deque with 0 elements, m_outputs = std::deque with 1 element = {{
+          m_node = 0x5555558f07d0, m_index = 0, 
+          m_tensor = std::shared_ptr<ov::descriptor::Tensor> (use count 1, weak count 0) = {
+            get() = 0x555555b93c80}, m_inputs = std::vector of length 0, capacity 0}}, 
+      m_op_annotations = std::shared_ptr<ngraph::op::util::OpAnnotations> (empty) = {
+        get() = 0x0}, m_rt_info = std::map with 0 elements, 
+      m_shared_rt_info = std::set with 0 elements, m_insert_mutex = {<std::__mutex_base> = {
+          _M_mutex = {__data = {__lock = 0, __count = 0, __owner = 0, __nusers = 0, __kind = 0, 
+              __spins = 0, __elision = 0, __list = {__prev = 0x0, __next = 0x0}}, 
+            __size = '\000' <repeats 39 times>, 
+            __align = 0}}, <No data fields>}}, <No data fields>}, static type_info = {
+    name = 0x7ffff3669881 "Parameter", version = 0, version_id = 0x7ffff366987a "opset1", 
+    parent = 0x7ffff3ce50e0 <ov::op::Op::get_type_info_static()::info>, 
+    hash_value = 239796859462642658}, m_partial_shape = {m_rank_is_static = true, 
+    m_shape_type = ov::PartialShape::ShapeType::SHAPE_IS_UNKNOWN, 
+    m_dimensions = std::vector of length 4, capacity 4 = {{m_dimension = {
+          static s_max = 9223372036854775807, m_min_val = 1, m_max_val = 1}, m_label = 0, 
+        m_table_of_equivalence = std::shared_ptr<ov::TableOfEquivalence> (empty) = {
+          get() = 0x0}}, {m_dimension = {static s_max = 9223372036854775807, m_min_val = 3, 
+          m_max_val = 3}, m_label = 0, 
+        m_table_of_equivalence = std::shared_ptr<ov::TableOfEquivalence> (empty) = {
+          get() = 0x0}}, {m_dimension = {static s_max = 9223372036854775807, m_min_val = 0, 
+          m_max_val = 9223372036854775807}, m_label = 0, 
+        m_table_of_equivalence = std::shared_ptr<ov::TableOfEquivalence> (empty) = {
+          get() = 0x0}}, {m_dimension = {static s_max = 9223372036854775807, m_min_val = 0, 
+          m_max_val = 9223372036854775807}, m_label = 0, 
+        m_table_of_equivalence = std::shared_ptr<ov::TableOfEquivalence> (empty) = {
+          get() = 0x0}}}}, m_element_type = {m_type = ov::element::Type_t::f32}, 
+  m_is_relevant_to_shapes = false}
+(gdb) client_loop: send disconnect: Broken pipe
+

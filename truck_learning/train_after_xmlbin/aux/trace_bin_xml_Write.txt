@@ -1,0 +1,94 @@
+Breakpoint 2, (anonymous namespace)::ngfunction_2_ir (netXml=..., f=..., 
+    custom_opsets=std::map with 0 elements, constant_node_write_handler=..., version=11, 
+    deterministic=false) at /opt/intel/openvino.git/src/core/src/pass/serialize.cpp:941
+941	    for (auto e : edge_mapping) {
+(gdb) bt
+#0  (anonymous namespace)::ngfunction_2_ir (netXml=..., f=..., 
+    custom_opsets=std::map with 0 elements, constant_node_write_handler=..., version=11, 
+    deterministic=false) at /opt/intel/openvino.git/src/core/src/pass/serialize.cpp:941
+#1  0x00007fe7302ddc48 in (anonymous namespace)::XmlSerializer::on_adapter (this=0x7ffed19bc100, 
+    name="net", adapter=...) at /opt/intel/openvino.git/src/core/src/pass/serialize.cpp:518
+#2  0x00007fe72feef83d in ov::AttributeVisitor::on_attribute<std::shared_ptr<ov::Model> > (this=
+    0x7ffed19bc100, name="net", value=
+    std::shared_ptr<ov::Model> (use count 2, weak count 1) = {...})
+    at /opt/intel/openvino.git/src/core/include/openvino/core/attribute_visitor.hpp:106
+#3  0x00007fe7302e317a in (anonymous namespace)::serializeFunc (xml_file=..., bin_file=..., 
+    f=std::shared_ptr<ov::Model> (use count 2, weak count 1) = {...}, 
+    ver=ov::pass::Serialize::Version::UNSPECIFIED, custom_opsets=std::map with 0 elements, 
+    deterministic=false) at /opt/intel/openvino.git/src/core/src/pass/serialize.cpp:1009
+#4  0x00007fe7302e37f3 in ov::pass::Serialize::run_on_model (this=0x28ddb70, 
+    f_orig=std::shared_ptr<ov::Model> (use count 4, weak count 1) = {...})
+    at /opt/intel/openvino.git/src/core/src/pass/serialize.cpp:1032
+#5  0x00007fe7302d1b04 in ov::pass::Manager::run_passes (this=0x7ffed19bce20, 
+    func=std::shared_ptr<ov::Model> (use count 4, weak count 1) = {...})
+    at /opt/intel/openvino.git/src/core/src/pass/manager.cpp:100
+#6  0x00007fe72fc7e9a3 in ov::serialize (
+    m=std::shared_ptr<const ov::Model> (use count 4, weak count 1) = {...}, 
+    xml_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/one_iter/export/cpp/model_beforeMO.xml", 
+    bin_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/one_iter/export/cpp/model_beforeMO.bin", 
+    version=ov::pass::Serialize::Version::UNSPECIFIED)
+    at /opt/intel/openvino.git/src/core/src/graph_util.cpp:818
+#7  0x00007fe7318fdabb in <lambda(std::shared_ptr<ov::Model>&, const string&, const string&, const string&)>::operator()(std::shared_ptr<ov::Model> &, const std::string &, const std::string &, const std::string &) const (__closure=0x1efb398, 
+    model=std::shared_ptr<ov::Model> (use count 4, weak count 1) = {...}, 
+    xml_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/one_iter/export/cpp/model_beforeMO.xml", 
+    bin_path="/home/gena/Develop/comp_vision/dnn/openvino_dev/devices_detection/truck_learning/train_after_xmlbin/one_iter/export/cpp/model_beforeMO.bin", version="UNSPECIFIED")
+    at /opt/intel/openvino.git/src/bindings/python/src/pyopenvino/pyopenvino.cpp:105
+#8  0x00007fe731902641 in pybind11::detail::argument_loader<std::shared_ptr<ov::Model>&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>::call_impl<void, pybind11_init_pyopenvino(pybind11::module_&)::<lambda(std::shared_ptr<ov::Model>&, const string&, const string&, const string&)>&, 0, 1, 2, 3, pybind11::detail::void_type>(<lambda(std::shared_ptr<ov::Model>&, const string&, const string&, const string&)> &, pybind11::detail::index_sequence<0, 1, 2, 3>, pybind11::detail::void_type &&) (this=0x7ffed19bcfb0, f=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1208
+#9  0x00007fe731901a30 in pybind11::detail::argument_loader<std::shared_ptr<ov::Model>&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>::call<void, pybind11::detail::void_type, pybind11_init_pyopenvino(pybind11::module_&)::<lambda(std::shared_ptr<ov::Model>&, const string&, const string&, const string&)>&>(<lambda(std::shared_ptr<ov::Model>&, const string&, const string&, const string&)> &) (this=0x7ffed19bcfb0, f=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1185
+#10 0x00007fe731901321 in pybind11::cpp_function::<lambda(pybind11::detail::function_call&)>::operator()(pybind11::detail::function_call &) const (this=0x0, call=...)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:224
+#11 0x00007fe7319013d8 in pybind11::cpp_function::<lambda(pybind11::detail::function_call&)>::_FUN(pybind11::detail::function_call &) ()
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:202
+#12 0x00007fe7314a08e2 in pybind11::cpp_function::dispatcher (self=0x7fe731db9e70, 
+    args_in=0x7fe767621140, kwargs_in=0x0)
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:805
+#13 0x00000000005f6939 in PyCFunction_Call ()
+#14 0x00000000005f7506 in _PyObject_MakeTpCall ()
+#15 0x0000000000570787 in _PyEval_EvalFrameDefault ()
+#16 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#17 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#18 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#19 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#20 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#21 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#22 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#23 0x000000000068e547 in PyEval_EvalCode ()
+#24 0x0000000000601624 in ?? ()
+#25 0x00000000005c4ef0 in ?? ()
+#26 0x0000000000574d08 in ?? ()
+#27 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#28 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#29 0x000000000068e547 in PyEval_EvalCode ()
+#30 0x0000000000601624 in ?? ()
+#31 0x00000000005c4ef0 in ?? ()
+#32 0x0000000000574d08 in ?? ()
+#33 0x00000000005720db in _PyEval_EvalFrameDefault ()
+#34 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#35 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#36 0x000000000056b619 in _PyEval_EvalFrameDefault ()
+#37 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#38 0x000000000056b619 in _PyEval_EvalFrameDefault ()
+#39 0x00000000005f6ce6 in _PyFunction_Vectorcall ()
+#40 0x0000000000570556 in _PyEval_EvalFrameDefault ()
+#41 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#42 0x000000000068e547 in PyEval_EvalCode ()
+#43 0x0000000000601624 in ?? ()
+#44 0x00000000005c4ef0 in ?? ()
+#45 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#46 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#47 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#48 0x000000000056b4ed in _PyEval_EvalFrameDefault ()
+#49 0x00000000005697da in _PyEval_EvalCodeWithName ()
+#50 0x00000000005f6ec3 in _PyFunction_Vectorcall ()
+#51 0x00000000005f60b2 in PyObject_Call ()
+#52 0x00000000006b79e2 in ?? ()
+#53 0x00000000006b7de9 in Py_RunMain ()
+#54 0x00000000006b800d in Py_BytesMain ()
+#55 0x00007fe7742ca083 in __libc_start_main (main=0x4ef140 <main>, argc=11, argv=0x7ffed19beef8, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7ffed19beee8) at ../csu/libc-start.c:308
+#56 0x00000000005fb85e in _start ()
+(gdb) 
+

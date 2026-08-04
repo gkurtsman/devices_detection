@@ -1,0 +1,83 @@
+*********** Proto ******************
+class ngraph_onnx::ModelProto
+ngraph_onnx::OperatorSetIdProto opset_import_
+ngraph_onnx::StringStringEntryProto metadata_props_
+ngraph_onnx::TrainingInfoProto training_info_
+ngraph_onnx::FunctionProto functions_
+internal::ArenaStringPtr producer_name_
+ArenaStringPtr producer_version_
+internal::ArenaStringPtr domain_
+ArenaStringPtr doc_string_
+ngraph_onnx::GraphProto* graph_
+int64 ir_version_
+int64 model_version_
+
+
+class ngraph_onnx::GraphProto* graph_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::NodeProto > node_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::TensorProto > initializer_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::ValueInfoProto > input_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::ValueInfoProto > output_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::ValueInfoProto > value_info_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::TensorAnnotation > quantization_annotation_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ngraph_onnx::SparseTensorProto > sparse_initializer_
+::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_
+::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr doc_string_
+
+class ONNX_API NodeProto
+internal::ArenaStringPtr domain_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> input_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> output_
+::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<ngraph_onnx::AttributeProto attribute_
+::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_
+::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr op_type_
+::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr doc_string_
+::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr domain_
+
+******** ov:: and onnx_import ****************************
+ov::Model
+m_topological_sorter
+ov::ResultVector m_result (note: a.k.a. op::v0::Result)
+ov::SinkVector m_sinks
+ov::ParameterVector m_parameters
+ov::op::util::VariableVector m_variables
+RTMap m_rt_info
+std::vector<std::weak_ptr<ov::Node>> m_cached_ordered_ops
+std::unordered_map<std::string, Output<ov::Node>> m_cached_output_names
+
+onnx_import::Model
+ModelOpSet m_opset
+
+ngraph::onnx_import::Graph
+ParameterVector m_parameters
+std::unique_ptr<Model> m_model
+std::unique_ptr<GraphCache> m_cache
+ov::frontend::ExtensionHolder m_extensions = {}
+std::vector<Node> m_nodes
+
+class ngraph::onnx_import::Subgraph : public Graph
+const Graph* m_parent_graph;
+std::vector<std::string> m_inputs_from_parent
+std::unordered_map<std::shared_ptr<ngraph::op::Parameter>, std::string> m_parameter_to_parent_node_map
+
+class OPENVINO_API ov::Node : public std::enable_shared_from_this<Node>
+std::vector<Node*> m_control_dependents
+std::vector<std::shared_ptr<Node>> m_control_dependencies
+size_t m_instance_id{m_next_instance_id.fetch_add(1)}
+std::string m_friendly_name;
+mutable std::string m_unique_name;
+std::set<std::shared_ptr<SharedRTInfo>> m_shared_rt_info
+
+class ONNX_IMPORTER_API ngraph::onnx_import::Node
+std::unique_ptr<Impl, void (*)(Impl*)> m_pimpl
+
+class ngraph::onnx_import::Node::Impl
+const ONNX_NAMESPACE::NodeProto* m_node_proto
+std::string m_name
+std::string m_domain
+const Graph* m_graph
+const Graph* m_graph
+std::vector<Attribute> m_attributes
+std::vector<std::reference_wrapper<const std::string>> m_output_names
+std::unordered_map<std::string, std::shared_ptr<Subgraph>> m_subgraphs 
+

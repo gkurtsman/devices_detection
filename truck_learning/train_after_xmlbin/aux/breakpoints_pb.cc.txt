@@ -1,0 +1,287 @@
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1042
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1043
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1780
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:1781
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2095
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2096
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2518
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2519
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2901
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:2902
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3413
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3414
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3654
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3655
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3923
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:3924
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4376
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4377
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4693
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:4694
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5342
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5343
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5647
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5648
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5897
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:5898
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6108
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6109
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6344
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6345
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6558
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6559
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6796
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:6797
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7008
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7009
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7255
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7256
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7695
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:7696
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8078
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8079
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8354
+  commands
+    p ptr
+    c
+  end
+break build/thirdparty/onnx/onnx/onnx/onnx_ngraph_onnx-ml.pb.cc:8355
+  commands
+    p ptr
+    p /x tag
+    p /x tag >> 3
+    c
+  end
+

@@ -1,0 +1,29 @@
+1.
+PYTHONPATH=$PYTHONPATH:/home/gena/Develop/comp_vision/dnn/Openvino/training_extensions.misc/external/mmdetection:$OTE/external/mmdetection/submodule:/home/gena/Develop/comp_vision/dnn/Openvino/training_extensions.misc/truck_train_venv/lib/python3.8/site-packages
+
+2. file /home/gena/Develop/comp_vision/dnn/Openvino/training_extensions.misc/truck_train_venv/lib/python3.8/site-packages/mmdet/apis/__init__.py
+
+from export import export_model
+
+__all__ = [
+    'get_root_logger', 'set_random_seed', 'train_detector', 'init_detector',
+    'async_inference_detector', 'inference_detector', 'show_result_pyplot',
+    'multi_gpu_test', 'single_gpu_test', 'init_random_seed', 'export_model'
+
+3. ??? may be mistake
+in file: external/mmdetection/submodule/mmdet/__init__.py
+
+#mmcv_maximum_version = '1.3.14'
+mmcv_maximum_version = '1.5.3'
+
+4. training extension:
+
+export TASK_ALGO_DIR=$OTE/external/mmdetection/submodule
+
+file: $TASK_ALGO_DIR/init_venv.sh
+
+#  if [[ "${CUDA_VERSION_CODE}" != "111" ]] && [[ "${CUDA_VERSION_CODE}" != "102" ]] ; then
+#    echo "CUDA version must be either 11.1 or 10.2"
+  if [[ "${CUDA_VERSION_CODE}" != "116" ]] && [[ "${CUDA_VERSION_CODE}" != "102" ]] ; then
+    echo "CUDA version must be either 11.6 or 10.2"
+

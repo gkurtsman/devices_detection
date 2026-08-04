@@ -1,0 +1,108 @@
+Thread 1 "python" hit Breakpoint 1, ngraph::onnx_import::detail::import_onnx_model (model_proto=
+    std::shared_ptr<ngraph_onnx::ModelProto> (use count 2, weak count 0) = {...}, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:92
+92	    apply_transformations(*model_proto, model_path);
+(gdb) p model_path
+$1 = "/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx"
+(gdb) s
+std::__shared_ptr_access<ngraph_onnx::ModelProto, (__gnu_cxx::_Lock_policy)2, false, false>::operator* (this=0x0) at /usr/include/c++/9/bits/shared_ptr_base.h:1005
+1005	      operator*() const noexcept
+(gdb) fin
+Run till exit from #0  std::__shared_ptr_access<ngraph_onnx::ModelProto, (__gnu_cxx::_Lock_policy)2, false, false>::operator* (this=0x0) at /usr/include/c++/9/bits/shared_ptr_base.h:1005
+0x00007fa6b4d2d2b6 in ngraph::onnx_import::detail::import_onnx_model (
+    model_proto=std::shared_ptr<ngraph_onnx::ModelProto> (use count 2, weak count 0) = {...}, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:92
+92	    apply_transformations(*model_proto, model_path);
+Value returned is $2 = 
+  (std::__shared_ptr_access<ngraph_onnx::ModelProto, (__gnu_cxx::_Lock_policy)2, false, false>::element_type &) @0x1708c80: {<google::protobuf::MessageLite> = {_vptr.MessageLite = 0x7fa6b5142cf8 <vtable for ngraph_onnx::ModelProto+16>, _internal_metadata_ = {ptr_ = 0, static kUnknownFieldsTagMask = 1, static kMessageOwnedArenaTagMask = 2, static kPtrTagMask = 3, static kPtrValueMask = -4}}, static kIndexInFileMessages = 4, _has_bits_ = {has_bits_ = {51}}, _cached_size_ = {size_ = {<std::__atomic_base<int>> = {static _S_alignment = 4, _M_i = 0}, <No data fields>}}, opset_import_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, arena_ = 0x0, current_size_ = 1, total_size_ = 4, static kRepHeaderSize = 8, rep_ = 0x179a2f0}, <No data fields>}, metadata_props_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, rep_ = 0x0}, <No data fields>}, training_info_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, rep_ = 0x0}, <No data fields>}, functions_ = {<google::protobuf::internal::RepeatedPtrFieldBase> = {static kInitialSize = 0, arena_ = 0x0, current_size_ = 0, total_size_ = 0, static kRepHeaderSize = 8, rep_ = 0x0}, <No data fields>}, producer_name_ = {tagged_ptr_ = {ptr_ = 0x17920f0}}, producer_version_ = {tagged_ptr_ = {ptr_ = 0x1792120}}, domain_ = {tagged_ptr_ = {ptr_ = 0x7fa6b5165520 <google::protobuf::internal::fixed_address_empty_string[abi:cxx11]>}}, doc_string_ = {tagged_ptr_ = {ptr_ = 0x7fa6b5165520 <google::protobuf::internal::fixed_address_empty_string[abi:cxx11]>}}, graph_ = 0x1795f20, ir_version_ = 6, model_version_ = 0}
+(gdb) s
+ngraph::onnx_import::detail::(anonymous namespace)::apply_transformations (model_proto=..., 
+    model_path="")
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:54
+54	void apply_transformations(ONNX_NAMESPACE::ModelProto& model_proto, const std::string& model_path) {
+(gdb) s
+55	    transform::fixup_legacy_operators(model_proto);
+(gdb) s
+ngraph::onnx_import::transform::fixup_legacy_operators (model_proto=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/core/transform.cpp:137
+137	void ngraph::onnx_import::transform::fixup_legacy_operators(ONNX_NAMESPACE::ModelProto& model_proto) {
+(gdb) bt
+#0  ngraph::onnx_import::transform::fixup_legacy_operators (model_proto=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/core/transform.cpp:137
+#1  0x00007fa6b4d2cac1 in ngraph::onnx_import::detail::(anonymous namespace)::apply_transformations (model_proto=..., 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx")
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:55
+#2  0x00007fa6b4d2d2cb in ngraph::onnx_import::detail::import_onnx_model (
+    model_proto=std::shared_ptr<ngraph_onnx::ModelProto> (use count 2, weak count 0) = {...}, 
+    model_path="/home/gena/Develop/comp_vision/dnn/openvino_dev//devices_detection/truck_learning/train_after_xmlbin/aux/model_beforeMO.onnx", extensions=...)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/utils/onnx_internal.cpp:92
+#3  0x00007fa6b4b63eb3 in ov::onnx_editor::ONNXModelEditor::get_function (this=0x1749f10)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/editor.cpp:447
+#4  0x00007fa6b4b759aa in ov::frontend::onnx::InputModel::convert (this=0x17942e0)
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/input_model.cpp:201
+#5  0x00007fa6b4b69dfe in ov::frontend::onnx::FrontEnd::convert (this=0x1726670, model=
+    std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/onnx/frontend/src/frontend.cpp:90
+#6  0x00007fa6b76c8285 in ov::frontend::FrontEnd::convert (this=0x1791b80, 
+    model=std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/frontends/common/src/frontend.cpp:53
+#7  0x00007fa6b892c970 in pybind11::cpp_function::cpp_function<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}::operator()(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&) const (this=0x16d3158, 
+    c=0x1791b80, 
+    args#0=std::shared_ptr<ov::frontend::InputModel> (use count 2, weak count 0) = {...})
+    at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:119
+#8  0x00007fa6b8932399 in pybind11::detail::argument_loader<ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&>::call_impl<std::shared_ptr<ov::Model>, pybind11::cpp_function::cpp_function<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}&, 0ul, 1ul, pybind11::detail::void_type>(pybind11::cpp_function::cpp_function<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::Inp--Type <RET> for more, q to quit, c to continue without paging--c
+utModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}&, pybind11::detail::index_sequence<0ul, 1ul>, pybind11::detail::void_type&&) && (this=0x7ffcb192e820, f=...) at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1208
+#9  0x00007fa6b8930769 in pybind11::detail::argument_loader<ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&>::call<std::shared_ptr<ov::Model>, pybind11::detail::void_type, pybind11::cpp_function::cpp_function<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}&>(pybind11::cpp_function::cpp_function<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}&) && (this=0x7ffcb192e820, f=...) at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/cast.h:1180
+#10 0x00007fa6b892dede in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}, std::shared_ptr<ov::Model>, ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(pybind11::cpp_function::initialize<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}&&, std::shared_ptr<ov::Model> (*)(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(pybind11::detail::function_call&)#3}::operator()(pybind11::detail::function_call) const (this=0x0, call=...) at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:224
+#11 0x00007fa6b892e1f6 in pybind11::cpp_function::initialize<pybind11::cpp_function::initialize<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}, std::shared_ptr<ov::Model>, ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(pybind11::cpp_function::initialize<std::shared_ptr<ov::Model>, ov::frontend::FrontEnd, std::shared_ptr<ov::frontend::InputModel> const&, pybind11::name, pybind11::is_method, pybind11::sibling, pybind11::arg, char [317]>(std::shared_ptr<ov::Model> (ov::frontend::FrontEnd::*)(std::shared_ptr<ov::frontend::InputModel> const&) const, pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&)#1}&&, std::shared_ptr<ov::Model> (*)(ov::frontend::FrontEnd const*, std::shared_ptr<ov::frontend::InputModel> const&), pybind11::name const&, pybind11::is_method const&, pybind11::sibling const&, pybind11::arg const&, char const (&) [317])::{lambda(pybind11::detail::function_call&)#3}::_FUN(pybind11::detail::function_call) () at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:202
+#12 0x00007fa6b87998e2 in pybind11::cpp_function::dispatcher (self=0x7fa6b908f630, args_in=0x7fa6b46e2480, kwargs_in=0x0) at /opt/intel/openvino.git/src/bindings/python/thirdparty/pybind11/include/pybind11/pybind11.h:805
+#13 0x00000000005d5499 in PyCFunction_Call ()
+#14 0x00000000005d6066 in _PyObject_MakeTpCall ()
+#15 0x00000000004e22b3 in ?? ()
+#16 0x000000000054c8a9 in _PyEval_EvalFrameDefault ()
+#17 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#18 0x00000000005d5a23 in _PyFunction_Vectorcall ()
+#19 0x0000000000547265 in _PyEval_EvalFrameDefault ()
+#20 0x00000000005d5846 in _PyFunction_Vectorcall ()
+#21 0x0000000000547265 in _PyEval_EvalFrameDefault ()
+#22 0x00000000005d5846 in _PyFunction_Vectorcall ()
+#23 0x0000000000547265 in _PyEval_EvalFrameDefault ()
+#24 0x00000000005d5846 in _PyFunction_Vectorcall ()
+#25 0x0000000000547265 in _PyEval_EvalFrameDefault ()
+#26 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#27 0x0000000000684327 in PyEval_EvalCode ()
+#28 0x00000000005e1514 in ?? ()
+#29 0x00000000005a27d0 in ?? ()
+#30 0x0000000000551a88 in ?? ()
+#31 0x000000000055014d in _PyEval_EvalFrameDefault ()
+#32 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#33 0x0000000000684327 in PyEval_EvalCode ()
+#34 0x00000000005e1514 in ?? ()
+#35 0x00000000005a27d0 in ?? ()
+#36 0x0000000000551a88 in ?? ()
+#37 0x000000000055014d in _PyEval_EvalFrameDefault ()
+#38 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#39 0x00000000005d5a23 in _PyFunction_Vectorcall ()
+#40 0x0000000000547447 in _PyEval_EvalFrameDefault ()
+#41 0x00000000005d5846 in _PyFunction_Vectorcall ()
+#42 0x0000000000547447 in _PyEval_EvalFrameDefault ()
+#43 0x00000000005d5846 in _PyFunction_Vectorcall ()
+#44 0x000000000054c8a9 in _PyEval_EvalFrameDefault ()
+#45 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#46 0x0000000000684327 in PyEval_EvalCode ()
+#47 0x00000000005e1514 in ?? ()
+#48 0x00000000005a27d0 in ?? ()
+#49 0x0000000000547265 in _PyEval_EvalFrameDefault ()
+#50 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#51 0x00000000005d5a23 in _PyFunction_Vectorcall ()
+#52 0x0000000000547265 in _PyEval_EvalFrameDefault ()
+#53 0x000000000054552a in _PyEval_EvalCodeWithName ()
+#54 0x00000000005d5a23 in _PyFunction_Vectorcall ()
+#55 0x00000000005d4c12 in PyObject_Call ()
+#56 0x00000000006b3dd2 in ?? ()
+#57 0x00000000006b41d9 in Py_RunMain ()
+#58 0x00000000006b43fd in Py_BytesMain ()
+#59 0x00007fa6fb5c4083 in __libc_start_main (main=0x4c4510 <main>, argc=11, argv=0x7ffcb1930a78, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7ffcb1930a68) at ../csu/libc-start.c:308
+#60 0x00000000005da67e in _star
